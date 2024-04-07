@@ -1,6 +1,8 @@
 package br.ifpe.datastructures.abstractclass;
 
-public abstract class BasicTree {
+import br.ifpe.interfaces.IStructures;
+
+public abstract class BasicTree implements IStructures{
 	
 	private int size;
 	private BasicNode rootNode;
