@@ -1,5 +1,8 @@
 package br.com.ifpe.oficina.entities.abstractclasses;
 
-public class Person {
+public abstract class Person {
+	private String nome;
+	private int cpf ;
+	private int idade;
 
 }
