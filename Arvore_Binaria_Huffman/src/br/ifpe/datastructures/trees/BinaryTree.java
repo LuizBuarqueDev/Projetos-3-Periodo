@@ -3,11 +3,13 @@ package br.ifpe.datastructures.trees;
 import br.ifpe.datastructures.abstractclass.BasicTree;
 import br.ifpe.datastructures.nodes.BinaryNode;
 
-public class BinaryTree extends BasicTree{
+public class BinaryTree extends BasicTree {
 	
 	private BinaryNode addRecursively(BinaryNode tempNode,int value) {
 		if (tempNode == null) {
-			return new BinaryNode(value);
+			BinaryNode newNode = new BinaryNode(value);
+			balanceTree(newNode);
+			return newNode;
 			
 		} else if (value < tempNode.getValue()) {
 			tempNode.setLeftSon(addRecursively((BinaryNode) tempNode.getLeftSon(), value));
@@ -42,6 +44,13 @@ public class BinaryTree extends BasicTree{
 		}
 		return "O " + value + "não esta presente na arvore binaria";
 		
+	}
+	
+	private void balanceTree(BinaryNode node) {
+		BinaryNode tempNode = (BinaryNode) node.getFather();
+		while(tempNode != null) {
+			
+		}
 	}
 	
 	@Override
