@@ -2,7 +2,7 @@ package br.com.ifpe.oficina.entities.concreteclasses;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Person;
 
-public class Client extends Person {
+public final class Client extends Person {
 
 	protected boolean affiliate;
 
@@ -52,5 +52,13 @@ public class Client extends Person {
 	public String toString() {
 		return "Client [affiliate=" + affiliate + ", name=" + name + ", cpf=" + cpf + ", age=" + age + ", email="
 				+ email + "]";
+	}
+
+	public boolean isAffiliate() {
+		return affiliate;
+	}
+
+	public void setAffiliate(boolean affiliate) {
+		this.affiliate = affiliate;
 	}
 }
