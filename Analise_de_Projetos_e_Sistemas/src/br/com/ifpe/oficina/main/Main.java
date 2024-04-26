@@ -6,11 +6,11 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Client client = new Client.ClientBuilder()
-				.idade(25)
-				.afiliados(false)
+				.age(25)
+				.affiliate(false)
 				.cpf(111248547)
 				.email("zezin@gmail.com")
-				.nome("zezin")
+				.name("zezin")
 				.build();
 		System.out.println(client.toString());
 	}

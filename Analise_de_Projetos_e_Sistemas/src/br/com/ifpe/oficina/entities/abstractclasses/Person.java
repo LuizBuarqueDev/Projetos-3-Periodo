@@ -1,16 +1,16 @@
 package br.com.ifpe.oficina.entities.abstractclasses;
 
 public abstract class Person {
-	protected String nome;
+	protected String name;
 	protected int cpf;
-	protected int idade;
+	protected int age;
 	protected String email;
 	
-	protected Person(String nome, int cpf, int idade, String email) {
+	protected Person(String name, int cpf, int age, String email) {
 		super();
-		this.nome = nome;
+		this.name = name;
 		this.cpf = cpf;
-		this.idade = idade;
+		this.age = age;
 		this.email = email;
 	}
 }

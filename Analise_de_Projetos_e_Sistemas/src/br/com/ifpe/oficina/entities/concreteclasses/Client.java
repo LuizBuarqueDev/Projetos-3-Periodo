@@ -3,55 +3,54 @@ package br.com.ifpe.oficina.entities.concreteclasses;
 import br.com.ifpe.oficina.entities.abstractclasses.Person;
 
 public class Client extends Person {
-	
-	protected boolean afiliados;
-	
-	protected Client(String nome, int cpf, int idade, String email, boolean afiliados) {
-		super(nome, cpf, idade, email);
-		this.afiliados = afiliados;
+
+	protected boolean affiliate;
+
+	protected Client(String name, int cpf, int age, String email, boolean affiliate) {
+		super(name, cpf, age, email);
+		this.affiliate = affiliate;
 	}
 
-	public static class ClientBuilder{
-		protected String nome;
+	public static class ClientBuilder {
+		protected String name;
 		protected int cpf;
-		protected int idade;
+		protected int age;
 		protected String email;
-		protected boolean afiliados;
-		
-		public ClientBuilder nome(String nome) {
-			this.nome = nome;
+		protected boolean affiliate;
+
+		public ClientBuilder name(String name) {
+			this.name = name;
 			return this;
 		}
-		
+
 		public ClientBuilder cpf(int cpf) {
 			this.cpf = cpf;
 			return this;
 		}
-		
-		public ClientBuilder idade(int idade) {
-			this.idade = idade;
+
+		public ClientBuilder age(int age) {
+			this.age = age;
 			return this;
 		}
-		
+
 		public ClientBuilder email(String email) {
 			this.email = email;
 			return this;
 		}
-		
-		public ClientBuilder afiliados(boolean afiliados) {
-			this.afiliados = afiliados;
+
+		public ClientBuilder affiliate(boolean affiliate) {
+			this.affiliate = affiliate;
 			return this;
 		}
-		
+
 		public Client build() {
-			return new Client(nome, cpf, idade, email, afiliados);	
+			return new Client(name, cpf, age, email, affiliate);
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Client [afiliados=" + afiliados + ", nome=" + nome + ", cpf=" + cpf + ", idade=" + idade + ", email="
+		return "Client [affiliate=" + affiliate + ", name=" + name + ", cpf=" + cpf + ", age=" + age + ", email="
 				+ email + "]";
 	}
 }
-
