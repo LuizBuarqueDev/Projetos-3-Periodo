@@ -1,7 +1,6 @@
 package br.com.ifpe.oficina.main;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.entities.concreteclasses.WorkshopManager;
 
 public class Main {
 	public static void main(String[] args) {
@@ -14,12 +13,5 @@ public class Main {
 				.name("zezin")
 				.build();
 		System.out.println(client.toString());
-		
-		WorkshopManager workshopManager = new WorkshopManager.WorkshopManagerBuilder()
-				.cnpj("ffssdfsfs")
-				.workshopName("teste")
-				.address("Rua come cu")
-				.build();
-		System.out.println(workshopManager.toString());
 	}
 }
