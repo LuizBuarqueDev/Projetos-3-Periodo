@@ -1,6 +1,6 @@
 package br.com.ifpe.oficina.main;
 
-import br.com.ifpe.oficina.entities.concreteclasses.Client;
+import br.com.ifpe.oficina.entities.concreteclasses.person.Client;
 
 public class Main {
 	public static void main(String[] args) {

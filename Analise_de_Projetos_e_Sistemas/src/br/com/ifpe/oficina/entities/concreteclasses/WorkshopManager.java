@@ -2,6 +2,8 @@ package br.com.ifpe.oficina.entities.concreteclasses;
 
 import java.util.List;
 
+import br.com.ifpe.oficina.entities.concreteclasses.person.Employee;
+
 public class WorkshopManager {
 
 	private List<Services> servicesList;

@@ -1,4 +1,4 @@
-package br.com.ifpe.oficina.entities.concreteclasses;
+package br.com.ifpe.oficina.entities.concreteclasses.person;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Person;
 
