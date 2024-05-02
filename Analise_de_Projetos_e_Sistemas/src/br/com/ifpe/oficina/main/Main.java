@@ -1,5 +1,6 @@
 package br.com.ifpe.oficina.main;
 
+import br.com.ifpe.oficina.entities.concreteclasses.car.EletricCarFactory;
 import br.com.ifpe.oficina.entities.concreteclasses.person.Client;
 
 public class Main {
@@ -13,5 +14,8 @@ public class Main {
 				.name("zezin")
 				.build();
 		System.out.println(client.toString());
+		
+		EletricCarFactory carFactory = (EletricCarFactory) EletricCarFactory.getinstance().createCar("ABC-123", "DEF-456", 2014);
+		System.out.println(carFactory.toString());
 	}
 }

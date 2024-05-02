@@ -2,25 +2,26 @@ package br.com.ifpe.oficina.entities.concreteclasses;
 
 import java.util.List;
 
+import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.person.Employee;
 
 public class WorkshopManager {
 
-	private List<Services> servicesList;
+	private List<Car> CarList;
 	private List<Employee> employeeList;
 	private String workshopName;
 	private String cnpj;
 	private String address;
 
 	public WorkshopManager(
-			List<Services> servicesList,
+			List<Car> CarList,
 			List<Employee> employeeList,
 			String workshopName,
 			String cnpj,
 			String address) {
 		
 		super();
-		this.servicesList = servicesList;
+		this.CarList = CarList;
 		this.employeeList = employeeList;
 		this.workshopName = workshopName;
 		this.cnpj = cnpj;
@@ -28,7 +29,7 @@ public class WorkshopManager {
 	}
 	
 	private final WorkshopManager instance = new WorkshopManager(
-			getServicesList(),
+			getCarList(),
 			getEmployeeList(),
 			getWorkshopName(),
 			getCnpj(),
@@ -38,12 +39,12 @@ public class WorkshopManager {
 		return instance;
 	}
 
-	public List<Services> getServicesList() {
-		return servicesList;
+	public List<Car> getCarList() {
+		return CarList;
 	}
 
-	public void setServicesList(List<Services> servicesList) {
-		this.servicesList = servicesList;
+	public void setCarList(List<Car> CarList) {
+		this.CarList = CarList;
 	}
 
 	public List<Employee> getEmployeeList() {
