@@ -15,7 +15,7 @@ public class Main {
 				.build();
 		System.out.println(client.toString());
 		
-		EletricCarFactory carFactory = (EletricCarFactory) EletricCarFactory.getinstance().createCar("ABC-123", "DEF-456", 2014);
+		EletricCarFactory carFactory = (EletricCarFactory) EletricCarFactory.getInstance().createCar("ABC-123", "DEF-456", 2014);
 		System.out.println(carFactory.toString());
 	}
 }
