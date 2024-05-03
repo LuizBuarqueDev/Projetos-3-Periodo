@@ -4,19 +4,23 @@ import br.com.ifpe.oficina.entities.abstractclasses.Person;
 
 public final class Client extends Person {
 
-	protected boolean affiliate;
+	private boolean affiliate;
 
-	protected Client(String name, int cpf, int age, String email, boolean affiliate) {
+	private Client(String name, int cpf, int age, String email, boolean affiliate) {
 		super(name, cpf, age, email);
 		this.affiliate = affiliate;
 	}
+	
+	public static ClientBuilder ClientBuilder() {
+		return new ClientBuilder();
+	}
 
 	public static class ClientBuilder {
-		protected String name;
-		protected int cpf;
-		protected int age;
-		protected String email;
-		protected boolean affiliate;
+		private String name;
+		private int cpf;
+		private int age;
+		private String email;
+		private boolean affiliate;
 
 		public ClientBuilder name(String name) {
 			this.name = name;

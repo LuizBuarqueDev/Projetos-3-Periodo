@@ -1,21 +1,20 @@
 package br.com.ifpe.oficina.entities.abstractclasses;
 
+import br.com.ifpe.oficina.entities.concreteclasses.person.Client;
+
 public abstract class Car {
+	
 	protected String plate;
-	protected String chassis;
-	protected int age;
 	protected String engine;
+	protected String traction;
+	protected Client client;
 	
-	protected Car() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	protected Car(String plate, String chassis, int age) {
+	protected Car(String plate, String traction, Client client) {
 		super();
 		this.plate = plate;
-		this.chassis = chassis;
-		this.age = age;
 		this.engine = null;
+		this.traction = traction;
+		this.client = client;
 	}
 
 	public String getPlate() {
@@ -26,27 +25,27 @@ public abstract class Car {
 		this.plate = plate;
 	}
 
-	public String getChassis() {
-		return chassis;
-	}
-
-	public void setChassis(String chassis) {
-		this.chassis = chassis;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	public String getEngine() {
 		return engine;
 	}
 
 	public void setEngine(String engine) {
 		this.engine = engine;
+	}
+
+	public String getTraction() {
+		return traction;
+	}
+
+	public void setTraction(String traction) {
+		this.traction = traction;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }
