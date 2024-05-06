@@ -9,10 +9,13 @@ public abstract class Car {
 	protected String traction;
 	protected Client client;
 	
+	public Car() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	protected Car(String plate, String traction, Client client) {
 		super();
 		this.plate = plate;
-		this.engine = null;
 		this.traction = traction;
 		this.client = client;
 	}
@@ -27,10 +30,6 @@ public abstract class Car {
 
 	public String getEngine() {
 		return engine;
-	}
-
-	public void setEngine(String engine) {
-		this.engine = engine;
 	}
 
 	public String getTraction() {

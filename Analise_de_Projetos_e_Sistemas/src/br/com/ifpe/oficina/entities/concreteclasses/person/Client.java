@@ -1,16 +1,19 @@
 package br.com.ifpe.oficina.entities.concreteclasses.person;
 
+import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.abstractclasses.Person;
 
 public final class Client extends Person {
 
 	private boolean affiliate;
+	private Car car;
 
-	private Client(String name, int cpf, int age, String email, boolean affiliate) {
+	private Client(String name, int cpf, int age, String email, boolean affiliate, Car car) {
 		super(name, cpf, age, email);
 		this.affiliate = affiliate;
+		this.car = car;
 	}
-	
+
 	public static ClientBuilder ClientBuilder() {
 		return new ClientBuilder();
 	}
@@ -21,6 +24,7 @@ public final class Client extends Person {
 		private int age;
 		private String email;
 		private boolean affiliate;
+		private Car car;
 
 		public ClientBuilder name(String name) {
 			this.name = name;
@@ -47,15 +51,20 @@ public final class Client extends Person {
 			return this;
 		}
 
+		public ClientBuilder car(Car car) {
+			this.car = car;
+			return this;
+		}
+
 		public Client build() {
-			return new Client(name, cpf, age, email, affiliate);
+			return new Client(name, cpf, age, email, affiliate, car);
 		}
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Client [affiliate=" + affiliate + ", name=" + name + ", cpf=" + cpf + ", age=" + age + ", email="
-				+ email + "]";
+		return "Client [affiliate=" + affiliate + ", car=" + car + ", name=" + name + ", cpf=" + cpf + ", age=" + age
+				+ ", email=" + email + "]";
 	}
 
 	public boolean isAffiliate() {
@@ -64,5 +73,13 @@ public final class Client extends Person {
 
 	public void setAffiliate(boolean affiliate) {
 		this.affiliate = affiliate;
+	}
+
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
 	}
 }
