@@ -15,6 +15,6 @@ public class EletricCarFactory implements IAbstractCarFactory {
 	@Override
 	public Car createCar() {
 		// TODO Auto-generated method stub
-		return new EletricCar();
+		return EletricCar.create();
 	}
 }

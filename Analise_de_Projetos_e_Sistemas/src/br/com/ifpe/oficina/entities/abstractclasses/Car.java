@@ -47,4 +47,9 @@ public abstract class Car {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	@Override
+	public String toString() {
+		return "Car [plate=" + plate + ", engine=" + engine + ", traction=" + traction + ", client=" + client + "]";
+	}
 }
