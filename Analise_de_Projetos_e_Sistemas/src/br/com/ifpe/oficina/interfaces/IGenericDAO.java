@@ -1,6 +1,6 @@
 package br.com.ifpe.oficina.interfaces;
 
-public interface IDAO<T> {
+public interface IGenericDAO<T> {
 	void create(T object);
 	T read ();
 	void update (T object);
