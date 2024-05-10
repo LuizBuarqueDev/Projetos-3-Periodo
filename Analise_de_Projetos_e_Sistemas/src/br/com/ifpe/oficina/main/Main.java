@@ -5,10 +5,10 @@ import java.util.Random;
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.car.EletricCar;
 import br.com.ifpe.oficina.entities.concreteclasses.car.JeepCar;
-import br.com.ifpe.oficina.entities.concreteclasses.factories.EletricCarFactory;
-import br.com.ifpe.oficina.entities.concreteclasses.factories.JeepFactory;
-import br.com.ifpe.oficina.entities.concreteclasses.factories.SilkFactory;
 import br.com.ifpe.oficina.entities.concreteclasses.person.Client;
+import br.com.ifpe.oficina.services.factories.EletricCarFactory;
+import br.com.ifpe.oficina.services.factories.JeepFactory;
+import br.com.ifpe.oficina.services.factories.SilkFactory;
 
 public class Main {
 	public static void main(String[] args) {
