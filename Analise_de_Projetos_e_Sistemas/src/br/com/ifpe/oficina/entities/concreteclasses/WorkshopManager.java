@@ -7,44 +7,23 @@ import br.com.ifpe.oficina.entities.concreteclasses.person.Employee;
 
 public class WorkshopManager {
 
-	private List<Car> CarList;
+	private static final WorkshopManager instance = new WorkshopManager();
+	private List<Car> carList;
 	private List<Employee> employeeList;
 	private String workshopName;
 	private String cnpj;
 	private String address;
-
-	public WorkshopManager(
-			List<Car> CarList,
-			List<Employee> employeeList,
-			String workshopName,
-			String cnpj,
-			String address) {
-		
-		super();
-		this.CarList = CarList;
-		this.employeeList = employeeList;
-		this.workshopName = workshopName;
-		this.cnpj = cnpj;
-		this.address = address;
-	}
 	
-	private final WorkshopManager instance = new WorkshopManager(
-			getCarList(),
-			getEmployeeList(),
-			getWorkshopName(),
-			getCnpj(),
-			getAddress());
-	
-	public WorkshopManager getInstance() {
+	public static WorkshopManager getInstance() {
 		return instance;
 	}
 
 	public List<Car> getCarList() {
-		return CarList;
+		return carList;
 	}
 
-	public void setCarList(List<Car> CarList) {
-		this.CarList = CarList;
+	public void setCarList(List<Car> carList) {
+		this.carList = carList;
 	}
 
 	public List<Employee> getEmployeeList() {

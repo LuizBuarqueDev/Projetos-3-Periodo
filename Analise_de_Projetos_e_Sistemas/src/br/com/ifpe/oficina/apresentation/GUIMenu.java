@@ -2,11 +2,15 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
+import br.com.ifpe.oficina.entities.concreteclasses.WorkshopManager;
+
 public class GUIMenu {
 	Scanner scanner = new Scanner(System.in);
 
 	public static void runGUI() {
 		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println();
 
 		while (true) {
 			System.out.println("[1]-client\n[2]-car");
