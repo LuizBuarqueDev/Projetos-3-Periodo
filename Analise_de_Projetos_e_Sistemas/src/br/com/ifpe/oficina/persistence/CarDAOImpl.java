@@ -1,4 +1,4 @@
-package br.com.ifpe.oficina.services.dao;
+package br.com.ifpe.oficina.persistence;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.interfaces.IGenericDAO;
