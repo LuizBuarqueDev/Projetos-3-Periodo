@@ -1,16 +1,14 @@
 package br.com.ifpe.oficina.persistence;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
+import java.util.List;
 import br.com.ifpe.oficina.interfaces.IGenericDAO;
 
 public class CarDAOImpl<T> implements IGenericDAO<T>{
-	
-	private Car car;
 
 	@Override
 	public void create(T object) {
 		// TODO Auto-generated method stub
-		this.car = (Car) object;
+		
 	}
 
 	@Override
@@ -31,4 +29,9 @@ public class CarDAOImpl<T> implements IGenericDAO<T>{
 		
 	}
 
+	@Override
+	public List<T> viewAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
