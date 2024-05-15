@@ -2,38 +2,48 @@ package br.edu.ifpe.entities;
 
 import java.util.LinkedList;
 
-public class HashTable<V, K> {
+class HashTable<K, V> {
+    private static final int DefealtCapacity = 16;
+    private LinkedList<Entry<K, V>>[] table;
+    private int size;
+    private LRUCache<K, Boolean> lruCache;
 
-    private final int capacity;
-    private final LinkedList<Entry<K, V>>[] buckets;
-
-    @SuppressWarnings("unchecked")
     public HashTable(int capacity) {
-        this.capacity = capacity;
-        buckets = new LinkedList[capacity];
-        for (int i = 0; i < capacity; i++) {
-            buckets[i] = new LinkedList<>();
-        }
+        this.table = new LinkedList[capacity];
+        this.size = 0;
+        this.lruCache = new LRUCache<>(capacity);
+    }
+
+    public HashTable() {
+        this(DefealtCapacity);
     }
 
     public void put(K key, V value) {
         int index = hash(key);
-        LinkedList<Entry<K, V>> bucket = buckets[index];
-        for (Entry<K, V> entry : bucket) {
+        if (table[index] == null) {
+            table[index] = new LinkedList<>();
+        }
+
+        for (Entry<K, V> entry : table[index]) {
             if (entry.getKey().equals(key)) {
                 entry.setValue(value);
                 return;
             }
         }
-        bucket.add(new Entry<>(key, value));
+
+        table[index].add(new Entry<>(key, value));
+        size++;
+        lruCache.put(key, true); // Atualiza o LRU quando um novo elemento é inserido
     }
 
     public V get(K key) {
+        lruCache.get(key); // Atualiza o LRU quando um elemento é acessado
         int index = hash(key);
-        LinkedList<Entry<K, V>> bucket = buckets[index];
-        for (Entry<K, V> entry : bucket) {
-            if (entry.getKey().equals(key)) {
-                return entry.getValue();
+        if (table[index] != null) {
+            for (Entry<K, V> entry : table[index]) {
+                if (entry.getKey().equals(key)) {
+                    return entry.getValue();
+                }
             }
         }
         return null;
@@ -41,17 +51,15 @@ public class HashTable<V, K> {
 
     public void remove(K key) {
         int index = hash(key);
-        LinkedList<Entry<K, V>> bucket = buckets[index];
-        for (Entry<K, V> entry : bucket) {
-            if (entry.getKey().equals(key)) {
-                bucket.remove(entry);
-                return;
-            }
+        if (table[index] != null) {
+            table[index].removeIf(entry -> entry.getKey().equals(key));
+            size--;
+            lruCache.remove(key); // Atualiza o LRU quando um elemento é removido
         }
     }
 
     private int hash(K key) {
-        return Math.abs(key.hashCode() % capacity);
+        return Math.abs(key.hashCode()) % table.length;
     }
 
     private static class Entry<K, V> {
