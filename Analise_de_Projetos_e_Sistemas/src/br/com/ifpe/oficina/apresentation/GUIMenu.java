@@ -2,6 +2,7 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
+import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.WorkshopManager;
 
 public class GUIMenu {
@@ -13,7 +14,7 @@ public class GUIMenu {
 		System.out.println();
 
 		while (true) {
-			System.out.println("[1]-client\n[2]-car");
+			System.out.println("[1]-Client\n[2]-Car\n[3]-View All");
 			String choise = scanner.nextLine();
 			
 			switch (choise) {
@@ -22,6 +23,15 @@ public class GUIMenu {
 				break;
 			case "2":
 				GUICar.CarGUI();
+				break;
+			case "3":
+				System.out.println(WorkshopManager.getInstance().getWorkshopName());
+				System.out.println(WorkshopManager.getInstance().getAddress());
+				System.out.println(WorkshopManager.getInstance().getCnpj());
+				
+				for(Car car : WorkshopManager.getInstance().getCarList()) {
+					car.toString();					
+				}
 				break;
 
 			default:

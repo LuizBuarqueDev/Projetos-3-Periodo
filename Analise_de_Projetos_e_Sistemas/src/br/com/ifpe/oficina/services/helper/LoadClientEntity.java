@@ -1,7 +1,9 @@
 package br.com.ifpe.oficina.services.helper;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.WorkshopManager;
@@ -15,86 +17,119 @@ import br.com.ifpe.oficina.services.factories.SilkFactory;
 
 public class LoadClientEntity {
 	
-	public void createRamdomDate() {
-		Random random = new Random();
+	private LoadClientEntity() {
 		
-		ArrayList<Client> clientList = new ArrayList<Client>();
-		ArrayList<Employee> employeeList = new ArrayList<Employee>();
-		
-		ArrayList<Car> carList = new ArrayList<Car>();
-		
-	 WorkshopManager workshopManager = WorkshopManager.getInstance();
-	 workshopManager.setCarList(carList);
-	 workshopManager.setEmployeeList(employeeList);
-	 workshopManager.setCnpj("46.379 400 0001 50"); 
-	 workshopManager.setWorkshopName("Ofina Tião Matador de Porco");
-	 workshopManager.setAddress("Brasil, Palmares-PE, Bairro Sem Praça, Rua Quase Mudo, N:225");
-		
-		for (int i = 0; i < 10; i++) {
-			int key = random.nextInt(3);
-			
-			Client client = Client.ClientBuilder()
-					.age(25+ i)
-					.affiliate(false)
-					.cpf(111248547 + i)
-					.email("zezin@gmail.com" + i)
-					.name("zezin" + i)
-					.build();
-			
-			switch (key) {
-			case 0: {
-				Car car = EletricCarFactory.eletricCarFactory().createCar();
-				car.setClient(client);
-				((EletricCar) car).setBatteryCapacity(10000 + i);
-				car.setPlate("ABC-" + i);
-				car.setClient(client);
-				car.setTraction("4x2");
-				
-				client.setCar(car);
-				break;
-			}
-			case 1:{
-				Car car = JeepFactory.jeepFactory().createCar();
-				car.setClient(client);
-				car.setPlate("DEF-" + i);
-				car.setClient(client);
-				car.setTraction("4x4");
-				((JeepCar)car).setDifferentialLock(false);
-				
-				client.setCar(car);
-				break;
-				
-			}
-			case 2: {
-				Car car = SilkFactory.silkFactory().createCar();
-				car.setClient(client);
-				car.setPlate("GHI-" + i);
-				car.setClient(client);
-				car.setTraction("4x2");
-				
-				client.setCar(car);
-				break;
-				
-			}
-			default:
-				System.out.println("Unexpected value: " + key);
-			}
-			
-			System.out.println("Key: " + key);
-			
-			clientList.add(client);
-		}
-		
-		EletricCar.create();
-		
-		clientList.stream().forEach(t -> System.out.println(
-				"Nome: " + t.getName() + 
-				" ; Idade: " + t.getAge() +
-				" ; CPF: " + t.getCpf() +
-				" ; Email: " + t.getEmail() +
-				" ; Afiliado: " + t.isAffiliate() +
-				" ; \nCarro: " + t.getCar().toString() +
-				"\n---------------------------------------------------------"
-				));
 	}
+	
+	private static final LoadClientEntity instance = new LoadClientEntity();
+	
+	public static LoadClientEntity getinstance() {
+		return instance;
+	}
+	Random random = new Random();
+	
+    WorkshopManager workshopManager = WorkshopManager.getInstance();
+
+    ArrayList<Client> clientList = new ArrayList<>();
+    ArrayList<Employee> employeeList = new ArrayList<>();
+    ArrayList<Car> carList = new ArrayList<>();
+
+    public void createRandomData() {
+
+        workshopManager.setCarList(carList);
+        workshopManager.setEmployeeList(employeeList);
+        workshopManager.setCnpj("46.379 400 0001 50");
+        workshopManager.setWorkshopName("Oficina Tião Matador de Porco");
+        workshopManager.setAddress("Brasil, Palmares-PE, Bairro Sem Praça, Rua Quase Mudo, N:225");
+
+        generateClients(100, clientList);
+        generateCars(100, clientList);
+        generateEmployees(15, clientList, employeeList);
+    }
+
+    private void generateClients(int quantity, ArrayList<Client> clientList) {
+        Set<Integer> usedCpfs = new HashSet<>();
+
+        for (int i = 0; i < quantity; i++) {
+            int cpf;
+            do {
+                cpf = 111248547 + i;
+            } while (!usedCpfs.add(cpf)); // Garante CPFs únicos
+
+            Client client = Client.ClientBuilder()
+                    .age(20 + i)
+                    .affiliate(i % 3 == 0)
+                    .cpf(cpf)
+                    .email("cliente" + i + "@gmail.com")
+                    .name("cliente" + i)
+                    .build();
+
+            clientList.add(client);
+        }
+    }
+
+    private void generateCars(int quantity, ArrayList<Client> clientList) {
+        for (int i = 0; i < quantity; i++) {
+            int key = random.nextInt(3);
+            Client client = clientList.get(i);
+
+            switch (key) {
+                case 0: {
+                    Car car = EletricCarFactory.eletricCarFactory().createCar();
+                    car.setClient(client);
+                    ((EletricCar) car).setBatteryCapacity(10000 + i);
+                    car.setPlate("ABC-" + i);
+                    car.setTraction("4x2");
+                    
+                    carList.add(car);
+                    client.setCar(car);
+                    break;
+                }
+                case 1: {
+                    Car car = JeepFactory.jeepFactory().createCar();
+                    car.setClient(client);
+                    car.setPlate("DEF-" + i);
+                    car.setTraction("4x4");
+                    ((JeepCar) car).setDifferentialLock(false);
+
+                    carList.add(car);
+                    client.setCar(car);
+                    break;
+                }
+                case 2: {
+                    Car car = SilkFactory.silkFactory().createCar();
+                    car.setClient(client);
+                    car.setPlate("GHI-" + i);
+                    car.setTraction("4x2");
+
+                    carList.add(car);
+                    client.setCar(car);
+                    break;
+                }
+                default:
+                    System.out.println("Unexpected value: " + key);
+            }
+        }
+    }
+
+    private void generateEmployees(int quantity, ArrayList<Client> clientList, ArrayList<Employee> employeeList) {
+        Set<Integer> usedCpfs = new HashSet<>();
+
+        for(int r = 0; r < quantity; r++) {
+            int cpf;
+            do {
+                cpf = 211248547 + r; // Usando uma faixa de CPF diferente dos clientes
+            } while (!usedCpfs.add(cpf)); // Garante CPFs únicos
+
+            Employee employee = Employee.EmployeeBuilder()
+                    .age(40 - r)
+                    .cpf(cpf) // Definindo o CPF único
+                    .email("funcionario" + r + "@gmail.com")
+                    .name("funcionario" + r)
+                    .admissionDate(random.nextInt(1, 28) + "/" + random.nextInt(1, 13) + "/" + random.nextInt(2000, 2024))
+                    .build();
+
+            employeeList.add(employee);
+        }
+    }
 }
