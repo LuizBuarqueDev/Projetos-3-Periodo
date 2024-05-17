@@ -3,7 +3,7 @@ package br.edu.ifpe.entities;
 import java.util.LinkedList;
 
 class HashTable<K, V> {
-    private static final int DefealtCapacity = 16;
+    private static final int defealtCapacity = 16;
     private LinkedList<Entry<K, V>>[] table;
     private int size;
     private LRUCache<K, Boolean> lruCache;
@@ -15,7 +15,7 @@ class HashTable<K, V> {
     }
 
     public HashTable() {
-        this(DefealtCapacity);
+        this(defealtCapacity);
     }
 
     public void put(K key, V value) {
