@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.WorkshopManager;
+import br.com.ifpe.oficina.entities.concreteclasses.person.Employee;
 
 public class GUIMenu {
 	Scanner scanner = new Scanner(System.in);
@@ -25,14 +26,9 @@ public class GUIMenu {
 				GUICar.CarGUI();
 				break;
 			case "3":
-				System.out.println(WorkshopManager.getInstance().getWorkshopName());
-				System.out.println(WorkshopManager.getInstance().getAddress());
-				System.out.println(WorkshopManager.getInstance().getCnpj());
-				
-				for(Car car : WorkshopManager.getInstance().getCarList()) {
-					car.toString();					
-				}
+				System.out.println(WorkshopManager.getInstance().viewAll());
 				break;
+				
 
 			default:
 				System.err.println("Opção " + choise + " é invalida");
