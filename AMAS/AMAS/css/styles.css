@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Quicksand", sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /*Header*/
@@ -30,7 +30,8 @@ header {
 .nav-items {
     display: flex;
     gap: 20px;
-    margin-right: 40px; /* Adicione esta linha */
+    margin-right: 40px;
+    /* Adicione esta linha */
 }
 
 .nav-item a {
@@ -45,9 +46,9 @@ header {
 
 /*Container*/
 
-.container h2{
+.container h2 {
     text-align: center;
-} 
+}
 
 .images-container {
     display: flex;
@@ -103,9 +104,8 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center
 }
-.card h2
 
-.card {
+.card h2 .card {
     overflow: hidden;
     width: 300px;
 }
@@ -121,22 +121,127 @@ header {
     margin-bottom: 8px;
 }
 
-.card-title1 { color: #FF0000; }
-.card-title2 { color: #0000FF; }
-.card-title3 { color: #008000; }
-.card-title4 { color: #FFA500; }
+.card-title1 {
+    color: #FF0000;
+}
+
+.card-title2 {
+    color: #0000FF;
+}
+
+.card-title3 {
+    color: #008000;
+}
+
+.card-title4 {
+    color: #FFA500;
+}
 
 .pink-container {
     text-align: center;
     background-color: #EF407E;
 }
 
-.pink-container .heading{
+.pink-container .heading {
     font-weight: bold;
 }
 
+/*rodape*/
+.footer {
+    background-color: #1c1b1b;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer .social-media {
+    margin-left: 50px;
+}
+
+.footer .social-media ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+.footer .social-media li {
+    margin-top: 10px;
+    margin: 10px;
+}
+
+.footer h2 {
+    padding-bottom: 15px;
+}
+
+.footer .contact-info {
+    margin-right: 25px;
+}
+
+.footer .contact-info li {
+    padding: 10px;
+    list-style: none;
+}
+
+.footer li i {
+    font-size: 50px;
+    color: whitesmoke;
+}
+
+/*Pagina de Parcerias*/
+
+.container-parcerias {
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: #f577a3;
+    border-radius: 50px;
+    text-align: center;
+    width: 90%;
+    height: auto;
+    
+}
+
+.container-parcerias h1, h2 {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.nossas-parcerias {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card-parceiros {
+    background: pink;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 30%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.card-parceiros img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.card-parceiros h2 {
+    margin: 10px 0;
+}
+
+.card-parceiros p {
+    color: #666;
+}
+
+
+
+
 /*Pagina de membros*/
-.container-membros{
+.container-membros {
     background-color: #555;
     border-radius: 20px;
     width: 90%;
@@ -144,6 +249,7 @@ header {
     margin: auto;
     margin-top: 50px;
 }
+
 .profile-card-container {
     padding-top: 50px;
     display: flex;
