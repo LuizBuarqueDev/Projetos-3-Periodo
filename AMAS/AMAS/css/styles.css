@@ -188,6 +188,92 @@ header {
     color: whitesmoke;
 }
 
+
+
+
+
+/*Pagina de denuncia*/
+.container-denuncia {
+    border: 1px solid #1c1b1b;
+    margin: 50px auto;
+    background-color: pink;
+    padding: 30px;
+    border-radius: 70px;
+    width: 80%;
+    box-shadow: 3px 3px 20px;
+}
+.container-denuncia h1, h2{
+    font-size: larger;
+    text-align: center;
+}
+.row-denuncia {
+    display: flex;
+    flex-wrap: wrap;
+}
+.column-denuncia {
+    flex: 1;
+    min-width: 30%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.column-denuncia img {
+    align-self: center;
+    width: 20%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.container-rugido {
+    padding: 20px;
+    text-align: center;
+    margin: 50px auto;
+    border: #1c1b1b;
+    border-radius: 50px;
+    width: 40%;
+    border: 2px solid #1c1b1b;
+    background-color: rgb(165, 210, 234);
+}
+
+.container-rugido img{
+    width: 20%;
+}
+
+.container-rugido p{
+    font-weight: bold;
+}
+
+.container-rugido h2 {
+    color: rgb(25, 84, 221);
+}
+.aplicativo-mobile{
+    background-color:#FFA500;
+    border-radius: 15px;
+    display: inline-flex;
+    padding: 5px;
+    color: white;
+    margin: 20px;
+}
+
+.baixe-agora {
+    margin-top: 50px;
+    border-radius: 10px;
+    border-style: solid;
+    display: inline-flex;
+    padding: 3px;
+    color: rgb(25, 84, 221);
+}
+
+.baixe-agora a{
+  text-decoration: none;
+  color: rgb(25, 84, 221);
+  font-weight: bold;
+}
+
+
+
+
+
 /*Pagina de Parcerias*/
 
 .container-parcerias {
@@ -202,9 +288,8 @@ header {
     
 }
 
-.container-parcerias h1, h2 {
-    color: #555;
-    margin-bottom: 20px;
+.container-parcerias h1 {
+    padding: 50px;
 }
 
 .nossas-parcerias {
@@ -232,12 +317,6 @@ header {
 .card-parceiros h2 {
     margin: 10px 0;
 }
-
-.card-parceiros p {
-    color: #666;
-}
-
-
 
 
 /*Pagina de membros*/
