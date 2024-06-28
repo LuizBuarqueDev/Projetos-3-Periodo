@@ -1,7 +1,7 @@
 package br.com.ifpe.oficina.services.factories;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
-import br.com.ifpe.oficina.entities.concreteclasses.car.JeepCar;
+import br.com.ifpe.oficina.entities.concreteclasses.JeepCar;
 import br.com.ifpe.oficina.interfaces.IAbstractCarFactory;
 
 public class JeepFactory implements IAbstractCarFactory{

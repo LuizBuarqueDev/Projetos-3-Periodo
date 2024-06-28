@@ -1,4 +1,4 @@
-package br.com.ifpe.oficina.entities.concreteclasses.car;
+package br.com.ifpe.oficina.entities.concreteclasses;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 

@@ -3,12 +3,10 @@ package br.com.ifpe.oficina.apresentation;
 import java.util.Scanner;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
+import br.com.ifpe.oficina.entities.concreteclasses.Employee;
 import br.com.ifpe.oficina.entities.concreteclasses.WorkshopManager;
-import br.com.ifpe.oficina.entities.concreteclasses.person.Employee;
 
 public class GUIMenu {
-	Scanner scanner = new Scanner(System.in);
-
 	public static void runGUI() {
 		Scanner scanner = new Scanner(System.in);
 		
@@ -16,9 +14,9 @@ public class GUIMenu {
 
 		while (true) {
 			System.out.println("[1]-Client\n[2]-Car\n[3]-View All");
-			String choise = scanner.nextLine();
+			String choice = scanner.nextLine();
 			
-			switch (choise) {
+			switch (choice) {
 			case "1":
 				GUIClient.clientGUI();
 				break;
@@ -31,7 +29,7 @@ public class GUIMenu {
 				
 
 			default:
-				System.err.println("Opção " + choise + " é invalida");
+				System.err.println("Opção " + choice + " é invalida");
 				break;
 			}
 		System.out.println("--------------------------------------------------");
