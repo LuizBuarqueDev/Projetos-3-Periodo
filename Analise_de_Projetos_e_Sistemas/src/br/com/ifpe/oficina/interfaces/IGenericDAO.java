@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IGenericDAO<T> {
 	void create(T object);
-	T read ();
+	T read (T object);
 	void update (T object);
 	void delete (T object);
 	List<T> viewAll();

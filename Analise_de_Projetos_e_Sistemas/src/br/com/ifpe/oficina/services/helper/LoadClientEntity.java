@@ -16,11 +16,13 @@ import br.com.ifpe.oficina.services.factories.JeepFactory;
 import br.com.ifpe.oficina.services.factories.SilkFactory;
 
 public class LoadClientEntity {
+	
 	private static final LoadClientEntity instance = new LoadClientEntity();
 	
 	public static LoadClientEntity getinstance() {
 		return instance;
 	}
+	
 	Random random = new Random();
 	
     WorkshopManager workshopManager = WorkshopManager.getInstance();
