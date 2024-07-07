@@ -32,7 +32,6 @@ public class CarDAOImpl implements IGenericDAO<Car> {
 		if (object instanceof Car) {
 			return controller.searchCar(object.getPlate());
 		} else {
-			System.out.println("Caiu no read");
 			return null; // TODO: Laçar uma exeção
 		}
 	}

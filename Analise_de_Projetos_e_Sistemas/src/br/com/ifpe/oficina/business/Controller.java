@@ -13,7 +13,7 @@ public class Controller implements IController {
 	private Controller() {
 		
 	}
-	
+	@Override
 	public Car searchCar(String plate) {
 		MechanicManager mechanicManager = MechanicManager.getInstance();
 		
@@ -22,6 +22,6 @@ public class Controller implements IController {
 				return car;
 			}
 		}
-		return null;
+		throw new NullPointerException("A placa '" + plate + "' não foi encontrada");
 	}
 }
