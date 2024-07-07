@@ -4,12 +4,7 @@ import br.com.ifpe.oficina.entities.abstractclasses.Car;
 
 public class SilkCar extends Car{
 	
-	public static SilkCar create() {
-		return new SilkCar();
-	}
-	
-	private SilkCar() {
-		// TODO Auto-generated constructor stub
+	public SilkCar() {
 		this.engine = "Combustion Engine";
 	}
 

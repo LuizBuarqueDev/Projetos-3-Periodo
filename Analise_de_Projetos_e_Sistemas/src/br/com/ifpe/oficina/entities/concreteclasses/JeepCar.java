@@ -2,17 +2,12 @@ package br.com.ifpe.oficina.entities.concreteclasses;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 
-public class JeepCar  extends Car {
+public class JeepCar extends Car {
 	
 	private boolean differentialLock;
 	
-	public static JeepCar create() {
-		return new JeepCar();
-	}
-	
-	private JeepCar() {
+	public JeepCar() {
 		this.engine = "Combustion Engine";
-		// TODO Auto-generated constructor stub
 	}
 
 	public boolean isDifferentialLock() {

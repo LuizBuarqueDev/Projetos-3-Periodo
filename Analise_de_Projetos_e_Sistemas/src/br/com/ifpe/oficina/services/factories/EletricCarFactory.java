@@ -4,7 +4,7 @@ import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
 import br.com.ifpe.oficina.interfaces.IAbstractCarFactory;
 
-public class EletricCarFactory implements IAbstractCarFactory {
+public class EletricCarFactory implements IAbstractCarFactory{
 
 	public static EletricCarFactory eletricCarFactory() {
 		return new EletricCarFactory();
@@ -12,7 +12,6 @@ public class EletricCarFactory implements IAbstractCarFactory {
 
 	@Override
 	public Car createCar() {
-		// TODO Auto-generated method stub
-		return EletricCar.create();
+		return new EletricCar();
 	}
 }

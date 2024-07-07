@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Employee;
-import br.com.ifpe.oficina.entities.concreteclasses.WorkshopManager;
+import br.com.ifpe.oficina.entities.concreteclasses.MechanicManager;
 
 public class GUIMenu {
 	public static void runGUI() {
@@ -18,16 +18,19 @@ public class GUIMenu {
 			
 			switch (choice) {
 			case "1":
-				GUIClient.clientGUI();
-				break;
-			case "2":
-				GUICar.CarGUI();
-				break;
-			case "3":
-				System.out.println(WorkshopManager.getInstance().viewAll());
+				GUIClient guiClient = new GUIClient();
+				guiClient.clientGUI();
 				break;
 				
-
+			case "2":
+				GUICar guiCar = new GUICar();
+				guiCar.CarGUI();
+				break;
+				
+			case "3":
+				System.out.println(MechanicManager.getInstance().viewAll());
+				break;
+				
 			default:
 				System.err.println("Opção " + choice + " é invalida");
 				break;

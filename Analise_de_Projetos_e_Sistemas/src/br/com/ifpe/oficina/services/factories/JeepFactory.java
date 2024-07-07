@@ -12,7 +12,6 @@ public class JeepFactory implements IAbstractCarFactory{
 
 	@Override
 	public Car createCar() {
-		// TODO Auto-generated method stub
-		return JeepCar.create();
+		return new JeepCar();
 	}
 }

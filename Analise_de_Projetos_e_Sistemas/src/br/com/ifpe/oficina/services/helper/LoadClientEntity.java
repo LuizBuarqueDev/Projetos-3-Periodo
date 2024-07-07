@@ -10,7 +10,7 @@ import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
 import br.com.ifpe.oficina.entities.concreteclasses.Employee;
 import br.com.ifpe.oficina.entities.concreteclasses.JeepCar;
-import br.com.ifpe.oficina.entities.concreteclasses.WorkshopManager;
+import br.com.ifpe.oficina.entities.concreteclasses.MechanicManager;
 import br.com.ifpe.oficina.services.factories.EletricCarFactory;
 import br.com.ifpe.oficina.services.factories.JeepFactory;
 import br.com.ifpe.oficina.services.factories.SilkFactory;
@@ -25,7 +25,7 @@ public class LoadClientEntity {
 	
 	Random random = new Random();
 	
-    WorkshopManager workshopManager = WorkshopManager.getInstance();
+    MechanicManager mechanicManager = MechanicManager.getInstance();
 
     ArrayList<Client> clientList = new ArrayList<>();
     ArrayList<Employee> employeeList = new ArrayList<>();
@@ -33,11 +33,11 @@ public class LoadClientEntity {
 
     public void createRandomData() {
 
-        workshopManager.setCarList(carList);
-        workshopManager.setEmployeeList(employeeList);
-        workshopManager.setCnpj("46.379 400 0001 50");
-        workshopManager.setWorkshopName("Oficina Tião Matador de Porco");
-        workshopManager.setAddress("Brasil, Palmares-PE, Bairro Sem Praça, Rua Quase Mudo, N:225");
+        mechanicManager.setCarList(carList);
+        mechanicManager.setEmployeeList(employeeList);
+        mechanicManager.setCnpj("46.379 400 0001 50");
+        mechanicManager.setmechanicName("Oficina Tião Matador de Porco");
+        mechanicManager.setAddress("Brasil, Palmares-PE, Bairro Sem Praça, Rua Quase Mudo, N:225");
 
         generateClients(100, clientList);
         generateCars(100, clientList);
@@ -51,8 +51,7 @@ public class LoadClientEntity {
             int cpf;
             do {
                 cpf = 111248547 + i;
-            } while (!usedCpfs.add(cpf)); // Garante CPFs únicos
-
+            } while (!usedCpfs.add(cpf));
             Client client = Client.ClientBuilder()
                     .age(20 + i)
                     .affiliate(i % 3 == 0)
@@ -115,12 +114,12 @@ public class LoadClientEntity {
         for(int r = 0; r < quantity; r++) {
             int cpf;
             do {
-                cpf = 211248547 + r; // Usando uma faixa de CPF diferente dos clientes
-            } while (!usedCpfs.add(cpf)); // Garante CPFs únicos
+                cpf = 211248547 + r;
+            } while (!usedCpfs.add(cpf));
 
             Employee employee = Employee.EmployeeBuilder()
                     .age(40 - r)
-                    .cpf(cpf) // Definindo o CPF único
+                    .cpf(cpf)
                     .email("funcionario" + r + "@gmail.com")
                     .name("funcionario" + r)
                     .admissionDate(random.nextInt(1, 28) + "/" + random.nextInt(1, 13) + "/" + random.nextInt(2000, 2024))

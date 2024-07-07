@@ -2,48 +2,53 @@ package br.com.ifpe.oficina.persistence;
 
 import java.util.List;
 
+import br.com.ifpe.oficina.business.Controller;
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
+import br.com.ifpe.oficina.entities.concreteclasses.MechanicManager;
 import br.com.ifpe.oficina.interfaces.IGenericDAO;
 
-public class CarDAOImpl<T> implements IGenericDAO<T> {
+public class CarDAOImpl implements IGenericDAO<Car> {
 
-    private static final CarDAOImpl<?> instance = new CarDAOImpl<>();
+	private static final CarDAOImpl instance = new CarDAOImpl();
 
-    public static <T> CarDAOImpl<T> getInstance() {
-        return (CarDAOImpl<T>) instance;
-    }
+	public static CarDAOImpl getInstance() {
+		return instance;
+	}
 
-    private CarDAOImpl() {
-        // Construtor privado para evitar instanciação externa
-    }
+	private CarDAOImpl() {
+	}
 
-    @Override
-    public void create(T object) {
-        // TODO Auto-generated method stub
-    }
+	MechanicManager mechanicManager = MechanicManager.getInstance();
 
-    @Override
-    public T read(T object) {
-    	if (object instanceof Car) {
-    		Car car = (Car) object;
-    		return (T)car.toString();
-    	}
-    	return null;
-    }
+	@Override
+	public void create(Car object) {
+		// TODO Auto-generated method stub
+	}
 
-    @Override
-    public void update(T object) {
-        // TODO Auto-generated method stub
-    }
+	@Override
+	public Car read(Car object) {
+		Controller controller = Controller.createController();
+		
+		if (object instanceof Car) {
+			return controller.searchCar(object.getPlate());
+		} else {
+			System.out.println("Caiu no read");
+			return null; // TODO: Laçar uma exeção
+		}
+	}
 
-    @Override
-    public void delete(T object) {
-        // TODO Auto-generated method stub
-    }
+	@Override
+	public void update(Car object) {
+		// TODO Auto-generated method stub
+	}
 
-    @Override
-    public List<T> viewAll() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public void delete(Car object) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<Car> viewAll() {
+		return mechanicManager.getCarList();
+	}
 }

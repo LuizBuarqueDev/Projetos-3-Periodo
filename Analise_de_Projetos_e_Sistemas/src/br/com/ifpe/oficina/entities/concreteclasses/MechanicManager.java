@@ -4,31 +4,21 @@ import java.util.List;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.abstractclasses.Person;
-import br.com.ifpe.oficina.interfaces.IWorkshopManeger;
+import br.com.ifpe.oficina.interfaces.IMechanicManager;
 
-public class WorkshopManager implements IWorkshopManeger {
+public class MechanicManager implements IMechanicManager {
 
-	private static final WorkshopManager instance = new WorkshopManager();
+	private static final MechanicManager instance = new MechanicManager();
 	private List<Car> carList;
 	private List<Employee> employeeList;
-	private String workshopName;
+	private String mechanicName;
 	private String cnpj;
 	private String address;
 
-	public static WorkshopManager getInstance() {
+	public static MechanicManager getInstance() {
 		return instance;
 	}
-
-	public Car searchCar(String plate) {
-		for (Car car : getCarList()) {
-			if (car.getPlate().equals(plate)) {
-				System.out.println("Carro encontrado: " + car.toString());
-				return car;
-			}
-		}
-		return null;
-	}
-
+	
 	public Person searchPerson(int cpf) {
 		for (Employee employee : getEmployeeList()) {
 			if (employee.getCpf() == cpf) {
@@ -48,8 +38,8 @@ public class WorkshopManager implements IWorkshopManeger {
 	public String viewAll() {
 		String result = "";
 		// TODO Auto-generated method stub
-		result += WorkshopManager.getInstance().getWorkshopName() + "\n" + WorkshopManager.getInstance().getAddress()
-				+ "\n" + WorkshopManager.getInstance().getCnpj()
+		result += MechanicManager.getInstance().getmechanicName() + "\n" + MechanicManager.getInstance().getAddress()
+				+ "\n" + MechanicManager.getInstance().getCnpj()
 				+ "\n------------------------------------------------------";
 
 		for (Car car : carList) {
@@ -80,12 +70,12 @@ public class WorkshopManager implements IWorkshopManeger {
 		this.employeeList = employeeList;
 	}
 
-	public String getWorkshopName() {
-		return workshopName;
+	public String getmechanicName() {
+		return mechanicName;
 	}
 
-	public void setWorkshopName(String workshopName) {
-		this.workshopName = workshopName;
+	public void setmechanicName(String mechanicName) {
+		this.mechanicName = mechanicName;
 	}
 
 	public String getCnpj() {
