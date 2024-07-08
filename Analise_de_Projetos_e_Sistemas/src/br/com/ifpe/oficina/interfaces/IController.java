@@ -2,13 +2,9 @@ package br.com.ifpe.oficina.interfaces;
 
 import java.util.List;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
-
-public interface IController{
+public interface IController<T>{
 	
-	void create(String plate);
-	Car read (String plate);
-	void update(String plate);
+	T read (String plate);
 	void delete(String plate);
-	List<Car> viewAll();
+	List<T> viewAll();
 }

@@ -9,14 +9,7 @@ public class EletricCar extends Car {
 	public EletricCar() {
 		// TODO Auto-generated constructor stub
 		this.engine = "Eletric Engine";
-	}
-	
-	public int getBatteryCapacity() {
-		return batteryCapacity;
-	}
-
-	public void setBatteryCapacity(int batteryCapacity) {
-		this.batteryCapacity = batteryCapacity;
+		this.batteryCapacity = 1000;
 	}
 
 	@Override

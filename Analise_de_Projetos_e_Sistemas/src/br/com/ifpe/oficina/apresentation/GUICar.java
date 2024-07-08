@@ -3,7 +3,7 @@ package br.com.ifpe.oficina.apresentation;
 import java.util.Scanner;
 
 import br.com.ifpe.oficina.business.CarController;
-
+import br.com.ifpe.oficina.entities.concreteclasses.Client;
 
 public class GUICar {
 	public void CarGUI() {
@@ -11,7 +11,7 @@ public class GUICar {
 		String plate = "";
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
-		CarController carController =  CarController.createController();
+		CarController carController = CarController.createController();
 
 		while (true) {
 
@@ -28,7 +28,15 @@ public class GUICar {
 					System.out.println("Criando o carro...");
 					break;
 
-				case "2": // Update
+				case "2": // Update : tração, cliente 
+					System.out.print("Digite a placa: ");
+					plate = scanner.nextLine();
+					System.out.println(carController.read(plate));
+					System.out.println("Atualizando carro...");
+					System.out.println("Tração: ");
+					String traction = scanner.nextLine();
+					Client client = null;
+					carController.update(plate, traction, client);
 
 					break;
 

@@ -29,8 +29,8 @@ public class CarDAOImpl implements IGenericDAO<Car> {
 	}
 
 	@Override
-	public void update(Car object) {
-		// TODO Auto-generated method stub
+	public void update(int index, Car object) {
+		carList.set(index, object);
 	}
 
 	@Override

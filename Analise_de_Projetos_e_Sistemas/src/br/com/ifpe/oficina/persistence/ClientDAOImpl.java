@@ -26,7 +26,7 @@ public class ClientDAOImpl implements IGenericDAO<Client>{
 	}
 
 	@Override
-	public void update(Client object) {
+	public void update(int index, Client object) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -42,4 +42,5 @@ public class ClientDAOImpl implements IGenericDAO<Client>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+		
 }

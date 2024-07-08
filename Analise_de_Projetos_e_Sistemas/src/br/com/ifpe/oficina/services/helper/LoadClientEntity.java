@@ -7,7 +7,6 @@ import java.util.Set;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
 import br.com.ifpe.oficina.entities.concreteclasses.Employee;
 import br.com.ifpe.oficina.entities.concreteclasses.JeepCar;
 import br.com.ifpe.oficina.entities.concreteclasses.MechanicManager;
@@ -73,10 +72,8 @@ public class LoadClientEntity {
                 case 0: {
                     Car car = EletricCarFactory.eletricCarFactory().createCar();
                     car.setClient(client);
-                    ((EletricCar) car).setBatteryCapacity(10000 + i);
                     car.setPlate("ABC-" + i);
                     car.setTraction("4x2");
-                    
                     carList.add(car);
                     client.setCar(car);
                     break;
