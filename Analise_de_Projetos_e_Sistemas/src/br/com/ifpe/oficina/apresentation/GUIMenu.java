@@ -2,12 +2,11 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
-import br.com.ifpe.oficina.entities.concreteclasses.Employee;
 import br.com.ifpe.oficina.entities.concreteclasses.MechanicManager;
 
 public class GUIMenu {
 	public static void runGUI() {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println();

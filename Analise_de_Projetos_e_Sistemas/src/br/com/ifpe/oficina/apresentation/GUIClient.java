@@ -5,10 +5,15 @@ import java.util.Scanner;
 public class GUIClient {
 
 	public  void clientGUI() {
+		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
+		
 		while (true) {
+			
 			System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all");
 			String choice = scanner.nextLine();
+			
 			switch (choice) {
 			case "1":	
 

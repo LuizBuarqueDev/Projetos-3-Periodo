@@ -3,16 +3,13 @@ package br.com.ifpe.oficina.apresentation;
 import java.util.Scanner;
 
 import br.com.ifpe.oficina.business.CarController;
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
-import br.com.ifpe.oficina.entities.concreteclasses.MechanicManager;
-import br.com.ifpe.oficina.entities.concreteclasses.SilkCar;
-import br.com.ifpe.oficina.interfaces.IController;
-import br.com.ifpe.oficina.persistence.CarDAOImpl;
+
 
 public class GUICar {
 	public void CarGUI() {
 
 		String plate = "";
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		CarController carController =  CarController.createController();
 
@@ -28,7 +25,6 @@ public class GUICar {
 				case "1": // Create
 					System.out.print("Digite a placa: ");
 					plate = scanner.nextLine();
-					
 					System.out.println("Criando o carro...");
 					break;
 
