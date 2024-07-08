@@ -28,12 +28,7 @@ public class CarDAOImpl implements IGenericDAO<Car> {
 	@Override
 	public Car read(Car object) {
 		Controller controller = Controller.createController();
-		
-		if (object instanceof Car) {
 			return controller.searchCar(object.getPlate());
-		} else {
-			return null; // TODO: Laçar uma exeção
-		}
 	}
 
 	@Override
@@ -43,7 +38,8 @@ public class CarDAOImpl implements IGenericDAO<Car> {
 
 	@Override
 	public void delete(Car object) {
-		// TODO Auto-generated method stub
+		Controller controller = Controller.createController();
+		mechanicManager.getCarList().remove(controller.searchCar(object.getPlate()));
 	}
 
 	@Override

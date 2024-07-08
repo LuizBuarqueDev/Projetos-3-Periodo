@@ -41,9 +41,15 @@ public class GUICar {
 					break;
 
 				case "4": // Delete
+					System.out.print("Digite a placa: ");
+					plate = scanner.nextLine();
+					car.setPlate(plate);
+					carDAOImpl.delete(car);
+					System.out.println("Carro removido");
 					break;
 
 				case "5":
+					System.out.println(carDAOImpl.viewAll());
 
 					break;
 
