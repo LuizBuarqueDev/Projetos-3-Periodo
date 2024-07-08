@@ -2,6 +2,7 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
+import br.com.ifpe.oficina.business.CarController;
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.MechanicManager;
 import br.com.ifpe.oficina.entities.concreteclasses.SilkCar;
@@ -12,9 +13,8 @@ public class GUICar {
 	public void CarGUI() {
 
 		String plate = "";
-		Car car = new SilkCar();
 		Scanner scanner = new Scanner(System.in);
-		CarDAOImpl carDAOImpl = CarDAOImpl.getInstance();
+		CarController carController =  CarController.createController();
 
 		while (true) {
 
@@ -26,7 +26,10 @@ public class GUICar {
 				switch (choice) {
 
 				case "1": // Create
+					System.out.print("Digite a placa: ");
+					plate = scanner.nextLine();
 					
+					System.out.println("Criando o carro...");
 					break;
 
 				case "2": // Update
@@ -36,21 +39,18 @@ public class GUICar {
 				case "3": // Read
 					System.out.print("Digite a placa: ");
 					plate = scanner.nextLine();
-					car.setPlate(plate);
-					System.out.println(carDAOImpl.read(car));
+					System.out.println(carController.read(plate));
 					break;
 
 				case "4": // Delete
 					System.out.print("Digite a placa: ");
 					plate = scanner.nextLine();
-					car.setPlate(plate);
-					carDAOImpl.delete(car);
+					carController.delete(plate);
 					System.out.println("Carro removido");
 					break;
 
-				case "5":
-					System.out.println(carDAOImpl.viewAll());
-
+				case "5": // All
+					System.out.println(carController.viewAll());
 					break;
 
 				default:
