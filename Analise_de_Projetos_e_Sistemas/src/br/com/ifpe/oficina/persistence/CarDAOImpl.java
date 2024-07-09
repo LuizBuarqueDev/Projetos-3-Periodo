@@ -25,7 +25,7 @@ public class CarDAOImpl implements IGenericDAO<Car> {
 
 	@Override
 	public Car read(Car object) {
-		return null;
+		return object;
 	}
 
 	@Override

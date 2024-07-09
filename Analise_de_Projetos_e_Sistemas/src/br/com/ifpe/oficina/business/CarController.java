@@ -36,7 +36,7 @@ public class CarController implements IController<Car> {
 
 	@Override
 	public Car read(String plate) {
-		return searchCar(plate);
+		return carDAOImpl.read(searchCar(plate));
 	}
 
 	public void update(String plate, String traction, Client client) {

@@ -35,7 +35,7 @@ public class GUICar {
 					System.out.println("Atualizando carro...");
 					System.out.println("Tração: ");
 					String traction = scanner.nextLine();
-					Client client = null;
+					Client client = Client.ClientBuilder().build();
 					carController.update(plate, traction, client);
 
 					break;
