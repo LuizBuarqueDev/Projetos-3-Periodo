@@ -1,6 +1,6 @@
 package br.com.ifpe.oficina.entities.abstractclasses;
 
-public abstract class Person {
+public abstract class Person extends BasicEntities {
 	protected String name;
 	protected int cpf;
 	protected int age;

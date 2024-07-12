@@ -2,7 +2,7 @@ package br.com.ifpe.oficina.entities.abstractclasses;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 
-public abstract class Car {
+public abstract class Car extends BasicEntities {
 	
 	protected String plate;
 	protected String engine;
