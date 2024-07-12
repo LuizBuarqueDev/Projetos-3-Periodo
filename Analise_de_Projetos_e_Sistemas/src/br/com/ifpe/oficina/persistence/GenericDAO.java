@@ -21,8 +21,6 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 
 	@Override
 	public void update(int index, T object) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
