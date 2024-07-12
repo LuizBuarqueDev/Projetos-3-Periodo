@@ -90,7 +90,7 @@ public class LoadClientEntity {
                     break;
                 }
                 case 2: {
-                    Car car = SilkFactory.silkFactory().createCar();
+                    Car car = SilkFactory.silkFactory().create();
                     car.setClient(client);
                     car.setPlate("GHI-" + i);
                     car.setTraction("4x2");
