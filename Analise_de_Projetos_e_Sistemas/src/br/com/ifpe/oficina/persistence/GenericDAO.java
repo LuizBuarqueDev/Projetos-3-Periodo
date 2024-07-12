@@ -11,14 +11,12 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 
 	@Override
 	public void create(T object) {
-		// TODO Auto-generated method stub
-		
+		list.add(object);
 	}
 
 	@Override
 	public T read(T object) {
-		// TODO Auto-generated method stub
-		return null;
+		return object;
 	}
 
 	@Override
@@ -38,5 +36,4 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
