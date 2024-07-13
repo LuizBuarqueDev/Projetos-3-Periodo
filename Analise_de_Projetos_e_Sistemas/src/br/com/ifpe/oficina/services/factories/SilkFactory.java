@@ -12,7 +12,6 @@ public class SilkFactory implements IAbstarctFactory<Car>{
 
 	@Override
 	public Car create() {
-		// TODO Auto-generated method stub
 		return new SilkCar();
 	}
 }
