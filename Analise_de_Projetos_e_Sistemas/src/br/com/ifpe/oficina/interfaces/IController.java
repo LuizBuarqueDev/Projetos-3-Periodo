@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IController<T>{
 	
-	T read (String plate);
-	void delete(String plate);
+	T read (String unique_key);
+	void delete(String unique_key);
 	List<T> viewAll();
 }
