@@ -70,7 +70,7 @@ public class LoadClientEntity {
 
             switch (key) {
                 case 0: {
-                    Car car = EletricCarFactory.eletricCarFactory().createCar();
+                    Car car = EletricCarFactory.eletricCarFactory().create();
                     car.setClient(client);
                     car.setPlate("ABC-" + i);
                     car.setTraction("4x2");
@@ -79,7 +79,7 @@ public class LoadClientEntity {
                     break;
                 }
                 case 1: {
-                    Car car = JeepFactory.jeepFactory().createCar();
+                    Car car = JeepFactory.jeepFactory().create();
                     car.setClient(client);
                     car.setPlate("DEF-" + i);
                     car.setTraction("4x4");
