@@ -8,12 +8,13 @@ import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 
 public class CarController implements IController<Car> {
-
-	public static CarController createController() {
-		return new CarController();
-	}
-
-	private CarController() {
+	
+	private static final CarController instance = new CarController();
+	
+	private GenericDAO<Car> carDAO = GenericDAO.createInstance();
+	
+	public static CarController getInstance() {
+		return instance;
 	}
 
 	private Car searchCar(String plate) {
@@ -27,7 +28,7 @@ public class CarController implements IController<Car> {
 		throw new NullPointerException("A placa '" + plate + "' não foi encontrada");
 	}
 
-	GenericDAO<Car> carDAO = GenericDAO.createInstance();
+	
 
 	public void create(String plate) {
 		// TODO Auto-generated method stub

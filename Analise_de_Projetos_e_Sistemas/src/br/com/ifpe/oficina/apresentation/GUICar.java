@@ -11,7 +11,7 @@ public class GUICar {
 		String plate = "";
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
-		CarController carController = CarController.createController();
+		CarController carController = CarController.getInstance();
 
 		while (true) {
 
@@ -54,7 +54,7 @@ public class GUICar {
 					break;
 
 				case "5": // All
-					System.out.println(carController.viewAll());
+					carController.viewAll().stream().forEach(System.out::println);
 					break;
 
 				default:

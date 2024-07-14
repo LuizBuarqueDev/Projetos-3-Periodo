@@ -38,7 +38,6 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 
 	@Override
 	public List<T> viewAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return list;
 	}
 }
