@@ -9,7 +9,6 @@ public class GUICar {
 	public void CarGUI() {
 
 		String plate = "";
-		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		CarController carController = CarController.getInstance();
 
@@ -61,7 +60,7 @@ public class GUICar {
 					System.out.println("O valor " + choice + "é invalido");
 					break;
 				}
-
+				scanner.close();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

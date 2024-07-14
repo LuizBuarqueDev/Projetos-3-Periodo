@@ -4,18 +4,17 @@ import java.util.Scanner;
 
 public class GUIClient {
 
-	public  void clientGUI() {
-		
-		@SuppressWarnings("resource")
+	public void clientGUI() {
+
 		Scanner scanner = new Scanner(System.in);
-		
+
 		while (true) {
-			
+
 			System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all");
 			String choice = scanner.nextLine();
-			
+
 			switch (choice) {
-			case "1":	
+			case "1":
 
 				break;
 			case "2":
@@ -35,6 +34,7 @@ public class GUIClient {
 				System.out.println("O valor " + choice + "é invalido");
 				break;
 			}
+			scanner.close();
 		}
 	}
 }
