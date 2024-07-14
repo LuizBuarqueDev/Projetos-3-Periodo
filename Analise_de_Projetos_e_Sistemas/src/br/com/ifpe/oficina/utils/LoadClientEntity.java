@@ -1,14 +1,14 @@
-package br.com.ifpe.oficina.services.helper;
+package br.com.ifpe.oficina.utils;
 
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import br.com.ifpe.oficina.business.CarController;
-import br.com.ifpe.oficina.business.ClientController;
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.concreteclasses.JeepCar;
+import br.com.ifpe.oficina.services.controllers.CarController;
+import br.com.ifpe.oficina.services.controllers.ClientController;
 import br.com.ifpe.oficina.services.factories.EletricCarFactory;
 import br.com.ifpe.oficina.services.factories.JeepFactory;
 import br.com.ifpe.oficina.services.factories.SilkFactory;

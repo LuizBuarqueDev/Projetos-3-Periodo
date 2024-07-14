@@ -2,8 +2,8 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
-import br.com.ifpe.oficina.business.CarController;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
+import br.com.ifpe.oficina.services.controllers.CarController;
 
 public class GUICar {
 	public void CarGUI() {
