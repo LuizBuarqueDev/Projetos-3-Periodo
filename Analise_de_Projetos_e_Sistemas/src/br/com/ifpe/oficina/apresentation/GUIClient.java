@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GUIClient {
 
 	public void clientGUI() {
-
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
@@ -34,7 +34,6 @@ public class GUIClient {
 				System.out.println("O valor " + choice + "é invalido");
 				break;
 			}
-			scanner.close();
 		}
 	}
 }

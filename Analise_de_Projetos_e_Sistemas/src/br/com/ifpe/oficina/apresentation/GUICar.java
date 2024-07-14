@@ -9,11 +9,11 @@ public class GUICar {
 	public void CarGUI() {
 
 		String plate = "";
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		CarController carController = CarController.getInstance();
 
 		while (true) {
-
 			try {
 
 				System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all");
@@ -27,7 +27,7 @@ public class GUICar {
 					System.out.println("Criando o carro...");
 					break;
 
-				case "2": // Update : tração, cliente 
+				case "2": // Update : tração, cliente
 					System.out.print("Digite a placa: ");
 					plate = scanner.nextLine();
 					System.out.println(carController.read(plate));
@@ -60,7 +60,6 @@ public class GUICar {
 					System.out.println("O valor " + choice + "é invalido");
 					break;
 				}
-				scanner.close();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

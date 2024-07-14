@@ -7,8 +7,8 @@ import br.com.ifpe.oficina.entities.concreteclasses.MechanicManager;
 public class GUIMenu {
 	public static void runGUI() {
 
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
-
 		System.out.println();
 
 		while (true) {
@@ -34,7 +34,6 @@ public class GUIMenu {
 				System.err.println("Opção " + choice + " é invalida");
 				break;
 			}
-			scanner.close();
 			System.out.println("--------------------------------------------------");
 		}
 	}
