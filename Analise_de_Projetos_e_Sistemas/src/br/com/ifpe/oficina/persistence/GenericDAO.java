@@ -32,8 +32,7 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 
 	@Override
 	public void delete(T object) {
-		// TODO Auto-generated method stub
-		
+		list.remove(object);
 	}
 
 	@Override
