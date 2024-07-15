@@ -1,6 +1,7 @@
 package br.com.ifpe.oficina.services.controllers;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
@@ -18,17 +19,11 @@ public class CarController implements IController<Car> {
 	}
 
 	private Car searchCar(String plate) {
-		List<Car> carList = viewAll();
-
-		for (Car car : carList) {
-			if (car.getPlate().equals(plate)) {
-				return car;
-			}
-		}
-		throw new NullPointerException("A placa '" + plate + "' não foi encontrada");
-	}
-
-	
+	    return viewAll().stream()
+	            .filter(car -> car.getPlate().equals(plate))
+	            .findFirst()
+	            .orElse(null);
+	}	
 
 	public void create(String plate) {
 		// TODO Auto-generated method stub
@@ -37,8 +32,12 @@ public class CarController implements IController<Car> {
 
 	@Override
 	public Car read(String plate) {
-		return carDAO.read(searchCar(plate));
-	}
+        Car car = searchCar(plate);
+        if (car == null) {
+            throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
+        }
+        return carDAO.read(car);
+    }
 
 	public void update(String plate, String traction, Client client) {
 		Car car = searchCar(plate);
@@ -50,7 +49,11 @@ public class CarController implements IController<Car> {
 
 	@Override
 	public void delete(String plate) {
-		carDAO.delete(searchCar(plate));
+		Car car = searchCar(plate);
+		if (car == null) {
+			throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
+		}
+		carDAO.delete(car);
 	}
 
 	@Override
