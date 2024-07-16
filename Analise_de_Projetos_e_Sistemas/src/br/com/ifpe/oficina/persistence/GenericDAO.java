@@ -26,7 +26,7 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 	}
 
 	@Override
-	public void update(int index, T object) {
+	public void update(int id, T object) {
 	}
 
 	@Override

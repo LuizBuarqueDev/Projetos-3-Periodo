@@ -7,10 +7,12 @@ import java.util.Set;
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.concreteclasses.JeepCar;
+import br.com.ifpe.oficina.entities.concreteclasses.SilkCar;
 import br.com.ifpe.oficina.services.controllers.CarController;
 import br.com.ifpe.oficina.services.controllers.ClientController;
 import br.com.ifpe.oficina.services.factories.EletricCarFactory;
 import br.com.ifpe.oficina.services.factories.JeepFactory;
+import br.com.ifpe.oficina.services.factories.NewAbstractFactory;
 import br.com.ifpe.oficina.services.factories.SilkFactory;
 
 public class LoadClientEntity {

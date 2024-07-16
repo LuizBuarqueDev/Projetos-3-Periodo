@@ -4,6 +4,8 @@ import br.com.ifpe.oficina.interfaces.INewAbstactFactory;
 
 public class NewAbstractFactory<T> implements INewAbstactFactory<T> {
 	
+	private NewAbstractFactory() {}
+	
 	@Override
 	public T create(Class<T> objectType) {
 		try {
