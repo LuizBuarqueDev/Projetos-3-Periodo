@@ -6,12 +6,14 @@ import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.services.controllers.CarController;
 
 public class GUICar {
+	
+	String plate = "";
+	Scanner scanner = new Scanner(System.in);
+	CarController carController = CarController.getInstance();
+	
 	public void CarGUI() {
 
-		String plate = "";
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-		CarController carController = CarController.getInstance();
+
 
 		while (true) {
 			try {
@@ -22,34 +24,19 @@ public class GUICar {
 				switch (choice) {
 
 				case "1": // Create
-					System.out.print("Digite a placa: ");
-					plate = scanner.nextLine();
-					System.out.println("Criando o carro...");
+					create();
 					break;
 
 				case "2": // Update : tração, cliente
-					System.out.print("Digite a placa: ");
-					plate = scanner.nextLine();
-					System.out.println(carController.read(plate));
-					System.out.println("Atualizando carro...");
-					System.out.println("Tração: ");
-					String traction = scanner.nextLine();
-					Client client = Client.ClientBuilder().build();
-					carController.update(plate, traction, client);
-
+					update();
 					break;
 
 				case "3": // Read
-					System.out.print("Digite a placa: ");
-					plate = scanner.nextLine();
-					System.out.println(carController.read(plate));
+					read();
 					break;
 
 				case "4": // Delete
-					System.out.print("Digite a placa: ");
-					plate = scanner.nextLine();
-					carController.delete(plate);
-					System.out.println("Carro removido");
+					delete();
 					break;
 
 				case "5": // All
@@ -64,5 +51,40 @@ public class GUICar {
 				System.out.println(e.getMessage());
 			}
 		}
+	}
+	
+	private void create() {
+		System.out.print("Digite a placa: ");
+		plate = scanner.nextLine();
+		System.out.println("Criando o carro...");
+		System.out.println("Nova placa: ");
+		String newPlate = scanner.nextLine();
+		System.out.println("Tração: ");
+		String newTraction = scanner.nextLine();
+		System.out.println("Nova placa: ");
+		Client newClient = null;
+	}
+	
+	private void update() {
+		System.out.print("Digite a placa: ");
+		plate = scanner.nextLine();
+		System.out.println(carController.read(plate));
+		System.out.println("Atualizando carro...");
+		System.out.println("Tração: ");
+		String traction = scanner.nextLine();
+		carController.update(plate, traction);
+	}
+	
+	private void read() {
+		System.out.print("Digite a placa: ");
+		plate = scanner.nextLine();
+		System.out.println(carController.read(plate));
+	}
+	
+	private void delete() {
+		System.out.print("Digite a placa: ");
+		plate = scanner.nextLine();
+		carController.delete(plate);
+		System.out.println("Carro removido");
 	}
 }

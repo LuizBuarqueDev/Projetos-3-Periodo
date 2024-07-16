@@ -19,6 +19,8 @@ public class LoadClientEntity {
 	
 	private CarController carController = CarController.getInstance();
 	private ClientController clientController =  ClientController.getInstance();
+	
+	private LoadClientEntity() {}
 
 	public static LoadClientEntity getinstance() {
 		return instance;
@@ -27,17 +29,17 @@ public class LoadClientEntity {
 	Random random = new Random();
 	
     public void createRandomData() {
-        generateClients(100);
-        generateCars(100);
+        generateClients(50);
+        generateCars(50);
     }
 
     private void generateClients(int quantity) {
-        Set<Integer> usedCpfs = new HashSet<>();
+        Set<String> usedCpfs = new HashSet<>();
 
         for (int i = 0; i < quantity; i++) {
-            int cpf;
+            String cpf;
             do {
-                cpf = 111248547 + i;
+                cpf = String.format("%011d", 111248547 + i);
             } while (!usedCpfs.add(cpf));
             Client client = Client.ClientBuilder()
                     .age(20 + i)

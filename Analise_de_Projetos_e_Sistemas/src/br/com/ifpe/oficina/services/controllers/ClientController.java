@@ -1,6 +1,7 @@
 package br.com.ifpe.oficina.services.controllers;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.interfaces.IController;
@@ -16,14 +17,25 @@ public class ClientController implements IController<Client> {
 		return instance;
 	}
 	
-	public void create() {
-		
+	private ClientController() {}
+	
+	private Client searchClient(String cpf) {
+	    return viewAll().stream()
+	            .filter(client -> client.getCpf().equals(cpf))
+	            .findFirst()
+	            .orElse(null);
+	}
+	
+	public void create() {	
 	}
 
 	@Override
 	public Client read(String unique_key) {
-		// TODO Auto-generated method stub
-		return null;
+		Client client = searchClient(unique_key);
+		if (client == null) {
+			throw new NoSuchElementException("O cpf '" + unique_key + "'	não foi encontrado");
+		}
+		return client;
 	}
 	
 	public void update() {
@@ -32,8 +44,10 @@ public class ClientController implements IController<Client> {
 
 	@Override
 	public void delete(String unique_key) {
-		// TODO Auto-generated method stub
-		
+		Client client = searchClient(unique_key);
+		if (client == null) {
+			throw new NoSuchElementException("O cpf '" + unique_key + "'	não foi encontrado");
+		}
 	}
 
 	@Override

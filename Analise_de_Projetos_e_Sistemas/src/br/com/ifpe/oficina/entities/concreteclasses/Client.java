@@ -8,7 +8,7 @@ public final class Client extends Person {
 	private boolean affiliate;
 	private Car car;
 
-	private Client(String name, int cpf, int age, String email, boolean affiliate, Car car) {
+	private Client(String name, String cpf, int age, String email, boolean affiliate, Car car) {
 		super(name, cpf, age, email);
 		this.affiliate = affiliate;
 		this.car = car;
@@ -20,7 +20,7 @@ public final class Client extends Person {
 
 	public static class ClientBuilder {
 		private String name;
-		private int cpf;
+		private String cpf;
 		private int age;
 		private String email;
 		private boolean affiliate;
@@ -31,7 +31,7 @@ public final class Client extends Person {
 			return this;
 		}
 
-		public ClientBuilder cpf(int cpf) {
+		public ClientBuilder cpf(String cpf) {
 			this.cpf = cpf;
 			return this;
 		}

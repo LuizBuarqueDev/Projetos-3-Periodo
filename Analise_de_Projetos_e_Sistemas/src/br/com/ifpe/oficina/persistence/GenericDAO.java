@@ -9,8 +9,7 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 	
 	List<T> list = new ArrayList<T>();
 	
-	private GenericDAO() {
-	}
+	private GenericDAO() {}
 
 	public static <T> GenericDAO<T> createInstance(){
 		return new GenericDAO<T>();

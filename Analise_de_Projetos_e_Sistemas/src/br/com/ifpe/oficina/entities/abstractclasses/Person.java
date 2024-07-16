@@ -2,11 +2,11 @@ package br.com.ifpe.oficina.entities.abstractclasses;
 
 public abstract class Person extends BasicEntities {
 	protected String name;
-	protected int cpf;
+	protected String cpf;
 	protected int age;
 	protected String email;
 	
-	protected Person(String name, int cpf, int age, String email) {
+	protected Person(String name, String cpf, int age, String email) {
 		super();
 		this.name = name;
 		this.cpf = cpf;
@@ -27,11 +27,11 @@ public abstract class Person extends BasicEntities {
 		this.name = name;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
-import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 
@@ -13,6 +12,8 @@ public class CarController implements IController<Car> {
 	private static final CarController instance = new CarController();
 	
 	private GenericDAO<Car> carDAO = GenericDAO.createInstance();
+	
+	private CarController() {}
 	
 	public static CarController getInstance() {
 		return instance;
@@ -39,12 +40,16 @@ public class CarController implements IController<Car> {
         return carDAO.read(car);
     }
 
-	public void update(String plate, String traction, Client client) {
+	public void update(String plate, String traction) { 
+		// TODO: Modificar o acesso direto a lista
 		Car car = searchCar(plate);
+		
+		if(car == null) {
+            throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
+		}
+		car.setPlate(plate);
 		car.setTraction(traction);
-		car.setClient(client);
-		int index = viewAll().indexOf(car);
-		carDAO.update(index, car);
+		car.setTraction(traction);
 	}
 
 	@Override
