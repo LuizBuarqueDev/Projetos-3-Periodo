@@ -13,16 +13,16 @@ import br.com.ifpe.oficina.services.factories.EletricCarFactory;
 import br.com.ifpe.oficina.services.factories.JeepFactory;
 import br.com.ifpe.oficina.services.factories.SilkFactory;
 
-public class LoadClientEntity {
+public class LoadEntity {
 	
-	private static final LoadClientEntity instance = new LoadClientEntity();
+	private static final LoadEntity instance = new LoadEntity();
 	
 	private CarController carController = CarController.getInstance();
 	private ClientController clientController =  ClientController.getInstance();
 	
-	private LoadClientEntity() {}
+	private LoadEntity() {}
 
-	public static LoadClientEntity getinstance() {
+	public static LoadEntity getinstance() {
 		return instance;
 	}
 	

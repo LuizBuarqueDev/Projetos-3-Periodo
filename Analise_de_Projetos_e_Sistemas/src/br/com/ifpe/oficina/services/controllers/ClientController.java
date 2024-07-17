@@ -11,7 +11,7 @@ public class ClientController implements IController<Client> {
 	
 	private static final ClientController instance = new ClientController();	
 	
-	private GenericDAO<Client> clientDAO = GenericDAO.createInstance();
+	private GenericDAO<Client> clientDAO = new GenericDAO<Client>();
 	
 	public static ClientController getInstance() {
 		return instance;

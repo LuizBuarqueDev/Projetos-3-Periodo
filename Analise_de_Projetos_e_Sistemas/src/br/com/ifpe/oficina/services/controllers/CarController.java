@@ -6,12 +6,17 @@ import java.util.NoSuchElementException;
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
+import br.com.ifpe.oficina.services.factories.DAOFactory;
 
 public class CarController implements IController<Car> {
 	
+	
+	
 	private static final CarController instance = new CarController();
 	
-	private GenericDAO<Car> carDAO = GenericDAO.createInstance();
+	DAOFactory daoFactory = new DAOFactory();
+	
+	GenericDAO<Car> carDAO = daoFactory.createDAO(Car.class); 
 	
 	private CarController() {}
 	
