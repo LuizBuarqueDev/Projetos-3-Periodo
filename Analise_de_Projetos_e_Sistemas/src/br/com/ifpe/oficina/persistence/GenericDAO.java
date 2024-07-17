@@ -2,6 +2,7 @@ package br.com.ifpe.oficina.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.interfaces.IGenericDAO;
 
@@ -37,5 +38,10 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 	@Override
 	public List<T> viewAll() {
 		return list;
+	}
+
+	@Override
+	public T search(Predicate<T> filter) {
+		return list.stream().filter(filter).findFirst().orElse(null);
 	}
 }
