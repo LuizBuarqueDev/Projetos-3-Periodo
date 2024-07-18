@@ -63,8 +63,8 @@ public final class Client extends Person {
 	
 	@Override
 	public String toString() {
-		return "Client [affiliate=" + affiliate + ", car=" + car + ", name=" + name + ", cpf=" + cpf + ", age=" + age
-				+ ", email=" + email + "]";
+		return "Client [affiliate=" + affiliate + ", name=" + name + ", cpf=" + cpf + ", age=" + age
+				+ ", email=" + email + " car=" + car + "]";
 	}
 
 	public boolean isAffiliate() {

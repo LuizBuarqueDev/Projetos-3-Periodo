@@ -2,6 +2,7 @@ package br.com.ifpe.oficina.services.controllers;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.interfaces.IController;
@@ -20,10 +21,8 @@ public class ClientController implements IController<Client> {
 	private ClientController() {}
 	
 	private Client searchClient(String cpf) {
-	    return viewAll().stream()
-	            .filter(client -> client.getCpf().equals(cpf))
-	            .findFirst()
-	            .orElse(null);
+		Predicate<Client> filterByClient = client -> client.getCpf().equals(cpf);
+		return  clientDAO.search(filterByClient);
 	}
 	
 	public void create() {	
