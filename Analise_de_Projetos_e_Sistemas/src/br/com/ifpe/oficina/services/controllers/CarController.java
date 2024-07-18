@@ -2,6 +2,7 @@ package br.com.ifpe.oficina.services.controllers;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.interfaces.IController;
@@ -25,10 +26,8 @@ public class CarController implements IController<Car> {
 	}
 
 	private Car searchCar(String plate) {
-	    return viewAll().stream()
-	            .filter(car -> car.getPlate().equals(plate))
-	            .findFirst()
-	            .orElse(null);
+		Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
+		return carDAO.search(filterByCar);
 	}	
 
 	public void create(String plate) {
