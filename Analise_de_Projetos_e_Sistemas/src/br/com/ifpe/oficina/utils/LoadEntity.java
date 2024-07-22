@@ -41,7 +41,6 @@ public class LoadEntity {
             } while (!usedCpfs.add(cpf));
             Client client = Client.ClientBuilder()
                     .age(20 + i)
-                    .affiliate(i % 3 == 0)
                     .cpf(cpf)
                     .email("cliente" + i + "@gmail.com")
                     .name("cliente" + i)

@@ -5,12 +5,10 @@ import br.com.ifpe.oficina.entities.abstractclasses.Person;
 
 public final class Client extends Person {
 
-	private boolean affiliate;
 	private Car car;
 
-	private Client(String name, String cpf, int age, String email, boolean affiliate, Car car) {
+	private Client(String name, String cpf, int age, String email, Car car) {
 		super(name, cpf, age, email);
-		this.affiliate = affiliate;
 		this.car = car;
 	}
 
@@ -23,7 +21,6 @@ public final class Client extends Person {
 		private String cpf;
 		private int age;
 		private String email;
-		private boolean affiliate;
 		private Car car;
 
 		public ClientBuilder name(String name) {
@@ -46,33 +43,20 @@ public final class Client extends Person {
 			return this;
 		}
 
-		public ClientBuilder affiliate(boolean affiliate) {
-			this.affiliate = affiliate;
-			return this;
-		}
-
 		public ClientBuilder car(Car car) {
 			this.car = car;
 			return this;
 		}
 
 		public Client build() {
-			return new Client(name, cpf, age, email, affiliate, car);
+			return new Client(name, cpf, age, email, car);
 		}
 	}
 	
 	@Override
 	public String toString() {
-		return "Client [affiliate=" + affiliate + ", name=" + name + ", cpf=" + cpf + ", age=" + age
+		return "Client [name=" + name + ", cpf=" + cpf + ", age=" + age
 				+ ", email=" + email + " car=" + car + "]";
-	}
-
-	public boolean isAffiliate() {
-		return affiliate;
-	}
-
-	public void setAffiliate(boolean affiliate) {
-		this.affiliate = affiliate;
 	}
 
 	public Car getCar() {
