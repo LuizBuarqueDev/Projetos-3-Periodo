@@ -70,7 +70,6 @@ public class LoadEntity {
                     car.setClient(client);
                     car.setPlate("DEF-" + i);
                     car.setTraction("4x4");
-                    ((CombustionCar) car).setDifferentialLock(false);
 
                     carController.viewAll().add(car);
                     client.setCar(car);
