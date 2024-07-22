@@ -7,8 +7,7 @@ import java.util.Set;
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
-import br.com.ifpe.oficina.entities.concreteclasses.JeepCar;
-import br.com.ifpe.oficina.entities.concreteclasses.SilkCar;
+import br.com.ifpe.oficina.entities.concreteclasses.CombustionCar;
 import br.com.ifpe.oficina.services.controllers.CarController;
 import br.com.ifpe.oficina.services.controllers.ClientController;
 
@@ -54,7 +53,7 @@ public class LoadEntity {
 
     private void generateCars(int quantity) {
         for (int i = 0; i < quantity; i++) {
-            int key = random.nextInt(3);
+            int key = random.nextInt(2);
             Client client = clientController.viewAll().get(i);
 
             switch (key) {
@@ -68,21 +67,11 @@ public class LoadEntity {
                     break;
                 }
                 case 1: {
-                    Car car = new JeepCar();
+                    Car car = new CombustionCar();
                     car.setClient(client);
                     car.setPlate("DEF-" + i);
                     car.setTraction("4x4");
-                    ((JeepCar) car).setDifferentialLock(false);
-
-                    carController.viewAll().add(car);
-                    client.setCar(car);
-                    break;
-                }
-                case 2: {
-                    Car car = new SilkCar();
-                    car.setClient(client);
-                    car.setPlate("GHI-" + i);
-                    car.setTraction("4x2");
+                    ((CombustionCar) car).setDifferentialLock(false);
 
                     carController.viewAll().add(car);
                     client.setCar(car);

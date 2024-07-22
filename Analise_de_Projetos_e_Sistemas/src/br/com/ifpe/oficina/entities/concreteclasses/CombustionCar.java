@@ -2,11 +2,11 @@ package br.com.ifpe.oficina.entities.concreteclasses;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
 
-public class JeepCar extends Car {
+public class CombustionCar extends Car {
 	
 	private boolean differentialLock;
 	
-	public JeepCar() {
+	public CombustionCar() {
 		this.engine = "Combustion Engine";
 	}
 
@@ -20,7 +20,7 @@ public class JeepCar extends Car {
 
 	@Override
 	public String toString() {
-		return "JeepCar [differentialLock=" + differentialLock + ", plate=" + plate + ", engine=" + engine
+		return "CombustionCar [differentialLock=" + differentialLock + ", plate=" + plate + ", engine=" + engine
 				+ ", traction=" + traction + ", client=" + client.getName() + "]";
 	}
 }
