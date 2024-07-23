@@ -16,8 +16,8 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 	}
 
 	@Override
-	public T read(T object) {
-		return object;
+	public T read(Predicate<T> filter) {
+		return this.list.stream().filter(filter).findFirst().orElse(null);
 	}
 
 	@Override
@@ -32,10 +32,5 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 	@Override
 	public List<T> viewAll() {
 		return list;
-	}
-
-	@Override
-	public T search(Predicate<T> filter) {
-		return this.list.stream().filter(filter).findFirst().orElse(null);
 	}
 }

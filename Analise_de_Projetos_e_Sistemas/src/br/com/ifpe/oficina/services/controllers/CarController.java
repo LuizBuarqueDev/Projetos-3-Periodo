@@ -26,7 +26,7 @@ public class CarController implements IController<Car> {
 
 	private Car searchCar(String plate) {
 		Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
-		return carDAO.search(filterByCar);
+		return carDAO.read(filterByCar);
 	}
 
 	public void create(String type, String plate, String traction) {
@@ -61,7 +61,7 @@ public class CarController implements IController<Car> {
 		if (car == null) {
 			throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
 		}
-		return carDAO.read(car);
+		return car;
 	}
 
 	public void update(String plate, String traction) {

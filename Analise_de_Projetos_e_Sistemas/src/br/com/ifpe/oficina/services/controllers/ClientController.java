@@ -23,7 +23,7 @@ public class ClientController implements IController<Client> {
 	
 	private Client searchClient(String cpf) {
 		Predicate<Client> filterByClient = client -> client.getCpf().equals(cpf);
-		return  clientDAO.search(filterByClient);
+		return clientDAO.read(filterByClient);
 	}
 	
 	public void create() {	
