@@ -8,7 +8,11 @@ import br.com.ifpe.oficina.interfaces.IGenericDAO;
 
 public class GenericDAO<T> implements IGenericDAO<T> {
 	
-	List<T> list = new ArrayList<T>();
+	List<T> list;
+
+	public GenericDAO() {
+		this.list = new ArrayList<T>();
+	}
 
 	@Override
 	public void create(T object) {
