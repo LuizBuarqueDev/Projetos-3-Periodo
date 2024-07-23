@@ -7,12 +7,13 @@ import java.util.function.Predicate;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
+import br.com.ifpe.oficina.services.factories.DAOFactory;
 
 public class ClientController implements IController<Client> {
 	
 	private static final ClientController instance = new ClientController();	
 	
-	private GenericDAO<Client> clientDAO = new GenericDAO<Client>();
+	private GenericDAO<Client> clientDAO = DAOFactory.createDAO(Client.class);
 	
 	public static ClientController getInstance() {
 		return instance;

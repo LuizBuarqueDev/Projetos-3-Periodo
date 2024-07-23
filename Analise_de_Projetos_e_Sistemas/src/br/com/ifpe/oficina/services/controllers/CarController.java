@@ -16,12 +16,9 @@ public class CarController implements IController<Car> {
 
 	private static final CarController instance = new CarController();
 
-	DAOFactory daoFactory = new DAOFactory();
+	GenericDAO<Car> carDAO = DAOFactory.createDAO(Car.class);
 
-	GenericDAO<Car> carDAO = daoFactory.createDAO(Car.class);
-
-	private CarController() {
-	}
+	private CarController() {}
 
 	public static CarController getInstance() {
 		return instance;
