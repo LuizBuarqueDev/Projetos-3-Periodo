@@ -65,15 +65,20 @@ public class CarController implements IController<Car> {
 	}
 
 	public void update(String plate, String traction) {
-		// TODO: Modificar o acesso direto a lista
 		Car car = searchCar(plate);
-
-		if (car == null) {
+		if (car instanceof Car) {
 			throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
 		}
-		car.setPlate(plate);
-		car.setTraction(traction);
-		car.setTraction(traction);
+		try {
+			Car carCopy = (Car) car.clone();
+			carCopy.setPlate(plate);
+			carCopy.setPlate(traction);
+			carCopy.setTraction(traction);
+			
+			carDAO.update(viewAll().indexOf(car), carCopy);
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

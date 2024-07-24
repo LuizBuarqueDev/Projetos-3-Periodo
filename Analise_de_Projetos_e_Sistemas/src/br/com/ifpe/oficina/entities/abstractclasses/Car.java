@@ -2,7 +2,7 @@ package br.com.ifpe.oficina.entities.abstractclasses;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 
-public abstract class Car extends BasicEntities {
+public abstract class Car extends BasicEntities implements Cloneable {
 	
 	protected String plate;
 	protected String engine;
@@ -51,5 +51,10 @@ public abstract class Car extends BasicEntities {
 	@Override
 	public String toString() {
 		return "Car [plate=" + plate + ", engine=" + engine + ", traction=" + traction + ", client=" + client + "]";
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }
