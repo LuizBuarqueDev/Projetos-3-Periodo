@@ -5,10 +5,19 @@ import java.util.Scanner;
 import br.com.ifpe.oficina.services.controllers.ClientController;
 
 public class GUIClient {
+	
+	private static final GUIClient instance = new GUIClient();
+	
 	Scanner scanner = new Scanner(System.in);
 	String cpf = "";
 	ClientController clientController = ClientController.getInstance();
 
+	private GUIClient() {}
+	
+	public static GUIClient getInstace() {
+		return instance;
+	}
+	
 	public void clientGUI() {
 		while (true) {
 			try {
@@ -46,7 +55,8 @@ public class GUIClient {
 		}
 	}
 
-	private void create() {
+	public void create() {
+		System.out.println("Creindo cliente");
 
 	}
 

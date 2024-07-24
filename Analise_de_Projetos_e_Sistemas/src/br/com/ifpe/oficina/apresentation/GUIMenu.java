@@ -15,12 +15,12 @@ public class GUIMenu {
 
 			switch (choice) {
 			case "1":
-				GUIClient guiClient = new GUIClient();
+				GUIClient guiClient = GUIClient.getInstace();
 				guiClient.clientGUI();
 				break;
 
 			case "2":
-				GUICar guiCar = new GUICar();
+				GUICar guiCar = GUICar.getInstace();
 				guiCar.CarGUI();
 				break;
 

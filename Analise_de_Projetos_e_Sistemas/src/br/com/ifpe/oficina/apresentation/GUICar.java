@@ -5,11 +5,19 @@ import java.util.Scanner;
 import br.com.ifpe.oficina.services.controllers.CarController;
 
 public class GUICar {
+	
+	private static final GUICar instance = new GUICar();
 
     String plate = "";
     Scanner scanner = new Scanner(System.in);
     CarController carController = CarController.getInstance();
-
+    
+    private GUICar() {}
+    
+    public static GUICar getInstace() {
+    	return instance;
+	}
+    
     public void CarGUI() {
 
         while (true) {
@@ -59,9 +67,11 @@ public class GUICar {
 
         System.out.print("Digite o tipo de carro:[1] - combustao / [2] - eletrico): ");
         String type = scanner.nextLine().toLowerCase();
-
+        
         carController.create(type, plate, traction);
         System.out.println("Carro criado com sucesso");
+        
+        GUIClient.getInstace().create();
     }
 
     private void update() {
