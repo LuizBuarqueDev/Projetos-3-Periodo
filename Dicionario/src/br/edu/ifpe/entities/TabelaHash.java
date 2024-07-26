@@ -87,7 +87,7 @@ public class TabelaHash<K, V> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("TabelaHash contents:\n");
+        sb.append("TabelaHash:\n");
         for (LinkedList<Entry<K, V>> bucket : table) {
             if (bucket != null) {
                 for (Entry<K, V> entry : bucket) {

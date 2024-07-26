@@ -24,7 +24,7 @@ public class Main {
         hashtableString.put("B", "2");
         hashtableString.put("C", "3");
         hashtableString.put("D", "4");
-        hashtableString.put("D", "Fresco");
+        hashtableString.put("D", "teste");
         
         hashtable.remove("C");
         
