@@ -1,40 +1,61 @@
 package br.edu.ifpe.entities;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Map;
+import java.util.List;
 
 class LRUCache<K, V> {
-    private LinkedHashMap<K, V> cache;
+    private int capacity;
     private LinkedList<K> accessOrder;
+    private List<K> keys;
+    private List<V> values;
 
     public LRUCache(int capacity) {
-        this.cache = new LinkedHashMap<>(capacity, 0.75f, true) {
-
-            @Override
-            protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-                return size() > capacity;
-            }
-        };
+        this.capacity = capacity;
         this.accessOrder = new LinkedList<>();
+        this.keys = new ArrayList<>();
+        this.values = new ArrayList<>();
     }
 
     public void put(K key, V value) {
-        cache.put(key, value);
-        updateAccessOrder(key);
+        int index = keys.indexOf(key);
+
+        if (index != -1) {
+            // Atualiza o valor existente
+            values.set(index, value);
+            updateAccessOrder(key);
+        } else {
+            // Adiciona uma nova entrada
+            if (keys.size() >= capacity) {
+                // Remove o item mais antigo
+                K oldestKey = accessOrder.removeLast();
+                int oldestIndex = keys.indexOf(oldestKey);
+                keys.remove(oldestIndex);
+                values.remove(oldestIndex);
+            }
+            keys.add(0, key);
+            values.add(0, value);
+            accessOrder.addFirst(key);
+        }
     }
 
     public V get(K key) {
-        V value = cache.getOrDefault(key, null);
-        if (value != null) {
+        int index = keys.indexOf(key);
+        if (index != -1) {
+            V value = values.get(index);
             updateAccessOrder(key);
+            return value;
         }
-        return value;
+        return null;
     }
 
     public void remove(K key) {
-        cache.remove(key);
-        accessOrder.remove(key);
+        int index = keys.indexOf(key);
+        if (index != -1) {
+            keys.remove(index);
+            values.remove(index);
+            accessOrder.remove(key);
+        }
     }
 
     private void updateAccessOrder(K key) {
