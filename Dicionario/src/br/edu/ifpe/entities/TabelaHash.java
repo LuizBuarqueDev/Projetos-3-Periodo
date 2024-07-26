@@ -2,19 +2,19 @@ package br.edu.ifpe.entities;
 
 import java.util.LinkedList;
 
-class HashTable<K, V> {
+public class TabelaHash<K, V> {
     private static final int defealtCapacity = 16;
     private LinkedList<Entry<K, V>>[] table;
     private int size;
     private LRUCache<K, Boolean> lruCache;
 
-    public HashTable(int capacity) {
+    public TabelaHash(int capacity) {
         this.table = new LinkedList[capacity];
         this.size = 0;
         this.lruCache = new LRUCache<>(capacity);
     }
 
-    public HashTable() {
+    public TabelaHash() {
         this(defealtCapacity);
     }
 
@@ -82,5 +82,19 @@ class HashTable<K, V> {
         public void setValue(V value) {
             this.value = value;
         }
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("TabelaHash contents:\n");
+        for (LinkedList<Entry<K, V>> bucket : table) {
+            if (bucket != null) {
+                for (Entry<K, V> entry : bucket) {
+                    sb.append(entry.getKey()).append(" : ").append(entry.getValue()).append("\n");
+                }
+            }
+        }
+        return sb.toString();
     }
 }

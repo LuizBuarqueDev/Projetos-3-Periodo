@@ -1,10 +1,10 @@
 package br.edu.ifpe.main;
 
-import java.util.Hashtable;
-
+import br.edu.ifpe.entities.TabelaHash;
 public class Main {
     public static void main(String[] args) {
-        Hashtable<String, Integer> hashtable = new Hashtable<String, Integer>();
+    	
+        TabelaHash<String, Integer> hashtable = new TabelaHash<String, Integer>();
 
         hashtable.put("A", 1);
         hashtable.put("B", 2);
@@ -16,8 +16,18 @@ public class Main {
 
         hashtable.remove("C");
 
-        System.out.println("A chave 'C' existe no hashtable? " + hashtable.containsKey("C"));
-
         System.out.println("Conteúdo do hashtable: " + hashtable);
+        
+        TabelaHash<String, String> hashtableString = new TabelaHash<String, String>();
+        
+        hashtableString.put("A", "1");
+        hashtableString.put("B", "2");
+        hashtableString.put("C", "3");
+        hashtableString.put("D", "4");
+        hashtableString.put("D", "Fresco");
+        
+        hashtable.remove("C");
+        
+        System.out.println("Conteúdo do hashtable: " + hashtableString.toString());
     }
 }
