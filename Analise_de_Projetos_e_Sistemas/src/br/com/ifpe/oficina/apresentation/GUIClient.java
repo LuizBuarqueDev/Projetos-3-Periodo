@@ -2,22 +2,23 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
+import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.services.controllers.ClientController;
 
 public class GUIClient {
-	
+
 	private static final GUIClient instance = new GUIClient();
-	
+
 	Scanner scanner = new Scanner(System.in);
 	String cpf = "";
 	ClientController clientController = ClientController.getInstance();
 
 	private GUIClient() {}
-	
+
 	public static GUIClient getInstace() {
 		return instance;
 	}
-	
+
 	public void clientGUI() {
 		while (true) {
 			try {
@@ -25,28 +26,28 @@ public class GUIClient {
 				String choice = scanner.nextLine();
 
 				switch (choice) {
-				case "1": // Create
-					create();
+					case "1": // Create
+						create();
 
-					break;
-				case "2": // Update
-					update();
+						break;
+					case "2": // Update
+						update();
 
-					break;
-				case "3": // Read
-					read();
+						break;
+					case "3": // Read
+						read();
 
-					break;
-				case "4": // Delete
-					delete();
-					break;
-				case "5": // All
-					clientController.viewAll().stream().forEach(System.out::println);
-					break;
+						break;
+					case "4": // Delete
+						delete();
+						break;
+					case "5": // All
+						clientController.viewAll().forEach(System.out::println);
+						break;
 
-				default:
-					System.out.println("O valor " + choice + "é invalido");
-					break;
+					default:
+						System.out.println("O valor '" + choice + "' é invalido");
+						break;
 				}
 
 			} catch (Exception e) {
@@ -56,8 +57,38 @@ public class GUIClient {
 	}
 
 	public void create() {
-		System.out.println("Creindo cliente");
+		System.out.println("Idade: ");
+		String age = scanner.nextLine();
 
+		System.out.println("Cpf: ");
+		String cpf = scanner.nextLine();
+
+		System.out.println("E-mail: ");
+		String email = scanner.nextLine();
+
+		System.out.println("Nome: ");
+		String name = scanner.nextLine();
+
+		clientController.create(name, age, cpf, email);
+		System.out.println("Cliente criado com sucesso");
+
+		Car tempCar = GUICar.getInstace().createOnlyCar();
+		System.out.println("Carro criado");
+		System.out.println(tempCar.toString());
+	}
+
+	public void createOnlyClient() {
+		System.out.println("Idade: ");
+		String age = scanner.nextLine();
+
+		System.out.println("Cpf: ");
+		String cpf = scanner.nextLine();
+
+		System.out.println("E-mail: ");
+		String email = scanner.nextLine();
+
+		System.out.println("Nome: ");
+		String name = scanner.nextLine();
 	}
 
 	private void read() {
@@ -67,8 +98,7 @@ public class GUIClient {
 	}
 
 	private void update() {
-
-
+		// implementação do método de atualização
 	}
 
 	private void delete() {
@@ -76,5 +106,9 @@ public class GUIClient {
 		cpf = scanner.nextLine();
 		clientController.delete(cpf);
 		System.out.println("Cliente deletado");
+	}
+
+	public void createOnlyCar() {
+		GUICar.getInstace().createOnlyCar();
 	}
 }

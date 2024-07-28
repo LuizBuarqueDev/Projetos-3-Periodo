@@ -26,7 +26,7 @@ public class ClientController implements IController<Client> {
 		return clientDAO.read(filterByClient);
 	}
 	
-	public void create() {	
+	public void create(String name, String age, String cpf, String email) {
 	}
 
 	@Override
