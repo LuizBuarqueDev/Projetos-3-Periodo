@@ -80,6 +80,7 @@ public class GUICar {
     }
 
     public Car createOnlyCar() {
+        System.out.println("Criando carro");
         System.out.print("Digite a placa: ");
         String plate = scanner.nextLine();
 
@@ -97,6 +98,7 @@ public class GUICar {
                         .traction(traction)
                         .client(Client.ClientBuilder().build())
                         .build();
+
             } else if (type.equals("2")) {
                 System.out.println("Caso 2");
                 return EletricCar.EletricCarBuilder.anEletricCar()
@@ -104,6 +106,7 @@ public class GUICar {
                         .traction(traction)
                         .client(Client.ClientBuilder().build())
                         .build();
+
             } else {
                 System.out.println("Caso Erro else");
                 throw new IllegalArgumentException("Parametros invalidos, tente novamente");

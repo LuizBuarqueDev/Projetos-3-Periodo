@@ -79,9 +79,8 @@ public class GUIClient {
 	}
 
 	public Client createOnlyClient() {
-		System.out.println("Idade: ");
-
 		try {
+			System.out.println("Criando cliente");
 			System.out.println("Idade: ");
 			int age = Integer.parseInt(scanner.nextLine());
 
@@ -103,7 +102,6 @@ public class GUIClient {
 		} catch (NumberFormatException e) {
 			throw new RuntimeException("A idade não é um inteiro");
 		}
-
 	}
 
 	private void read() {
