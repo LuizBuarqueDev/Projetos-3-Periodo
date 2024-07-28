@@ -23,8 +23,7 @@ public class EletricCar extends Car {
 		private String traction;
 		private Client client;
 
-		private EletricCarBuilder() {
-		}
+		private EletricCarBuilder() {}
 
 		public static EletricCarBuilder anEletricCar() {
 			return new EletricCarBuilder();

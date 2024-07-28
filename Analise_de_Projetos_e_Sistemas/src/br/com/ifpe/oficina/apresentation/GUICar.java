@@ -76,7 +76,7 @@ public class GUICar {
         carController.create(type, plate, traction);
         System.out.println("Carro criado com sucesso");
 
-        GUIClient.getInstace().createOnlyClient();
+         Client client= GUIClient.getInstace().createOnlyClient();
     }
 
     public Car createOnlyCar() {
@@ -109,8 +109,7 @@ public class GUICar {
                 throw new IllegalArgumentException("Parametros invalidos, tente novamente");
             }
         } catch (Exception e) {
-            System.out.println("Caso catch");
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException("Parametros invalidos, tente novamente");
         }
     }
 
