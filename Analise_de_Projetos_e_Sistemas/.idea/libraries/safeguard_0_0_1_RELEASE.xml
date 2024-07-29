@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="safeguard-0.0.1-RELEASE">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/caelum-stella-core-2.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

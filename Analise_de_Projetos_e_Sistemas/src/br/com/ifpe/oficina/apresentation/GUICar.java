@@ -16,8 +16,7 @@ public class GUICar {
     Scanner scanner = new Scanner(System.in);
     CarController carController = CarController.getInstance();
 
-    private GUICar() {
-    }
+    private GUICar() {}
 
     public static GUICar getInstace() {
         return instance;
@@ -75,8 +74,6 @@ public class GUICar {
 
         carController.create(type, plate, traction);
         System.out.println("Carro criado com sucesso");
-
-         Client client= GUIClient.getInstace().createOnlyClient();
     }
 
     public Car createOnlyCar() {
@@ -91,7 +88,7 @@ public class GUICar {
         String type = scanner.nextLine();
 
         try {
-            if (type.equals("1")){
+            if (type.equals("1")) {
                 System.out.println("Caso 1");
                 return CombustionCar.CombustionCarBuilder.aCombustionCar()
                         .plate(plate)

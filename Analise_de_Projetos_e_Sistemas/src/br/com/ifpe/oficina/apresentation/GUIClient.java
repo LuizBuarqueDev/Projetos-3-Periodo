@@ -72,10 +72,6 @@ public class GUIClient {
 
 		clientController.create(name, age, cpf, email);
 		System.out.println("Cliente criado com sucesso");
-
-		Car tempCar = GUICar.getInstace().createOnlyCar();
-		System.out.println("Carro criado");
-		System.out.println(tempCar.toString());
 	}
 
 	public Client createOnlyClient() {

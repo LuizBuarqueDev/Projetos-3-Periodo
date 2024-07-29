@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component jdk="jbr-17" jdk_type="JavaSDK">
 	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="safeguard-0.0.1-RELEASE" value="project"/>
+	</levels>
 </component>
