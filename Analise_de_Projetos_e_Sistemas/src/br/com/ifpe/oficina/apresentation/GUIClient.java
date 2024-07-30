@@ -116,8 +116,4 @@ public class GUIClient {
 		clientController.delete(cpf);
 		System.out.println("Cliente deletado");
 	}
-
-	public void createOnlyCar() {
-		GUICar.getInstace().createOnlyCar();
-	}
 }
