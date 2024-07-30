@@ -7,5 +7,6 @@ public class Main {
 	public static void main(String[] args) {
 		LoadEntity.getInstance().createRandomData();;
 		GUIMenu.runGUI();
+		System.out.println("teste");
 	}
 }
