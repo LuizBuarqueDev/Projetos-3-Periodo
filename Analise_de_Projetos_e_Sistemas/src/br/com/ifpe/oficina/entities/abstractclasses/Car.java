@@ -48,10 +48,7 @@ public abstract class Car extends BasicEntities implements Cloneable {
 		this.client = client;
 	}
 
-	@Override
-	public String toString() {
-		return "Car [plate=" + plate + ", engine=" + engine + ", traction=" + traction + ", client=" + client + "]";
-	}
+	public abstract double getprice();
 
 	@Override
 	public Object clone() throws CloneNotSupportedException {

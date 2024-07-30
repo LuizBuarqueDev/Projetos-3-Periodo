@@ -9,15 +9,23 @@ public class CombustionCar extends Car {
 	}
 
 	@Override
+	public double getprice() {
+		return 90000.00;
+	}
+
+	@Override
 	public String toString() {
-		return "CombustionCar [plate=" + plate + ", engine=" + engine
-				+ ", traction=" + traction + ", client=" + client.getName() + "]";
+		return "CombustionCar{" +
+				"plate='" + plate + '\'' +
+				", engine='" + engine + '\'' +
+				", traction='" + traction + '\'' +
+				", price=" + getprice() +
+				'}';
 	}
 
 	public static final class CombustionCarBuilder {
 		private Client client;
 		private String traction;
-		private String engine;
 		private String plate;
 
 		private CombustionCarBuilder() {}
@@ -33,11 +41,6 @@ public class CombustionCar extends Car {
 
 		public CombustionCarBuilder traction(String traction) {
 			this.traction = traction;
-			return this;
-		}
-
-		public CombustionCarBuilder engine(String engine) {
-			this.engine = engine;
 			return this;
 		}
 

@@ -12,9 +12,19 @@ public class EletricCar extends Car {
 	}
 
 	@Override
+	public double getprice() {
+		return 120000.00;
+	}
+
+	@Override
 	public String toString() {
-		return "EletricCar [batteryCapacity=" + batteryCapacity + ", plate=" + plate + ", engine=" + engine
-				+ ", traction=" + traction + ", client=" + client.getName() + "]";
+		return "EletricCar{" +
+				"batteryCapacity=" + batteryCapacity +
+				", plate='" + plate + '\'' +
+				", engine='" + engine + '\'' +
+				", traction='" + traction + '\'' +
+				", price=" + getprice() +
+				'}';
 	}
 
 	public static final class EletricCarBuilder {
