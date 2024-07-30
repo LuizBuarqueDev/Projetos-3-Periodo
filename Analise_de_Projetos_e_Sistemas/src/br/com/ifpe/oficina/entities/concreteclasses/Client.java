@@ -56,7 +56,7 @@ public final class Client extends Person {
 	@Override
 	public String toString() {
 		return "Client [name=" + name + ", cpf=" + cpf + ", age=" + age
-				+ ", email=" + email + " car=" + car + "]";
+				+ ", email=" + email + "]";
 	}
 
 	public Car getCar() {

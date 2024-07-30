@@ -29,16 +29,33 @@ public class ClientController implements IController<Client> {
     }
 
     public void create(String name, String age, String cpf, String email) {
+        int intAge ;
+        try {
+            intAge = Integer.parseInt(age);
+
+        } catch (Exception e ){
+            throw new NumberFormatException("A idade não é um inteiro");
+        }
+
         if (searchClient(cpf) != null) {
             throw new IllegalArgumentException("o cpf '" + cpf + "' já existe");
 
         } else if (!cpfValidator.validateCpf(cpf)) {
             throw new IllegalArgumentException("o cpf '" + cpf + "' não " +
                     "é valido");
-
         } else {
             System.out.println("Cpf valido");
         }
+
+        Client client = Client.ClientBuilder()
+                .name(name)
+                .cpf(cpf)
+                .age(intAge)
+                .email(email)
+                .car(null)
+                .build();
+
+        clientDAO.create(client);
     }
 
     @Override
