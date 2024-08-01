@@ -12,7 +12,7 @@ import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 
-public class CarController extends GenericController<Car> {
+public class CarController extends GenericController<Car> implements  IController<Car>{
 
     private static final CarController instance = new CarController(DAOFactory.createDAO(Car.class));
 
@@ -32,6 +32,16 @@ public class CarController extends GenericController<Car> {
     protected void validateInsert(Car car) {
         if (searchCar(car.getPlate()) != null) {
             throw new RuntimeException("O carro já existe");
+        }
+    }
+
+    @Override
+    public void create(String... attributes) {
+        String type = attributes[1];
+        String plate = attributes[2];
+        String traction = attributes[3];
+        if (type.equals("1")){
+            Car car = CombustionCar.CombustionCarBuilder.aCombustionCar().build();
         }
     }
 
@@ -59,12 +69,18 @@ public class CarController extends GenericController<Car> {
         }
     }
 
+    @Override
     public Car read(String plate) {
         Car car = searchCar(plate);
         if (car == null) {
             throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
         }
         return car;
+    }
+
+    @Override
+    public void update(String... attributes) {
+
     }
 
     public void update(String plate, String traction) {
