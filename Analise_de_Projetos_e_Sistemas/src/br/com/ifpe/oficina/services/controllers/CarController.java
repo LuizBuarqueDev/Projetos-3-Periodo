@@ -12,13 +12,12 @@ import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 
-public class CarController extends AbstractController<Car> implements IController<Car>{
+public class CarController extends GenericController<Car> {
 
-    private static final CarController instance = new CarController();
+    private static final CarController instance = new CarController(DAOFactory.createDAO(Car.class));
 
-    GenericDAO<Car> carDAO = DAOFactory.createDAO(Car.class);
-
-    private CarController() {
+    private CarController(GenericDAO<Car> dao) {
+        super(dao);
     }
 
     public static CarController getInstance() {
@@ -27,7 +26,7 @@ public class CarController extends AbstractController<Car> implements IControlle
 
     private Car searchCar(String plate) {
         Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
-        return carDAO.read(filterByCar);
+        return dao.read(filterByCar);
     }
 
     protected void validateInsert(Car car) {
@@ -37,32 +36,29 @@ public class CarController extends AbstractController<Car> implements IControlle
     }
 
     public void create(String type, String plate, String traction) {
-        Car car = searchCar(plate);
-        if (car != null) {
-            throw new NoSuchElementException("A placa '" + plate + "'já existe");
-        }
         if (type.equals("1")) {
-            car = new CombustionCar();
+            Car car = new CombustionCar();
             car.setClient(null);
             car.setPlate(plate);
             car.setTraction(traction);
+            car.setClient(new Client.ClientBuilder().build());
+
+            insert(car);
 
         } else if (type.equals("2")) {
-            car = new EletricCar();
+            Car car = new EletricCar();
             car.setClient(null);
             car.setPlate(plate);
             car.setTraction(traction);
+            car.setClient(new Client.ClientBuilder().build());
+
+            insert(car);
 
         } else {
             throw new IllegalArgumentException("Tipo de carro invalido");
         }
-
-        car.setClient(new Client.ClientBuilder().build());
-
-        carDAO.insert(car);
     }
 
-    @Override
     public Car read(String plate) {
         Car car = searchCar(plate);
         if (car == null) {
@@ -82,23 +78,23 @@ public class CarController extends AbstractController<Car> implements IControlle
             carCopy.setPlate(traction);
             carCopy.setTraction(traction);
 
-            carDAO.update(viewAll().indexOf(car), carCopy);
+//            carDAO.update(viewAll().indexOf(car), carCopy);
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Erro ao clonar o objeto carro");
         }
     }
 
-    @Override
+
     public void delete(String plate) {
         Car car = searchCar(plate);
         if (car == null) {
             throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
         }
-        carDAO.delete(car);
+        dao.delete(car);
     }
 
-    @Override
     public List<Car> viewAll() {
-        return carDAO.viewAll();
+//        return carDAO.viewAll();
+        return null;
     }
 }
