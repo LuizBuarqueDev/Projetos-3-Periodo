@@ -10,27 +10,21 @@ public class Logger {
 
     public static void info(String text) {
         File file = new File(INFO_FILE_NAME);
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(file);
-            writer.write(text);
-            writer.close();
+        try (FileWriter writer = new FileWriter(file, true)) {
+            writer.write(text + System.lineSeparator());
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao escrever no arquivo de log de info.");
         }
     }
 
     public static void error(String text) {
         File file = new File(ERRO_FILE_NAME);
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(file);
-            writer.write(text);
-            writer.close();
+        try (FileWriter writer = new FileWriter(file,true)) {
+            writer.write(text + System.lineSeparator());
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao escrever no arquivo de log de erro.");
         }
     }
 }

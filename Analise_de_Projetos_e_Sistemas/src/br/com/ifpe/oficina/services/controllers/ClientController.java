@@ -59,12 +59,22 @@ public class ClientController implements IController<Client> {
     }
 
     @Override
+    public void create(String... attributes) {
+
+    }
+
+    @Override
     public Client read(String unique_key) {
         Client client = searchClient(unique_key);
         if (client == null) {
             throw new NoSuchElementException("O cpf '" + unique_key + "'	não foi encontrado");
         }
         return client;
+    }
+
+    @Override
+    public void update(String... attributes) {
+
     }
 
     public void update() {

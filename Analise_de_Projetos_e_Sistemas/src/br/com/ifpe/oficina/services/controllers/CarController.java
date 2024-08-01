@@ -37,30 +37,24 @@ public class CarController extends GenericController<Car> implements  IControlle
 
     @Override
     public void create(String... attributes) {
-        String type = attributes[1];
-        String plate = attributes[2];
-        String traction = attributes[3];
+        String type = attributes[0];
+        String plate = attributes[1];
+        String traction = attributes[2];
         if (type.equals("1")){
-            Car car = CombustionCar.CombustionCarBuilder.aCombustionCar().build();
-        }
-    }
-
-    public void create(String type, String plate, String traction) {
-        if (type.equals("1")) {
-            Car car = new CombustionCar();
-            car.setClient(null);
-            car.setPlate(plate);
-            car.setTraction(traction);
-            car.setClient(new Client.ClientBuilder().build());
+            Car car = CombustionCar.CombustionCarBuilder.aCombustionCar()
+                    .client(Client.ClientBuilder().build())
+                    .plate(plate)
+                    .traction(traction)
+                    .build();
 
             insert(car);
 
         } else if (type.equals("2")) {
-            Car car = new EletricCar();
-            car.setClient(null);
-            car.setPlate(plate);
-            car.setTraction(traction);
-            car.setClient(new Client.ClientBuilder().build());
+            Car car = EletricCar.EletricCarBuilder.anEletricCar()
+                    .client(Client.ClientBuilder().build())
+                    .plate(plate)
+                    .traction(traction)
+                    .build();
 
             insert(car);
 
@@ -109,8 +103,8 @@ public class CarController extends GenericController<Car> implements  IControlle
         dao.delete(car);
     }
 
+    @Override
     public List<Car> viewAll() {
-//        return carDAO.viewAll();
-        return null;
+        return listAll();
     }
 }

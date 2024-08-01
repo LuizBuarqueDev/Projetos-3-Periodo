@@ -1,0 +1,2 @@
+Inserindo entidade: CombustionCar{plate='1', engine='Combustion Engine', traction='1', price=90000.0}
+
