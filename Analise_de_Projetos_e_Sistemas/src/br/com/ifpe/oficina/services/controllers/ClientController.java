@@ -55,7 +55,7 @@ public class ClientController implements IController<Client> {
                 .car(null)
                 .build();
 
-        clientDAO.create(client);
+        clientDAO.insert(client);
     }
 
     @Override

@@ -59,7 +59,7 @@ public class CarController extends AbstractController<Car> implements IControlle
 
         car.setClient(new Client.ClientBuilder().build());
 
-        carDAO.create(car);
+        carDAO.insert(car);
     }
 
     @Override

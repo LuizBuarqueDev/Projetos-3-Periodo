@@ -15,7 +15,7 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 	}
 
 	@Override
-	public void create(T object) {
+	public void insert(T object) {
 		list.add(object);
 	}
 
