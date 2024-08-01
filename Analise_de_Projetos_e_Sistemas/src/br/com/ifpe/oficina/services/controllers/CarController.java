@@ -73,7 +73,7 @@ public class CarController extends AbstractController<Car> implements IControlle
 
     public void update(String plate, String traction) {
         Car car = searchCar(plate);
-        if (car instanceof Car) {
+        if (car == null) {
             throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
         }
         try {
@@ -84,7 +84,7 @@ public class CarController extends AbstractController<Car> implements IControlle
 
             carDAO.update(viewAll().indexOf(car), carCopy);
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erro ao clonar o objeto carro");
         }
     }
 
