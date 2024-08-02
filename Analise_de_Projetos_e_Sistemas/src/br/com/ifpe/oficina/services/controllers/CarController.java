@@ -74,26 +74,23 @@ public class CarController extends GenericController<Car> implements  IControlle
 
     @Override
     public void update(String... attributes) {
+        String oldPlate = attributes[0];
+        String newPlate = attributes[1];
+        String traction = attributes[2];
 
-    }
-
-    public void update(String plate, String traction) {
-        Car car = searchCar(plate);
-        if (car == null) {
-            throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
-        }
         try {
+            Car car = searchCar(oldPlate);
             Car carCopy = (Car) car.clone();
-            carCopy.setPlate(plate);
-            carCopy.setPlate(traction);
+            carCopy.setPlate(newPlate);
             carCopy.setTraction(traction);
 
-//            carDAO.update(viewAll().indexOf(car), carCopy);
+            int index = viewAll().indexOf(car);
+            update(index, carCopy);
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Erro ao clonar o objeto carro");
+
         }
     }
-
 
     public void delete(String plate) {
         Car car = searchCar(plate);
@@ -105,6 +102,6 @@ public class CarController extends GenericController<Car> implements  IControlle
 
     @Override
     public List<Car> viewAll() {
-        return listAll();
+        return dao.viewAll();
     }
 }

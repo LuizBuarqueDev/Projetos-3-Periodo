@@ -1,2 +1,3 @@
 Inserindo entidade: CombustionCar{plate='1', engine='Combustion Engine', traction='1', price=90000.0}
 
+Atualizando entidade: CombustionCar{plate='5', engine='Combustion Engine', traction='5', price=90000.0}->CombustionCar{plate='5', engine='Combustion Engine', traction='5', price=90000.0}

@@ -16,7 +16,8 @@ public class GUICar {
     Scanner scanner = new Scanner(System.in);
     CarController carController = CarController.getInstance();
 
-    private GUICar() {}
+    private GUICar() {
+    }
 
     public static GUICar getInstace() {
         return instance;
@@ -114,12 +115,15 @@ public class GUICar {
 
     private void update() {
         System.out.print("Digite a placa do carro que deseja atualizar: ");
-        String plate = scanner.nextLine();
+        String oldPlate = scanner.nextLine();
+
+        System.out.print("Digite a placa do carro que deseja atualizar: ");
+        String newPlate = scanner.nextLine();
 
         System.out.print("Digite a nova tração: ");
         String traction = scanner.nextLine();
 
-        carController.update(plate, traction);
+        carController.update(oldPlate, newPlate, traction);
         System.out.println("Carro atualizado com sucesso");
     }
 

@@ -23,8 +23,9 @@ public abstract class GenericController<T> {
         }
     }
 
-    protected void update(T object){
-
+    protected void update(int index, T object) {
+            dao.viewAll().set(index,object);
+            Logger.info("Atualizando entidade: " + dao.viewAll().get(index).toString() + " -> " + object.toString());
     }
 
     protected void read () {
@@ -34,10 +35,5 @@ public abstract class GenericController<T> {
     protected void delete (){
 
     }
-
-    protected List<T> listAll(){
-            return dao.viewAll();
-    }
-
     protected abstract void validateInsert (T object);
 }
