@@ -12,7 +12,7 @@ import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 
-public class CarController extends GenericController<Car> implements  IController<Car>{
+public class CarController extends GenericController<Car> implements IController<Car> {
 
     private static final CarController instance = new CarController(DAOFactory.createDAO(Car.class));
 
@@ -26,12 +26,21 @@ public class CarController extends GenericController<Car> implements  IControlle
 
     private Car searchCar(String plate) {
         Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
-        return dao.read(filterByCar);
+        return genericRead(filterByCar);
     }
 
+    @Override
     protected void validateInsert(Car car) {
         if (searchCar(car.getPlate()) != null) {
-            throw new RuntimeException("O carro já existe");
+            throw new RuntimeException("A placa ja existe");
+        }
+    }
+
+    @Override
+    protected void validateUpdate(Car car) {
+        System.out.println("Foi validado");
+        if (searchCar(car.getPlate()) != null) {
+            throw new RuntimeException("A placa ja existe");
         }
     }
 
@@ -40,14 +49,14 @@ public class CarController extends GenericController<Car> implements  IControlle
         String type = attributes[0];
         String plate = attributes[1];
         String traction = attributes[2];
-        if (type.equals("1")){
+        if (type.equals("1")) {
             Car car = CombustionCar.CombustionCarBuilder.aCombustionCar()
                     .client(Client.ClientBuilder().build())
                     .plate(plate)
                     .traction(traction)
                     .build();
 
-            insert(car);
+            genericInsert(car);
 
         } else if (type.equals("2")) {
             Car car = EletricCar.EletricCarBuilder.anEletricCar()
@@ -56,7 +65,7 @@ public class CarController extends GenericController<Car> implements  IControlle
                     .traction(traction)
                     .build();
 
-            insert(car);
+            genericInsert(car);
 
         } else {
             throw new IllegalArgumentException("Tipo de carro invalido");
@@ -65,11 +74,7 @@ public class CarController extends GenericController<Car> implements  IControlle
 
     @Override
     public Car read(String plate) {
-        Car car = searchCar(plate);
-        if (car == null) {
-            throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
-        }
-        return car;
+        return searchCar(plate);
     }
 
     @Override
@@ -78,17 +83,16 @@ public class CarController extends GenericController<Car> implements  IControlle
         String newPlate = attributes[1];
         String traction = attributes[2];
 
+        Car car = searchCar(oldPlate);
         try {
-            Car car = searchCar(oldPlate);
             Car carCopy = (Car) car.clone();
             carCopy.setPlate(newPlate);
             carCopy.setTraction(traction);
 
             int index = viewAll().indexOf(car);
-            update(index, carCopy);
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Erro ao clonar o objeto carro");
-
+            genericUpdate(index, carCopy);
+        } catch (Exception e) {
+            throw new RuntimeException("Carro não encontrado");
         }
     }
 

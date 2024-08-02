@@ -10,7 +10,6 @@ public abstract class Car extends BasicEntities implements Cloneable {
 	protected Client client;
 	
 	public Car() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	protected Car(String plate, String traction, Client client) {
