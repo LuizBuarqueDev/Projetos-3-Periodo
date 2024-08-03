@@ -91,6 +91,6 @@ public class ClientController implements IController<Client> {
 
     @Override
     public List<Client> viewAll() {
-        return clientDAO.viewAll();
+        return clientDAO.listAll();
     }
 }

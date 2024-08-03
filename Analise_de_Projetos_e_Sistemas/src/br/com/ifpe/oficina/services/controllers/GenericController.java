@@ -3,6 +3,7 @@ package br.com.ifpe.oficina.services.controllers;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.persistence.Logger;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
@@ -30,19 +31,20 @@ public abstract class GenericController<T> {
         }
     }
 
-    protected T genericRead(Predicate <T> filter) {
+    protected T genericRead(Predicate<T> filter) {
         T object = dao.read(filter);
-        if (object == null){
-            throw new NoSuchElementException("Enidade não encontrada");
+        if (object == null) {
+            throw new NoSuchElementException("Busca: Entidade não encontrada");
         }
+        Logger.info("Busca: Entidade encontrada: " + object.toString());
         return object;
     }
 
     protected void genericUpdate(int index, T object) {
         try {
             this.validateUpdate(object);
-            Logger.info("Atualizando entidade: " + dao.viewAll().get(index).toString() + " -> " + object.toString());
-            dao.viewAll().set(index, object);
+            Logger.info("Atualizando entidade: " + dao.listAll().get(index).toString() + " -> " + object.toString());
+            dao.listAll().set(index, object);
 
         } catch (Exception e) {
             Logger.error(e.getMessage());
@@ -50,7 +52,21 @@ public abstract class GenericController<T> {
         }
     }
 
-    protected void genericDelete() {
+    protected void genericDelete(Predicate<T> filter) {
+        T object = dao.read(filter);
+        try {
+            if (object == null) {
+                throw new RuntimeException("Delete: entidade não encontrada");
+            }
+            Logger.info("Deletando entidade: " + object.toString());
+            dao.delete(object);
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 
+    protected List<T> genericListAll (){
+        return dao.listAll();
     }
 }

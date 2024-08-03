@@ -35,7 +35,7 @@ public class GenericDAO<T> implements IGenericDAO<T> {
 	}
 
 	@Override
-	public List<T> viewAll() {
+	public List<T> listAll() {
 		return list;
 	}
 }

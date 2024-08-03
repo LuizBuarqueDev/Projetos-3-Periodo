@@ -96,16 +96,14 @@ public class CarController extends GenericController<Car> implements IController
         }
     }
 
+    @Override
     public void delete(String plate) {
-        Car car = searchCar(plate);
-        if (car == null) {
-            throw new NoSuchElementException("A placa '" + plate + "' não foi encontrada");
-        }
-        dao.delete(car);
+        Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
+        genericDelete(filterByCar);
     }
 
     @Override
     public List<Car> viewAll() {
-        return dao.viewAll();
+        return genericListAll();
     }
 }

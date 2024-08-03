@@ -12,5 +12,5 @@ public interface IGenericDAO<T> {
 
     void delete(T object);
 
-    List<T> viewAll();
+    List<T> listAll();
 }

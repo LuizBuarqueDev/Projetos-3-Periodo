@@ -1,2 +1,1 @@
-A placa ja existe
-A placa ja existe
+Delete: entidade não encontrada
