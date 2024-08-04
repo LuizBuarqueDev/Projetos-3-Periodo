@@ -26,22 +26,38 @@ public class CarController extends GenericController<Car> implements IController
 
     private Car searchCar(String plate) {
         Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
-        return genericRead(filterByCar);
+        return dao.read(filterByCar);
     }
 
     @Override
     protected void validateInsert(Car car) {
         if (searchCar(car.getPlate()) != null) {
-            throw new RuntimeException("A placa ja existe");
+            System.out.println("Placa ja existe pae");
+            throw new RuntimeException("Não foi possivel inserir placa já existe");
         }
     }
 
     @Override
     protected void validateUpdate(Car car) {
-        System.out.println("Foi validado");
         if (searchCar(car.getPlate()) != null) {
-            throw new RuntimeException("A placa ja existe");
+            throw new RuntimeException("A placa já existe");
         }
+    }
+
+    private Car createCombustionCar(String plate, String traction) {
+        return CombustionCar.CombustionCarBuilder.aCombustionCar()
+                .client(Client.ClientBuilder().build())
+                .plate(plate)
+                .traction(traction)
+                .build();
+    }
+
+    private Car createElectricCar(String plate, String traction) {
+        return EletricCar.EletricCarBuilder.anEletricCar()
+                .client(Client.ClientBuilder().build())
+                .plate(plate)
+                .traction(traction)
+                .build();
     }
 
     @Override
@@ -49,27 +65,13 @@ public class CarController extends GenericController<Car> implements IController
         String type = attributes[0];
         String plate = attributes[1];
         String traction = attributes[2];
-        if (type.equals("1")) {
-            Car car = CombustionCar.CombustionCarBuilder.aCombustionCar()
-                    .client(Client.ClientBuilder().build())
-                    .plate(plate)
-                    .traction(traction)
-                    .build();
 
-            genericInsert(car);
-
-        } else if (type.equals("2")) {
-            Car car = EletricCar.EletricCarBuilder.anEletricCar()
-                    .client(Client.ClientBuilder().build())
-                    .plate(plate)
-                    .traction(traction)
-                    .build();
-
-            genericInsert(car);
-
-        } else {
-            throw new IllegalArgumentException("Tipo de carro invalido");
-        }
+        Car car = switch (type) {
+            case "1" -> createCombustionCar(plate, traction);
+            case "2" -> createElectricCar(plate, traction);
+            default -> throw new IllegalArgumentException("Tipo de carro inválido");
+        };
+        genericInsert(car);
     }
 
     @Override
@@ -84,6 +86,10 @@ public class CarController extends GenericController<Car> implements IController
         String traction = attributes[2];
 
         Car car = searchCar(oldPlate);
+        if (car == null) {
+            throw new RuntimeException("Carro não encontrado");
+        }
+
         try {
             Car carCopy = (Car) car.clone();
             carCopy.setPlate(newPlate);
@@ -92,14 +98,13 @@ public class CarController extends GenericController<Car> implements IController
             int index = viewAll().indexOf(car);
             genericUpdate(index, carCopy);
         } catch (Exception e) {
-            throw new RuntimeException("Carro não encontrado");
+            throw new RuntimeException("Erro ao clonar o carro", e);
         }
     }
 
     @Override
     public void delete(String plate) {
-        Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
-        genericDelete(filterByCar);
+        genericDelete(searchCar(plate));
     }
 
     @Override

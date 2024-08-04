@@ -1,0 +1,4 @@
+Deletando entidade: CombustionCar{plate='DEF-49', engine='Combustion Engine', traction='4x4', price=90000.0}
+Busca: Entidade encontrada: EletricCar{batteryCapacity=1000, plate='ABC-49', engine='Eletric Engine', traction='4x2', price=120000.0}
+Inserindo entidade: CombustionCar{plate='1', engine='Combustion Engine', traction='1', price=90000.0}
+

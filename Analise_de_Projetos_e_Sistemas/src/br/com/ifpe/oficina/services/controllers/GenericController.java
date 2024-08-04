@@ -24,7 +24,6 @@ public abstract class GenericController<T> {
             this.validateInsert(object);
             Logger.info("Inserindo entidade: " + object.toString() + "\n");
             dao.insert(object);
-
         } catch (Exception e) {
             Logger.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
@@ -45,15 +44,13 @@ public abstract class GenericController<T> {
             this.validateUpdate(object);
             Logger.info("Atualizando entidade: " + dao.listAll().get(index).toString() + " -> " + object.toString());
             dao.listAll().set(index, object);
-
         } catch (Exception e) {
             Logger.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    protected void genericDelete(Predicate<T> filter) {
-        T object = dao.read(filter);
+    protected void genericDelete(T object) {
         try {
             if (object == null) {
                 throw new RuntimeException("Delete: entidade não encontrada");
@@ -66,7 +63,7 @@ public abstract class GenericController<T> {
         }
     }
 
-    protected List<T> genericListAll (){
+    protected List<T> genericListAll() {
         return dao.listAll();
     }
 }
