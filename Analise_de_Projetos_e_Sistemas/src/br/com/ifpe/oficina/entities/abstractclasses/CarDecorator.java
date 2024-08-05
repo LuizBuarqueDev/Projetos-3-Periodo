@@ -1,10 +1,14 @@
 package br.com.ifpe.oficina.entities.abstractclasses;
 
-public abstract class CarDecorator extends Car{
+public abstract class CarDecorator extends Car {
     protected Car decoreted;
 
     public CarDecorator(Car decoretedCar) {
         this.decoreted = decoretedCar;
+        this.setEngine(decoretedCar.getEngine());
+        this.setPlate(decoretedCar.getPlate());
+        this.setTraction(decoretedCar.getTraction());
+        this.setClient(decoretedCar.getClient());
     }
 
     @Override
@@ -12,7 +16,7 @@ public abstract class CarDecorator extends Car{
         return decoreted.getprice();
     }
 
-    public class AirConditioning extends CarDecorator {
+    public static class AirConditioning extends CarDecorator {
         public AirConditioning(Car decoretedCar) {
             super(decoretedCar);
         }
@@ -23,7 +27,7 @@ public abstract class CarDecorator extends Car{
         }
     }
 
-    public class  HeatedSeats extends CarDecorator {
+    public static class HeatedSeats extends CarDecorator {
         public HeatedSeats(Car decoretedCar) {
             super(decoretedCar);
         }

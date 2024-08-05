@@ -84,7 +84,7 @@ public class ClientController extends GenericController<Client> implements ICont
             Client clientCopy = (Client) client.clone();
             clientCopy.setName(name);
             clientCopy.setAge(age);
-            clientCopy.setAge(age);
+            clientCopy.setCpf(cpf);
             clientCopy.setEmail(email);
 
             int index = viewAll().indexOf(client);

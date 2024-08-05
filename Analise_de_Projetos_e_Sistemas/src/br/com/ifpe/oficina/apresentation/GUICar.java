@@ -77,7 +77,13 @@ public class GUICar {
         System.out.print("Digite o tipo de carro:[1] - combustao / [2] - eletrico): ");
         String type = scanner.nextLine();
 
-        carController.create(type, plate, traction);
+        System.out.println("Digite a quantidade de cada elemento");
+        System.out.println("Ar condicionado: ");
+        String air = scanner.nextLine();
+        System.out.println("Acentos aquecidos: ");
+        String seat = scanner.nextLine();
+
+        carController.create(type, plate, traction, air, seat);
         System.out.println("Carro criado com sucesso");
     }
 

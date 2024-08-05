@@ -4,3 +4,19 @@ Inserindo entidade: Client [name=1, cpf=11877760412, age=1, email=1]
 
 Busca: Entidade encontrada: Client [name=cliente49, cpf=81133006515, age=69, email=cliente49@gmail.com]
 Atualizando entidade: Client [name=cliente49, cpf=59790824840, age=69, email=cliente49@gmail.com] -> Client [name=1, cpf=59790824840, age=1, email=1]
+Inserindo entidade: br.com.ifpe.oficina.entities.abstractclasses.CarDecorator$HeatedSeats@2d38eb89
+
+Inserindo entidade: Car{plate='null', engine='null', traction='null', client=null}
+
+Inserindo entidade: Car{plate='null', engine='null', traction='null', client=null}
+
+Inserindo entidade: Car{plate='null', engine='null', traction='null', client=null}
+
+Inserindo entidade: Car{plate='1', engine='null', traction='1', client=Client [name=null, cpf=null, age=0, email=null]}
+
+Inserindo entidade: Car{plate='1', engine='null', traction='1', client=null}
+
+Inserindo entidade: Car{plate='1', engine='null', traction='1', client=null}
+
+Inserindo entidade: Car{plate='1', engine='Combustion Engine', traction='1', client=null}
+

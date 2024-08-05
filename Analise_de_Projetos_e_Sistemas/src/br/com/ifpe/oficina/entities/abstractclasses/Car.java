@@ -31,6 +31,10 @@ public abstract class Car implements Cloneable {
 		return engine;
 	}
 
+	public void setEngine(String engine) {
+		this.engine = engine;
+	}
+
 	public String getTraction() {
 		return traction;
 	}
@@ -47,6 +51,15 @@ public abstract class Car implements Cloneable {
 		this.client = client;
 	}
 
+	@Override
+	public String toString() {
+		return "Car{" +
+				"plate='" + plate + '\'' +
+				", engine='" + engine + '\'' +
+				", traction='" + traction + '\'' +
+				", client=" + client.getName() +
+				'}';
+	}
 	public abstract double getprice();
 
 	@Override

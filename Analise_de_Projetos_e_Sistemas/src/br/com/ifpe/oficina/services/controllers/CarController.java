@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
+import br.com.ifpe.oficina.entities.abstractclasses.CarDecorator;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.concreteclasses.CombustionCar;
 import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
@@ -44,17 +45,41 @@ public class CarController extends GenericController<Car> implements IController
                 .build();
     }
 
+    private Car applyAccessories(Car car, int air, int seats) {
+        for (int i = 0; i < air; i++) {
+            car = new CarDecorator.AirConditioning(car);
+        }
+
+        for (int i = 0; i < seats; i++) {
+            car = new CarDecorator.HeatedSeats(car);
+        }
+        return car;
+    }
+
     @Override
     public void create(String... attributes) {
         String type = attributes[0];
         String plate = attributes[1];
         String traction = attributes[2];
+        int air;
+        int seats;
+
+        try {
+            air = Integer.parseInt(attributes[3]);
+            seats = Integer.parseInt(attributes[4]);
+
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Acessorios invalidos");
+        }
 
         Car car = switch (type) {
             case "1" -> createCombustionCar(plate, traction);
             case "2" -> createElectricCar(plate, traction);
             default -> throw new IllegalArgumentException("Tipo de carro inválido");
         };
+        System.out.println(car.toString());
+        car = applyAccessories(car, air, seats);
+        System.out.println(car.toString());
         genericInsert(car);
     }
 
