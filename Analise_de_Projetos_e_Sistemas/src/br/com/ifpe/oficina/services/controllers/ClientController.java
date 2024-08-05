@@ -1,8 +1,5 @@
 package br.com.ifpe.oficina.services.controllers;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.interfaces.IController;
@@ -10,87 +7,116 @@ import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 import br.com.ifpe.oficina.services.validators.CpfValidator;
 
-public class ClientController implements IController<Client> {
 
-    private static final ClientController instance = new ClientController();
+import java.util.List;
+import java.util.function.Predicate;
 
-    private GenericDAO<Client> clientDAO = DAOFactory.createDAO(Client.class);
-    private CpfValidator cpfValidator = new CpfValidator();
+public class ClientController extends GenericController<Client> implements IController<Client> {
+
+    private static final ClientController instance = new ClientController(DAOFactory.createDAO(Client.class));
+
+    private final CpfValidator cpfValidator = new CpfValidator();
+
+    private ClientController(GenericDAO<Client> dao) {
+        super(dao);
+    }
 
     public static ClientController getInstance() {
         return instance;
     }
 
-    private ClientController() {}
-
     private Client searchClient(String cpf) {
         Predicate<Client> filterByClient = client -> client.getCpf().equals(cpf);
-        return clientDAO.read(filterByClient);
+        return dao.read(filterByClient);
     }
 
-    public void create(String name, String age, String cpf, String email) {
-        int intAge ;
-        try {
-            intAge = Integer.parseInt(age);
-
-        } catch (Exception e ){
-            throw new NumberFormatException("A idade não é um inteiro");
-        }
-
-        if (searchClient(cpf) != null) {
-            throw new IllegalArgumentException("o cpf '" + cpf + "' já existe");
-
-        } else if (!cpfValidator.validateCpf(cpf)) {
-            throw new IllegalArgumentException("o cpf '" + cpf + "' não " +
-                    "é valido");
-        } else {
-            System.out.println("Cpf valido");
-        }
-
-        Client client = Client.ClientBuilder()
+    private Client createClient(String name, String cpf, int age, String email) {
+        return Client.ClientBuilder()
                 .name(name)
                 .cpf(cpf)
-                .age(intAge)
+                .age(age)
                 .email(email)
-                .car(null)
                 .build();
-
-        clientDAO.insert(client);
     }
 
     @Override
     public void create(String... attributes) {
+        String name = attributes[0];
+        String strAge = attributes[1];
+        String cpf = attributes[2];
+        String email = attributes[3];
 
+        try {
+            int age = Integer.parseInt(strAge);
+            genericInsert(createClient(name, cpf, age, email));
+
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Não foi possivel criar porque a idade inserida é invalida");
+        }
     }
 
     @Override
-    public Client read(String unique_key) {
-        Client client = searchClient(unique_key);
-        if (client == null) {
-            throw new NoSuchElementException("O cpf '" + unique_key + "'	não foi encontrado");
-        }
-        return client;
+    public Client read(String cpf) {
+        return genericRead(searchClient(cpf));
     }
 
     @Override
     public void update(String... attributes) {
+        String name = attributes[0];
+        String strAge = attributes[1];
+        String cpf = attributes[2];
+        String email = attributes[3];
+        String oldCpf = attributes[4];
+        int age;
 
-    }
+        try {
+            age = Integer.parseInt(strAge);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("A idade fornecida não é um numero");
+        }
 
-    public void update() {
-
-    }
-
-    @Override
-    public void delete(String unique_key) {
-        Client client = searchClient(unique_key);
+        Client client = searchClient(oldCpf);
         if (client == null) {
-            throw new NoSuchElementException("O cpf '" + unique_key + "'	não foi encontrado");
+            throw new RuntimeException("Cliente não encontrado");
+        }
+
+        try {
+            Client clientCopy = (Client) client.clone();
+            clientCopy.setName(name);
+            clientCopy.setAge(age);
+            clientCopy.setAge(age);
+            clientCopy.setEmail(email);
+
+            int index = viewAll().indexOf(client);
+            genericUpdate(index, clientCopy);
+
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Erro ao clonar o cliente");
         }
     }
 
     @Override
+    public void delete(String cpf) {
+        genericDelete(searchClient(cpf));
+    }
+
+    @Override
     public List<Client> viewAll() {
-        return clientDAO.listAll();
+        return genericListAll();
+    }
+
+    @Override
+    protected void validateInsert(Client client) {
+        if (!cpfValidator.validateCpf(client.getCpf())) {
+            throw new RuntimeException("Erro: Cpf invalidao");
+
+        } else if (searchClient(client.getCpf()) != null) {
+            throw new RuntimeException("Erro: O cpf digitado já existe");
+        }
+    }
+
+    @Override
+    protected void validateUpdate(Client object) {
+
     }
 }

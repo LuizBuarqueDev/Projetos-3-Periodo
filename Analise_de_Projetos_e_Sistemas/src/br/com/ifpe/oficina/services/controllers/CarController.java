@@ -1,7 +1,6 @@
 package br.com.ifpe.oficina.services.controllers;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Car;
@@ -27,21 +26,6 @@ public class CarController extends GenericController<Car> implements IController
     private Car searchCar(String plate) {
         Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
         return dao.read(filterByCar);
-    }
-
-    @Override
-    protected void validateInsert(Car car) {
-        if (searchCar(car.getPlate()) != null) {
-            System.out.println("Placa ja existe pae");
-            throw new RuntimeException("Não foi possivel inserir placa já existe");
-        }
-    }
-
-    @Override
-    protected void validateUpdate(Car car) {
-        if (searchCar(car.getPlate()) != null) {
-            throw new RuntimeException("A placa já existe");
-        }
     }
 
     private Car createCombustionCar(String plate, String traction) {
@@ -76,7 +60,7 @@ public class CarController extends GenericController<Car> implements IController
 
     @Override
     public Car read(String plate) {
-        return searchCar(plate);
+        return genericRead(searchCar(plate));
     }
 
     @Override
@@ -110,5 +94,20 @@ public class CarController extends GenericController<Car> implements IController
     @Override
     public List<Car> viewAll() {
         return genericListAll();
+    }
+
+    @Override
+    protected void validateInsert(Car car) {
+        if (searchCar(car.getPlate()) != null) {
+            System.out.println("Placa ja existe pae");
+            throw new RuntimeException("Não foi possivel inserir placa já existe");
+        }
+    }
+
+    @Override
+    protected void validateUpdate(Car car) {
+        if (searchCar(car.getPlate()) != null) {
+            throw new RuntimeException("A placa já existe");
+        }
     }
 }

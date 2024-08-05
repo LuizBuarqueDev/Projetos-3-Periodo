@@ -20,7 +20,7 @@ public class GUIMenu {
 				break;
 
 			case "2":
-				GUICar guiCar = GUICar.getInstace();
+				GUICar guiCar = GUICar.getInstance();
 				guiCar.CarGUI();
 				break;
 

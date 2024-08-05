@@ -24,14 +24,14 @@ public abstract class GenericController<T> {
             this.validateInsert(object);
             Logger.info("Inserindo entidade: " + object.toString() + "\n");
             dao.insert(object);
+
         } catch (Exception e) {
             Logger.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    protected T genericRead(Predicate<T> filter) {
-        T object = dao.read(filter);
+    protected T genericRead(T object) {
         if (object == null) {
             throw new NoSuchElementException("Busca: Entidade não encontrada");
         }

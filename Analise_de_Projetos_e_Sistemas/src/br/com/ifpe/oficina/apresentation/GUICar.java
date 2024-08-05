@@ -19,15 +19,16 @@ public class GUICar {
     private GUICar() {
     }
 
-    public static GUICar getInstace() {
+    public static GUICar getInstance() {
         return instance;
     }
 
     public void CarGUI() {
+        boolean loop = true;
 
-        while (true) {
+        while (loop) {
             try {
-                System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all");
+                System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all\n[6]-back");
                 String choice = scanner.nextLine();
 
                 switch (choice) {
@@ -50,6 +51,10 @@ public class GUICar {
 
                     case "5": // All
                         carController.viewAll().forEach(System.out::println);
+                        break;
+
+                    case "6":
+                        loop = false;
                         break;
 
                     default:

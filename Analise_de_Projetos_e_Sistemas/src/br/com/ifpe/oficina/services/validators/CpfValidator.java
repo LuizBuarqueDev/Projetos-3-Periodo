@@ -5,7 +5,7 @@ import br.com.ifpe.oficina.interfaces.ICpfValidator;
 
 public class CpfValidator implements ICpfValidator {
 
-    CPFValidator cpfValidator = new CPFValidator();
+    private final CPFValidator cpfValidator = new CPFValidator();
 
     @Override
     public boolean validateCpf(String cpf) {

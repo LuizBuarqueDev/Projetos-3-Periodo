@@ -8,112 +8,128 @@ import br.com.ifpe.oficina.services.controllers.ClientController;
 
 public class GUIClient {
 
-	private static final GUIClient instance = new GUIClient();
+    private static final GUIClient instance = new GUIClient();
 
-	Scanner scanner = new Scanner(System.in);
-	String cpf = "";
-	ClientController clientController = ClientController.getInstance();
+    Scanner scanner = new Scanner(System.in);
+    String cpf = "";
+    ClientController clientController = ClientController.getInstance();
 
-	private GUIClient() {}
+    private GUIClient() {
+    }
 
-	public static GUIClient getInstace() {
-		return instance;
-	}
+    public static GUIClient getInstace() {
+        return instance;
+    }
 
-	public void clientGUI() {
-		while (true) {
-			try {
-				System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all");
-				String choice = scanner.nextLine();
+    public void clientGUI() {
+        while (true) {
+            try {
+                System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all");
+                String choice = scanner.nextLine();
 
-				switch (choice) {
-					case "1": // Create
-						create();
+                switch (choice) {
+                    case "1": // Create
+                        create();
 
-						break;
-					case "2": // Update
-						update();
+                        break;
+                    case "2": // Update
+                        update();
 
-						break;
-					case "3": // Read
-						read();
+                        break;
+                    case "3": // Read
+                        read();
 
-						break;
-					case "4": // Delete
-						delete();
-						break;
-					case "5": // All
-						clientController.viewAll().forEach(System.out::println);
-						break;
+                        break;
+                    case "4": // Delete
+                        delete();
+                        break;
+                    case "5": // All
+                        clientController.viewAll().forEach(System.out::println);
+                        break;
 
-					default:
-						System.out.println("O valor '" + choice + "' é invalido");
-						break;
-				}
+                    default:
+                        System.out.println("O valor '" + choice + "' é invalido");
+                        break;
+                }
 
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-		}
-	}
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
-	public void create() {
-		System.out.println("Idade: ");
-		String age = scanner.nextLine();
+    public void create() {
+        System.out.println("Idade: ");
+        String age = scanner.nextLine();
 
-		System.out.println("Cpf: ");
-		String cpf = scanner.nextLine();
+        System.out.println("Cpf: ");
+        String cpf = scanner.nextLine();
 
-		System.out.println("E-mail: ");
-		String email = scanner.nextLine();
+        System.out.println("E-mail: ");
+        String email = scanner.nextLine();
 
-		System.out.println("Nome: ");
-		String name = scanner.nextLine();
+        System.out.println("Nome: ");
+        String name = scanner.nextLine();
 
-		clientController.create(name, age, cpf, email);
-		System.out.println("Cliente criado com sucesso");
-	}
+        clientController.create(name, age, cpf, email);
+        System.out.println("Cliente criado com sucesso");
+    }
 
-	public Client createOnlyClient() {
-		try {
-			System.out.println("Criando cliente");
-			System.out.println("Idade: ");
-			int age = Integer.parseInt(scanner.nextLine());
+    public Client createOnlyClient() {
+        try {
+            System.out.println("Criando cliente");
+            System.out.println("Idade: ");
+            int age = Integer.parseInt(scanner.nextLine());
 
-			System.out.println("Cpf: ");
-			String cpf = scanner.nextLine();
+            System.out.println("Cpf: ");
+            String cpf = scanner.nextLine();
 
-			System.out.println("E-mail: ");
-			String email = scanner.nextLine();
+            System.out.println("E-mail: ");
+            String email = scanner.nextLine();
 
-			System.out.println("Nome: ");
-			String name = scanner.nextLine();
+            System.out.println("Nome: ");
+            String name = scanner.nextLine();
 
-			return Client.ClientBuilder()
-					.age(age)
-					.cpf(cpf)
-					.email(email)
-					.name(name)
-					.build();
-		} catch (NumberFormatException e) {
-			throw new RuntimeException("A idade não é um inteiro");
-		}
-	}
+            return Client.ClientBuilder()
+                    .age(age)
+                    .cpf(cpf)
+                    .email(email)
+                    .name(name)
+                    .build();
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("A idade não é um inteiro");
+        }
+    }
 
-	private void read() {
-		System.out.println("Cpf: ");
-		cpf = scanner.nextLine();
-		System.out.println(clientController.read(cpf));
-	}
+    private void read() {
+        System.out.println("Cpf: ");
+        cpf = scanner.nextLine();
+        System.out.println(clientController.read(cpf));
+    }
 
-	private void update() {
-		// implementação do método de atualização
-	}
+    private void update() {
+        System.out.println("Digite o numero do cpf do cliente que deseja editar: ");
+        String oldCpf = scanner.nextLine();
 
-	private void delete() {
-		System.out.println("Cpf: ");
-		cpf = scanner.nextLine();
-		clientController.delete(cpf);
-		System.out.println("Cliente deletado");
-	}
+        System.out.println("Idade: ");
+        String age = scanner.nextLine();
+
+        System.out.println("Cpf: ");
+        String cpf = scanner.nextLine();
+
+        System.out.println("E-mail: ");
+        String email = scanner.nextLine();
+
+        System.out.println("Nome: ");
+        String name = scanner.nextLine();
+
+        clientController.update(name, age, cpf, email, oldCpf);
+    }
+
+    private void delete() {
+        System.out.println("Cpf: ");
+        cpf = scanner.nextLine();
+        clientController.delete(cpf);
+        System.out.println("Cliente deletado");
+    }
 }

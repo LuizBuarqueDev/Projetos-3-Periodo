@@ -1,4 +1,6 @@
-Deletando entidade: CombustionCar{plate='DEF-49', engine='Combustion Engine', traction='4x4', price=90000.0}
-Busca: Entidade encontrada: EletricCar{batteryCapacity=1000, plate='ABC-49', engine='Eletric Engine', traction='4x2', price=120000.0}
 Inserindo entidade: CombustionCar{plate='1', engine='Combustion Engine', traction='1', price=90000.0}
 
+Inserindo entidade: Client [name=1, cpf=11877760412, age=1, email=1]
+
+Busca: Entidade encontrada: Client [name=cliente49, cpf=81133006515, age=69, email=cliente49@gmail.com]
+Atualizando entidade: Client [name=cliente49, cpf=59790824840, age=69, email=cliente49@gmail.com] -> Client [name=1, cpf=59790824840, age=1, email=1]

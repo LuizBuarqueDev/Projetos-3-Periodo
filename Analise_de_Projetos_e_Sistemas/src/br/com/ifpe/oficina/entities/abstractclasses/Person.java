@@ -1,6 +1,6 @@
 package br.com.ifpe.oficina.entities.abstractclasses;
 
-public abstract class Person extends BasicEntities {
+public abstract class Person implements Cloneable {
 	protected String name;
 	protected String cpf;
 	protected int age;
@@ -49,5 +49,10 @@ public abstract class Person extends BasicEntities {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

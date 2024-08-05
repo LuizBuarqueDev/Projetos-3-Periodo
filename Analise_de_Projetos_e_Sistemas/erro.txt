@@ -1,10 +1,2 @@
-Delete: entidade não encontrada
-Busca: Entidade não encontrada
-Busca: Entidade não encontrada
-Busca: Entidade não encontrada
-Busca: Entidade não encontrada
-Busca: Entidade não encontrada
-Busca: Entidade não encontrada
-Busca: Entidade não encontrada
-Busca: Entidade não encontrada
-Busca: Entidade não encontrada
+Cpf invalidao
+O cpf digitado já existe
