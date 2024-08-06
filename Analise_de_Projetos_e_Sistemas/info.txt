@@ -20,3 +20,8 @@ Inserindo entidade: Car{plate='1', engine='null', traction='1', client=null}
 
 Inserindo entidade: Car{plate='1', engine='Combustion Engine', traction='1', client=null}
 
+Inserindo entidade: Car{plate='1', engine='Combustion Engine', traction='1', client=null}
+
+Atualizando entidade: Car{plate='1', engine='Combustion Engine', traction='1', client=null} -> Car{plate='5', engine='Combustion Engine', traction='5', client=null}
+Busca: Entidade encontrada: Car{plate='5', engine='Combustion Engine', traction='5', client=null}
+Deletando entidade: Car{plate='5', engine='Combustion Engine', traction='5', client=null}

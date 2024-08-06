@@ -14,7 +14,7 @@ public class GUICar {
 
     String plate = "";
     Scanner scanner = new Scanner(System.in);
-    CarController carController = CarController.getInstance();
+    Facade facade = Facade.getInstance();
 
     private GUICar() {
     }
@@ -50,7 +50,7 @@ public class GUICar {
                         break;
 
                     case "5": // All
-                        carController.viewAll().forEach(System.out::println);
+                        facade.viewAllCars().forEach(System.out::println);
                         break;
 
                     case "6":
@@ -83,7 +83,7 @@ public class GUICar {
         System.out.println("Acentos aquecidos: ");
         String seat = scanner.nextLine();
 
-        carController.create(type, plate, traction, air, seat);
+        facade.createCar(type, plate, traction, air, seat);
         System.out.println("Carro criado com sucesso");
     }
 
@@ -134,20 +134,20 @@ public class GUICar {
         System.out.print("Digite a nova tração: ");
         String traction = scanner.nextLine();
 
-        carController.update(oldPlate, newPlate, traction);
+        facade.updateCar(oldPlate, newPlate, traction);
         System.out.println("Carro atualizado com sucesso");
     }
 
     private void read() {
         System.out.print("Digite a placa: ");
         plate = scanner.nextLine();
-        System.out.println(carController.read(plate));
+        System.out.println(facade.readCar(plate));
     }
 
     private void delete() {
         System.out.print("Digite a placa: ");
         plate = scanner.nextLine();
-        carController.delete(plate);
+        facade.deleteCar(plate);
         System.out.println("Carro removido");
     }
 }
