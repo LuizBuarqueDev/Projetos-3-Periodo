@@ -10,7 +10,7 @@ public class GUIClient {
 
     Scanner scanner = new Scanner(System.in);
     String cpf = "";
-    Facade facade = Facade.getInstance();
+    Facade facade = new Facade();
 
     private GUIClient() {
     }

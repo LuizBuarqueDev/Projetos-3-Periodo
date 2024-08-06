@@ -8,17 +8,8 @@ import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import java.util.List;
 
 public class Facade {
-    private static final Facade instance = new Facade();
-
     private final CarController carController = CarController.getInstance();
     private final ClientController clientController = ClientController.getInstance();
-
-    public static Facade getInstance() {
-        return instance;
-    }
-
-    private Facade() {
-    }
     // Métodos para ClientController
 
     public void createClient(String name, String age, String cpf, String email) {

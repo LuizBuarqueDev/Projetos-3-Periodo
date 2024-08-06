@@ -14,7 +14,7 @@ public class GUICar {
 
     String plate = "";
     Scanner scanner = new Scanner(System.in);
-    Facade facade = Facade.getInstance();
+    Facade facade = new Facade();
 
     private GUICar() {
     }

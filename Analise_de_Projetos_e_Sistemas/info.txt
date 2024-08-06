@@ -25,3 +25,9 @@ Inserindo entidade: Car{plate='1', engine='Combustion Engine', traction='1', cli
 Atualizando entidade: Car{plate='1', engine='Combustion Engine', traction='1', client=null} -> Car{plate='5', engine='Combustion Engine', traction='5', client=null}
 Busca: Entidade encontrada: Car{plate='5', engine='Combustion Engine', traction='5', client=null}
 Deletando entidade: Car{plate='5', engine='Combustion Engine', traction='5', client=null}
+Inserindo entidade: Car{plate='1', engine='Combustion Engine', traction='1', client=null}
+
+Inserindo entidade: Car{plate='1', engine='Combustion Engine', traction='1', client=null}
+
+Inserindo entidade: Client [name=1, cpf=11877760412, age=1, email=1]
+
