@@ -2,9 +2,7 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.services.controllers.ClientController;
 
 public class GUIClient {
 
@@ -12,7 +10,7 @@ public class GUIClient {
 
     Scanner scanner = new Scanner(System.in);
     String cpf = "";
-    ClientController clientController = ClientController.getInstance();
+    Facade facade = Facade.getInstance();
 
     private GUIClient() {
     }
@@ -22,9 +20,10 @@ public class GUIClient {
     }
 
     public void clientGUI() {
-        while (true) {
+        boolean loop = true;
+        while (loop) {
             try {
-                System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all");
+                System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view\n[6]-back");
                 String choice = scanner.nextLine();
 
                 switch (choice) {
@@ -44,7 +43,11 @@ public class GUIClient {
                         delete();
                         break;
                     case "5": // All
-                        clientController.viewAll().forEach(System.out::println);
+                        facade.viewAllClients().forEach(System.out::println);
+                        break;
+
+                    case "6":
+                        loop = false;
                         break;
 
                     default:
@@ -71,7 +74,7 @@ public class GUIClient {
         System.out.println("Nome: ");
         String name = scanner.nextLine();
 
-        clientController.create(name, age, cpf, email);
+        facade.createClient(name, age, cpf, email);
         System.out.println("Cliente criado com sucesso");
     }
 
@@ -104,7 +107,7 @@ public class GUIClient {
     private void read() {
         System.out.println("Cpf: ");
         cpf = scanner.nextLine();
-        System.out.println(clientController.read(cpf));
+        System.out.println(facade.readClient(cpf));
     }
 
     private void update() {
@@ -123,13 +126,13 @@ public class GUIClient {
         System.out.println("Nome: ");
         String name = scanner.nextLine();
 
-        clientController.update(name, age, cpf, email, oldCpf);
+        facade.updateClient(name, age, cpf, email, oldCpf);
     }
 
     private void delete() {
         System.out.println("Cpf: ");
         cpf = scanner.nextLine();
-        clientController.delete(cpf);
+        facade.deleteClient(cpf);
         System.out.println("Cliente deletado");
     }
 }
