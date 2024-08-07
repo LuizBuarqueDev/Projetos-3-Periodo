@@ -5,7 +5,6 @@ import br.com.ifpe.oficina.persistence.Logger;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.function.Predicate;
 
 public abstract class GenericController<T> {
 
