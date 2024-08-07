@@ -1,7 +1,0 @@
-Cpf invalidao
-O cpf digitado já existe
-Erro: Cpf invalidao
-Não foi possivel inserir placa já existe
-A placa já existe
-Delete: entidade não encontrada
-Erro: Cpf invalidao

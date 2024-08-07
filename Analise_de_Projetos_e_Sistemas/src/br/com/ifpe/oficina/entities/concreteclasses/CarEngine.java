@@ -1,4 +1,4 @@
-package br.com.ifpe.oficina.entities.abstractclasses;
+package br.com.ifpe.oficina.entities.concreteclasses;
 
 public class CarEngine {
     private String type;
@@ -9,6 +9,15 @@ public class CarEngine {
         this.cv = cv;
         this.rpm = rpm;
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "CarEngine{" +
+                "type='" + type + '\'' +
+                ", cv=" + cv +
+                ", rpm=" + rpm +
+                '}';
     }
 
     public int getCv() {

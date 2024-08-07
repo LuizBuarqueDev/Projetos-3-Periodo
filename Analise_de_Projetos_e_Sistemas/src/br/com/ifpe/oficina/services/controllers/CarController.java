@@ -89,7 +89,6 @@ public class CarController extends GenericController<Car> implements IController
     @Override
     protected void validateInsert(Car car) {
         if (searchCar(car.getPlate()) != null) {
-            System.out.println("Placa ja existe pae");
             throw new RuntimeException("Não foi possivel inserir placa já existe");
         }
     }

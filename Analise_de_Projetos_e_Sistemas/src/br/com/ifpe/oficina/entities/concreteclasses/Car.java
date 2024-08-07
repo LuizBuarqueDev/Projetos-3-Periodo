@@ -1,22 +1,30 @@
 package br.com.ifpe.oficina.entities.concreteclasses;
 
-import br.com.ifpe.oficina.entities.abstractclasses.CarEngine;
-
-public class Car implements Cloneable {
+public class Car {
 
     private String plate;
-	private CarEngine engine;
+    private CarEngine engine;
     private String traction;
     private Client client;
 
-	private Car(String plate, CarEngine engine, String traction, Client client) {
-		this.plate = plate;
-		this.engine = engine;
-		this.traction = traction;
-		this.client = client;
-	}
+    private Car(String plate, CarEngine engine, String traction, Client client) {
+        this.plate = plate;
+        this.engine = engine;
+        this.traction = traction;
+        this.client = client;
+    }
 
     public Car() {
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "plate='" + plate + '\'' +
+                ", client name=" + client.getName() +
+                ", traction='" + traction + '\'' +
+                ", engine=" + engine +
+                '}';
     }
 
     public Client getClient() {
@@ -51,23 +59,9 @@ public class Car implements Cloneable {
         this.traction = traction;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "plate='" + plate + '\'' +
-                ", engine='" + engine + '\'' +
-                ", traction='" + traction + '\'' +
-                ", client=" + client.getName() +
-                '}';
-    }
 
     public double getPrice() {
         return 0;
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 
     public static final class CarBuilder {

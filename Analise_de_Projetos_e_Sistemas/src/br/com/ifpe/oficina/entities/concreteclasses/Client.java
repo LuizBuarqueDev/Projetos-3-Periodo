@@ -15,6 +15,17 @@ public class Client {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", car plate=" + car.getPlate() +
+                '}';
+    }
+
     public int getAge() {
         return age;
     }

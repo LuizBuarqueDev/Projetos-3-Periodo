@@ -2,7 +2,7 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
-import br.com.ifpe.oficina.entities.abstractclasses.CarEngine;
+import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 

@@ -4,28 +4,28 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
-import br.com.ifpe.oficina.entities.concreteclasses.CombustionCar;
 import br.com.ifpe.oficina.services.controllers.CarController;
 import br.com.ifpe.oficina.services.controllers.ClientController;
 
 public class LoadEntity {
-    
+
     private static final LoadEntity instance = new LoadEntity();
-    
+
     private CarController carController = CarController.getInstance();
-    private ClientController clientController =  ClientController.getInstance();
-    
-    private LoadEntity() {}
+    private ClientController clientController = ClientController.getInstance();
+
+    private LoadEntity() {
+    }
 
     public static LoadEntity getInstance() {
         return instance;
     }
-    
+
     Random random = new Random();
-    
+
     public void createRandomData() {
         generateClients(50);
         generateCars(50);
@@ -39,13 +39,13 @@ public class LoadEntity {
             do {
                 cpf = generateValidCPF();
             } while (!usedCpfs.add(cpf));
-            Client client = Client.ClientBuilder()
+            Client client = Client.ClientBuilder.aClient()
                     .age(20 + i)
                     .cpf(cpf)
                     .email("cliente" + i + "@gmail.com")
                     .name("cliente" + i)
                     .build();
-            
+
             clientController.viewAll().add(client);
         }
     }
@@ -57,16 +57,21 @@ public class LoadEntity {
 
             switch (key) {
                 case 0: {
-                    Car car = new EletricCar();
-                    car.setClient(client);
-                    car.setPlate("ABC-" + i);
-                    car.setTraction("4x2");
+                    Car car = Car.CarBuilder.aCar()
+                            .engine(new CarEngine(670, 5000, "Eletric"))
+                            .client(client)
+                            .plate("ABC-" + i)
+                            .traction("4x2")
+                            .build();
+
                     carController.viewAll().add(car);
                     client.setCar(car);
                     break;
                 }
                 case 1: {
-                    Car car = new CombustionCar();
+                    Car car = Car.CarBuilder.aCar()
+                            .engine(new CarEngine(500, 3000, "Combustion"))
+                            .build();
                     car.setClient(client);
                     car.setPlate("DEF-" + i);
                     car.setTraction("4x4");
@@ -80,7 +85,7 @@ public class LoadEntity {
             }
         }
     }
-    
+
     private String generateValidCPF() {
         Random random = new Random();
         int[] cpfArray = new int[11];
