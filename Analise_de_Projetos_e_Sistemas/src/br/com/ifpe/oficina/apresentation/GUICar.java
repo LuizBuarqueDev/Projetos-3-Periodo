@@ -2,11 +2,9 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
+import br.com.ifpe.oficina.entities.abstractclasses.CarEngine;
+import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.entities.concreteclasses.CombustionCar;
-import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
-import br.com.ifpe.oficina.services.controllers.CarController;
 
 public class GUICar {
 
@@ -70,71 +68,73 @@ public class GUICar {
     private void create() {
         System.out.print("Digite a placa: ");
         String plate = scanner.nextLine();
-
         System.out.print("Digite a tração: ");
         String traction = scanner.nextLine();
 
-        System.out.print("Digite o tipo de carro:[1] - combustao / [2] - eletrico): ");
-        String type = scanner.nextLine();
+        System.out.println("Tipo do motor: ");
+        String engineType = scanner.nextLine();
+        System.out.println("Potencia: ");
+        int cvEngine = Integer.parseInt(scanner.nextLine());
+        System.out.println("Rotaçao maxima: ");
+        int rpmEngine = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Digite a quantidade de cada elemento");
-        System.out.println("Ar condicionado: ");
-        String air = scanner.nextLine();
+        System.out.println("Carpetes: ");
+        String carpets = scanner.nextLine();
         System.out.println("Acentos aquecidos: ");
         String seat = scanner.nextLine();
 
-        facade.createCar(type, plate, traction, air, seat);
+        Car car = Car.CarBuilder.aCar()
+                .plate(plate)
+                .traction(traction)
+                .engine(new CarEngine(cvEngine, rpmEngine, engineType))
+                .client(Client.ClientBuilder.aClient().name("Otavio").build())
+                .build();
+
+        facade.createCar(car, carpets, seat);
         System.out.println("Carro criado com sucesso");
     }
 
-    public Car createOnlyCar() {
-        System.out.println("Criando carro");
-        System.out.print("Digite a placa: ");
-        String plate = scanner.nextLine();
+//    public Car createOnlyCar() {
+//        System.out.println("Criando carro");
+//        System.out.print("Digite a placa: ");
+//        String plate = scanner.nextLine();
+//
+//        System.out.print("Digite a tração: ");
+//        String traction = scanner.nextLine();
+//
+//        System.out.print("Digite o tipo de carro:[1] - combustao / [2] - eletrico): ");
+//        String type = scanner.nextLine();
+//
+//        return null;
+//    }
 
+    private void update() {
+        System.out.print("Digite a placa que deseja modificar: ");
+        String plate = scanner.nextLine();
         System.out.print("Digite a tração: ");
         String traction = scanner.nextLine();
 
-        System.out.print("Digite o tipo de carro:[1] - combustao / [2] - eletrico): ");
-        String type = scanner.nextLine();
+        System.out.println("Tipo do motor: ");
+        String engineType = scanner.nextLine();
+        System.out.println("Potencia: ");
+        int cvEngine = Integer.parseInt(scanner.nextLine());
+        System.out.println("Rotaçao maxima: ");
+        int rpmEngine = Integer.parseInt(scanner.nextLine());
 
-        try {
-            if (type.equals("1")) {
-                System.out.println("Caso 1");
-                return CombustionCar.CombustionCarBuilder.aCombustionCar()
-                        .plate(plate)
-                        .traction(traction)
-                        .client(Client.ClientBuilder().build())
-                        .build();
+        System.out.println("Digite a quantidade de cada elemento");
+        System.out.println("Carpetes: ");
+        String carpets = scanner.nextLine();
+        System.out.println("Acentos aquecidos: ");
+        String seat = scanner.nextLine();
 
-            } else if (type.equals("2")) {
-                System.out.println("Caso 2");
-                return EletricCar.EletricCarBuilder.anEletricCar()
-                        .plate(plate)
-                        .traction(traction)
-                        .client(Client.ClientBuilder().build())
-                        .build();
+        Car car = Car.CarBuilder.aCar()
+                .plate(plate)
+                .traction(traction)
+                .engine(new CarEngine(cvEngine, rpmEngine, engineType))
+                .build();
 
-            } else {
-                System.out.println("Caso Erro else");
-                throw new IllegalArgumentException("Parametros invalidos, tente novamente");
-            }
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Parametros invalidos, tente novamente");
-        }
-    }
-
-    private void update() {
-        System.out.print("Digite a placa do carro que deseja atualizar: ");
-        String oldPlate = scanner.nextLine();
-
-        System.out.print("Digite a placa do carro que deseja atualizar: ");
-        String newPlate = scanner.nextLine();
-
-        System.out.print("Digite a nova tração: ");
-        String traction = scanner.nextLine();
-
-        facade.updateCar(oldPlate, newPlate, traction);
+        facade.updateCar(car, carpets, seat);
         System.out.println("Carro atualizado com sucesso");
     }
 

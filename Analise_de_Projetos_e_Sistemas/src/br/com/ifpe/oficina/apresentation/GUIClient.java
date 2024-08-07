@@ -63,7 +63,7 @@ public class GUIClient {
 
     public void create() {
         System.out.println("Idade: ");
-        String age = scanner.nextLine();
+        int age = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Cpf: ");
         String cpf = scanner.nextLine();
@@ -74,35 +74,37 @@ public class GUIClient {
         System.out.println("Nome: ");
         String name = scanner.nextLine();
 
-        facade.createClient(name, age, cpf, email);
+        Client client = Client.ClientBuilder.aClient()
+                .name(name)
+                .age(age)
+                .email(email)
+                .cpf(cpf)
+                .build();
+
+        facade.createClient(client);
         System.out.println("Cliente criado com sucesso");
     }
 
-    public Client createOnlyClient() {
-        try {
-            System.out.println("Criando cliente");
-            System.out.println("Idade: ");
-            int age = Integer.parseInt(scanner.nextLine());
-
-            System.out.println("Cpf: ");
-            String cpf = scanner.nextLine();
-
-            System.out.println("E-mail: ");
-            String email = scanner.nextLine();
-
-            System.out.println("Nome: ");
-            String name = scanner.nextLine();
-
-            return Client.ClientBuilder()
-                    .age(age)
-                    .cpf(cpf)
-                    .email(email)
-                    .name(name)
-                    .build();
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("A idade não é um inteiro");
-        }
-    }
+//    public Client createOnlyClient() {
+//        try {
+//            System.out.println("Criando cliente");
+//            System.out.println("Idade: ");
+//            int age = Integer.parseInt(scanner.nextLine());
+//
+//            System.out.println("Cpf: ");
+//            String cpf = scanner.nextLine();
+//
+//            System.out.println("E-mail: ");
+//            String email = scanner.nextLine();
+//
+//            System.out.println("Nome: ");
+//            String name = scanner.nextLine();
+//
+//            return  null;
+//        } catch (NumberFormatException e) {
+//            throw new RuntimeException("A idade não é um inteiro");
+//        }
+//    }
 
     private void read() {
         System.out.println("Cpf: ");
@@ -112,13 +114,10 @@ public class GUIClient {
 
     private void update() {
         System.out.println("Digite o numero do cpf do cliente que deseja editar: ");
-        String oldCpf = scanner.nextLine();
+        String cpf = scanner.nextLine();
 
         System.out.println("Idade: ");
-        String age = scanner.nextLine();
-
-        System.out.println("Cpf: ");
-        String cpf = scanner.nextLine();
+        int age = Integer.parseInt(scanner.nextLine());
 
         System.out.println("E-mail: ");
         String email = scanner.nextLine();
@@ -126,7 +125,14 @@ public class GUIClient {
         System.out.println("Nome: ");
         String name = scanner.nextLine();
 
-        facade.updateClient(name, age, cpf, email, oldCpf);
+        Client client = Client.ClientBuilder.aClient()
+                .cpf(cpf)
+                .age(age)
+                .email(email)
+                .name(name)
+                .build();
+
+        facade.updateClient(client);
     }
 
     private void delete() {

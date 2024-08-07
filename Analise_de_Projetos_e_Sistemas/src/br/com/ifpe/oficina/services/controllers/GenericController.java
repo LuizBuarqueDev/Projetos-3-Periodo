@@ -53,7 +53,7 @@ public abstract class GenericController<T> {
     protected void genericDelete(T object) {
         try {
             if (object == null) {
-                throw new RuntimeException("Delete: entidade não encontrada");
+                throw new RuntimeException("Delete Error: entidade não encontrada");
             }
             Logger.info("Deletando entidade: " + object.toString());
             dao.delete(object);

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
+import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
 import br.com.ifpe.oficina.entities.concreteclasses.CombustionCar;

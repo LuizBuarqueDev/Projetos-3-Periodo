@@ -1,29 +1,27 @@
 package br.com.ifpe.oficina.entities.abstractclasses;
 
+import br.com.ifpe.oficina.entities.concreteclasses.Car;
+
 public abstract class CarDecorator extends Car {
-    protected Car decoreted;
+    protected Car decorated;
 
     public CarDecorator(Car decoretedCar) {
-        this.decoreted = decoretedCar;
-        this.setEngine(decoretedCar.getEngine());
-        this.setPlate(decoretedCar.getPlate());
-        this.setTraction(decoretedCar.getTraction());
-        this.setClient(decoretedCar.getClient());
+        this.decorated = decoretedCar;
     }
 
     @Override
-    public double getprice() {
-        return decoreted.getprice();
+    public double getPrice() {
+        return decorated.getPrice();
     }
 
-    public static class AirConditioning extends CarDecorator {
-        public AirConditioning(Car decoretedCar) {
+    public static class Carpets extends CarDecorator {
+        public Carpets(Car decoretedCar) {
             super(decoretedCar);
         }
 
         @Override
-        public double getprice() {
-            return super.getprice() + 2000;
+        public double getPrice() {
+            return super.getPrice() + 2000;
         }
     }
 
@@ -33,8 +31,8 @@ public abstract class CarDecorator extends Car {
         }
 
         @Override
-        public double getprice() {
-            return super.getprice() + 1500;
+        public double getPrice() {
+            return super.getPrice() + 1500;
         }
     }
 }

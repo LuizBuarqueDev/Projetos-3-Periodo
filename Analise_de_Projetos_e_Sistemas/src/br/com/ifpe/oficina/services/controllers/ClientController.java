@@ -30,29 +30,8 @@ public class ClientController extends GenericController<Client> implements ICont
         return dao.read(filterByClient);
     }
 
-    private Client createClient(String name, String cpf, int age, String email) {
-        return Client.ClientBuilder()
-                .name(name)
-                .cpf(cpf)
-                .age(age)
-                .email(email)
-                .build();
-    }
-
-    @Override
-    public void create(String... attributes) {
-        String name = attributes[0];
-        String strAge = attributes[1];
-        String cpf = attributes[2];
-        String email = attributes[3];
-
-        try {
-            int age = Integer.parseInt(strAge);
-            genericInsert(createClient(name, cpf, age, email));
-
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Não foi possivel criar porque a idade inserida é invalida");
-        }
+    public void create(Client client, String... accessories) {
+        genericInsert(client);
     }
 
     @Override
@@ -61,38 +40,13 @@ public class ClientController extends GenericController<Client> implements ICont
     }
 
     @Override
-    public void update(String... attributes) {
-        String name = attributes[0];
-        String strAge = attributes[1];
-        String cpf = attributes[2];
-        String email = attributes[3];
-        String oldCpf = attributes[4];
-        int age;
-
-        try {
-            age = Integer.parseInt(strAge);
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("A idade fornecida não é um numero");
-        }
-
-        Client client = searchClient(oldCpf);
-        if (client == null) {
+    public void update(Client newClient, String... accessories) {
+        Client oldClient = searchClient(newClient.getCpf());
+        if (oldClient == null) {
             throw new RuntimeException("Cliente não encontrado");
         }
-
-        try {
-            Client clientCopy = (Client) client.clone();
-            clientCopy.setName(name);
-            clientCopy.setAge(age);
-            clientCopy.setCpf(cpf);
-            clientCopy.setEmail(email);
-
-            int index = viewAll().indexOf(client);
-            genericUpdate(index, clientCopy);
-
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Erro ao clonar o cliente");
-        }
+        int index = viewAll().indexOf(oldClient);
+        genericUpdate(index, newClient);
     }
 
     @Override
@@ -116,7 +70,9 @@ public class ClientController extends GenericController<Client> implements ICont
     }
 
     @Override
-    protected void validateUpdate(Client object) {
-
+    protected void validateUpdate(Client client) {
+        if (!cpfValidator.validateCpf(client.getCpf())) {
+            throw new RuntimeException("Update Erro: Cpf invalido");
+        }
     }
 }

@@ -3,11 +3,8 @@ package br.com.ifpe.oficina.services.controllers;
 import java.util.List;
 import java.util.function.Predicate;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
+import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.abstractclasses.CarDecorator;
-import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.entities.concreteclasses.CombustionCar;
-import br.com.ifpe.oficina.entities.concreteclasses.EletricCar;
 import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
@@ -29,25 +26,9 @@ public class CarController extends GenericController<Car> implements IController
         return dao.read(filterByCar);
     }
 
-    private Car createCombustionCar(String plate, String traction) {
-        return CombustionCar.CombustionCarBuilder.aCombustionCar()
-                .client(Client.ClientBuilder().build())
-                .plate(plate)
-                .traction(traction)
-                .build();
-    }
-
-    private Car createElectricCar(String plate, String traction) {
-        return EletricCar.EletricCarBuilder.anEletricCar()
-                .client(Client.ClientBuilder().build())
-                .plate(plate)
-                .traction(traction)
-                .build();
-    }
-
-    private Car applyAccessories(Car car, int air, int seats) {
-        for (int i = 0; i < air; i++) {
-            car = new CarDecorator.AirConditioning(car);
+    private Car applyAccessories(Car car, int carpets, int seats) {
+        for (int i = 0; i < carpets; i++) {
+            car = new CarDecorator.Carpets(car);
         }
 
         for (int i = 0; i < seats; i++) {
@@ -57,29 +38,16 @@ public class CarController extends GenericController<Car> implements IController
     }
 
     @Override
-    public void create(String... attributes) {
-        String type = attributes[0];
-        String plate = attributes[1];
-        String traction = attributes[2];
-        int air;
+    public void create(Car car, String... attributes) {
+        int carpets;
         int seats;
-
         try {
-            air = Integer.parseInt(attributes[3]);
-            seats = Integer.parseInt(attributes[4]);
-
+            carpets = Integer.parseInt(attributes[0]);
+            seats = Integer.parseInt(attributes[1]);
         } catch (NumberFormatException e) {
             throw new RuntimeException("Acessorios invalidos");
         }
-
-        Car car = switch (type) {
-            case "1" -> createCombustionCar(plate, traction);
-            case "2" -> createElectricCar(plate, traction);
-            default -> throw new IllegalArgumentException("Tipo de carro inválido");
-        };
-        System.out.println(car.toString());
-        car = applyAccessories(car, air, seats);
-        System.out.println(car.toString());
+        car = applyAccessories(car, carpets, seats);
         genericInsert(car);
     }
 
@@ -89,26 +57,23 @@ public class CarController extends GenericController<Car> implements IController
     }
 
     @Override
-    public void update(String... attributes) {
-        String oldPlate = attributes[0];
-        String newPlate = attributes[1];
-        String traction = attributes[2];
-
-        Car car = searchCar(oldPlate);
-        if (car == null) {
+    public void update(Car newCar, String... attributes) {
+        Car oldCar = searchCar(newCar.getPlate());
+        if (oldCar == null) {
             throw new RuntimeException("Carro não encontrado");
         }
-
+        int carpets;
+        int seats;
         try {
-            Car carCopy = (Car) car.clone();
-            carCopy.setPlate(newPlate);
-            carCopy.setTraction(traction);
-
-            int index = viewAll().indexOf(car);
-            genericUpdate(index, carCopy);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao clonar o carro", e);
+            carpets = Integer.parseInt(attributes[0]);
+            seats = Integer.parseInt(attributes[1]);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Acessorios invalidos");
         }
+
+        applyAccessories(newCar, carpets, seats);
+        int index = viewAll().indexOf(oldCar);
+        genericUpdate(index, newCar);
     }
 
     @Override

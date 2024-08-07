@@ -1,69 +1,101 @@
 package br.com.ifpe.oficina.entities.concreteclasses;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Car;
-import br.com.ifpe.oficina.entities.abstractclasses.Person;
+public class Client {
+    private String name;
+    private String cpf;
+    private int age;
+    private String email;
+    private Car car;
 
-public final class Client extends Person {
+    private Client(int age, Car car, String cpf, String email, String name) {
+        this.age = age;
+        this.car = car;
+        this.cpf = cpf;
+        this.email = email;
+        this.name = name;
+    }
 
-	private Car car;
+    public int getAge() {
+        return age;
+    }
 
-	private Client(String name, String cpf, int age, String email, Car car) {
-		super(name, cpf, age, email);
-		this.car = car;
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	public static ClientBuilder ClientBuilder() {
-		return new ClientBuilder();
-	}
+    public Car getCar() {
+        return car;
+    }
 
-	public static class ClientBuilder {
-		private String name;
-		private String cpf;
-		private int age;
-		private String email;
-		private Car car;
+    public void setCar(Car car) {
+        this.car = car;
+    }
 
-		public ClientBuilder name(String name) {
-			this.name = name;
-			return this;
-		}
+    public String getCpf() {
+        return cpf;
+    }
 
-		public ClientBuilder cpf(String cpf) {
-			this.cpf = cpf;
-			return this;
-		}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-		public ClientBuilder age(int age) {
-			this.age = age;
-			return this;
-		}
+    public String getEmail() {
+        return email;
+    }
 
-		public ClientBuilder email(String email) {
-			this.email = email;
-			return this;
-		}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-		public ClientBuilder car(Car car) {
-			this.car = car;
-			return this;
-		}
+    public String getName() {
+        return name;
+    }
 
-		public Client build() {
-			return new Client(name, cpf, age, email, car);
-		}
-	}
-	
-	@Override
-	public String toString() {
-		return "Client [name=" + name + ", cpf=" + cpf + ", age=" + age
-				+ ", email=" + email + "]";
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Car getCar() {
-		return car;
-	}
+    public static final class ClientBuilder {
+        private int age;
+        private String name;
+        private String cpf;
+        private String email;
+        private Car car;
 
-	public void setCar(Car car) {
-		this.car = car;
-	}
+        private ClientBuilder() {
+        }
+
+        public static ClientBuilder aClient() {
+            return new ClientBuilder();
+        }
+
+        public ClientBuilder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public ClientBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public ClientBuilder cpf(String cpf) {
+            this.cpf = cpf;
+            return this;
+        }
+
+        public ClientBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public ClientBuilder car(Car car) {
+            this.car = car;
+            return this;
+        }
+
+        public Client build() {
+            return new Client(age, car, cpf, email, name);
+        }
+    }
 }
