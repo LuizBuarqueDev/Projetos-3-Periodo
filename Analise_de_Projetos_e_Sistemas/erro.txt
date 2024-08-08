@@ -1,0 +1,8 @@
+Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Car.getPlate()" because "this.car" is null
+Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" because "this.client" is null
+Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" because "this.client" is null
+Erro: Cpf invalidao
+Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Car.getPlate()" because "this.car" is null
+Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" because "this.client" is null
+Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" because "this.client" is null
+Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" because "this.client" is null

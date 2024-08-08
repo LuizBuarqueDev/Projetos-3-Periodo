@@ -1,0 +1,2 @@
+Inserindo entidade: Car{plate='null', traction='null', engine=null}
+
