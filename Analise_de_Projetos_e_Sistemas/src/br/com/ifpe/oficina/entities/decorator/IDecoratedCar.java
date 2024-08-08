@@ -1,4 +1,4 @@
-package br.com.ifpe.oficina.entities.abstractclasses;
+package br.com.ifpe.oficina.entities.decorator;
 
 import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;

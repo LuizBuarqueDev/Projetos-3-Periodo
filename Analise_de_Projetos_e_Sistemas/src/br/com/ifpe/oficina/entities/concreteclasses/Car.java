@@ -1,6 +1,6 @@
 package br.com.ifpe.oficina.entities.concreteclasses;
 
-import br.com.ifpe.oficina.entities.abstractclasses.IDecoratedCar;
+import br.com.ifpe.oficina.entities.decorator.IDecoratedCar;
 
 public class Car implements IDecoratedCar {
 

@@ -3,9 +3,9 @@ package br.com.ifpe.oficina.services.controllers;
 import java.util.List;
 import java.util.function.Predicate;
 
-import br.com.ifpe.oficina.entities.abstractclasses.Carpets;
-import br.com.ifpe.oficina.entities.abstractclasses.HeatedSeats;
-import br.com.ifpe.oficina.entities.abstractclasses.IDecoratedCar;
+import br.com.ifpe.oficina.entities.decorator.Carpets;
+import br.com.ifpe.oficina.entities.decorator.HeatedSeats;
+import br.com.ifpe.oficina.entities.decorator.IDecoratedCar;
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
