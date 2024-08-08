@@ -1,13 +1,35 @@
 package br.com.ifpe.oficina.entities.abstractclasses;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
+import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
+import br.com.ifpe.oficina.entities.concreteclasses.Client;
 
-public class HeatedSeats extends Car implements IDecoratedCar {
+public class HeatedSeats implements IDecoratedCar {
 
     private IDecoratedCar car;
 
     public HeatedSeats(IDecoratedCar car) {
         this.car = car;
+    }
+
+    @Override
+    public String getPlate() {
+        return "";
+    }
+
+    @Override
+    public CarEngine getEngine() {
+        return null;
+    }
+
+    @Override
+    public String getTraction() {
+        return "";
+    }
+
+    @Override
+    public Client getClient() {
+        return null;
     }
 
     @Override

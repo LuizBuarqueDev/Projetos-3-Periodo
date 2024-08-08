@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.entities.abstractclasses.Carpets;
 import br.com.ifpe.oficina.entities.abstractclasses.HeatedSeats;
+import br.com.ifpe.oficina.entities.abstractclasses.IDecoratedCar;
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
@@ -29,11 +30,11 @@ public class CarController extends GenericController<Car> implements IController
 
     private Car applyAccessories(Car car, int carpets, int seats) {
         for (int i = 0; i < carpets; i++) {
-            car = new Carpets(car);
+            IDecoratedCar card = new Carpets(car);
         }
 
         for (int i = 0; i < seats; i++) {
-            car = new HeatedSeats(car);
+            IDecoratedCar card = new HeatedSeats(car);
         }
         System.out.print(car.getPrice());
         return car;
