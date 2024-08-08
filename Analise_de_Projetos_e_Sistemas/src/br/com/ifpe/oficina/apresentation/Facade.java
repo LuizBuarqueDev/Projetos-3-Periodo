@@ -31,7 +31,6 @@ public class Facade {
         return clientController.viewAll();
     }
 
-
     public void createCar(Car car, String... accessories) {
         carController.create(car, accessories);
     }

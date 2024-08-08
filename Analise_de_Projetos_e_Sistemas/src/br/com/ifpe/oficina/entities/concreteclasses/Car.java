@@ -1,6 +1,8 @@
 package br.com.ifpe.oficina.entities.concreteclasses;
 
-public class Car {
+import br.com.ifpe.oficina.entities.abstractclasses.IDecoratedCar;
+
+public class Car implements IDecoratedCar {
 
     private String plate;
     private CarEngine engine;
@@ -21,7 +23,6 @@ public class Car {
     public String toString() {
         return "Car{" +
                 "plate='" + plate + '\'' +
-                ", client name=" + client.getName() +
                 ", traction='" + traction + '\'' +
                 ", engine=" + engine +
                 '}';
@@ -59,7 +60,7 @@ public class Car {
         this.traction = traction;
     }
 
-
+    @Override
     public double getPrice() {
         return 0;
     }
