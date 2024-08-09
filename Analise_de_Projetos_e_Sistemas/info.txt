@@ -26,3 +26,7 @@ Inserindo entidade: Car{plate='2', client='Otavio', base price='80000.0', engine
 
 Inserindo entidade: Car{plate='1', client='Otavio', base price='0.0', engine=CarEngine{type='1', cv=1, rpm=1}}, Total price with accessories: 1000.0
 
+Inserindo entidade: Car{plate='5', client='Otavio', base price='0.0', engine=CarEngine{type='5', cv=5, rpm=5}}, , , , , , , , , , Total price with accessories: 15000.0
+
+Inserindo entidade: Car{plate='5', client='Otavio', base price='0.0', engine=CarEngine{type='5', cv=5, rpm=5}}, Total price with accessories: 15000.0
+

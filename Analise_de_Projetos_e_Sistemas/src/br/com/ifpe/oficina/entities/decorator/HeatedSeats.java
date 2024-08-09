@@ -14,7 +14,7 @@ public class HeatedSeats implements IBasicCar {
 
     @Override
     public String toString() {
-        return car.toString().replaceFirst("Total price with accessories: \\d+\\.\\d+", "") +
+        return car.toString().replaceFirst(", Total price with accessories: \\d+\\.\\d+", "") +
                 ", Total price with accessories: " + getBasePrice();
     }
 
