@@ -3,10 +3,10 @@ package br.com.ifpe.oficina.entities.decorator;
 import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 
-public interface IDecoratedCar {
+public interface IBasicCar {
     String getPlate();
     CarEngine getEngine();
     String getTraction();
     Client getClient();
-    double getPrice();  // Cada carro e seus decoradores terão um preço
+    double getBasePrice();  // Cada carro e seus decoradores terão um preço
 }

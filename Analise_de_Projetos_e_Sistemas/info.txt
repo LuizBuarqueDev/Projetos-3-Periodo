@@ -1,2 +1,28 @@
 Inserindo entidade: Car{plate='null', traction='null', engine=null}
 
+Inserindo entidade: Car{plate='1', traction='1', engine=CarEngine{type='1', cv=1, rpm=1}}
+
+Inserindo entidade: Car{plate='1', client='Otavio', price='80000.0', engine=CarEngine{type='1', cv=1, rpm=1}}
+
+Inserindo entidade: br.com.ifpe.oficina.entities.decorator.HeatedSeats@1b4fb997
+
+Inserindo entidade: HeatedSeats{car=Carpets{car=Car{plate='1', client='Otavio', price='80000.0', engine=CarEngine{type='1', cv=1, rpm=1}}}}
+
+Inserindo entidade: br.com.ifpe.oficina.entities.decorator.HeatedSeats@deb6432
+
+Inserindo entidade: Car{plate='1', client='Otavio', price='200.0', engine=CarEngine{type='1', cv=1, rpm=1}}
+
+Inserindo entidade: Car{plate='1', client='Otavio', price='200.0', engine=CarEngine{type='1', cv=1, rpm=1}}200.0
+
+Inserindo entidade: Car{plate='1', client='Otavio', price='200.0', engine=CarEngine{type='1', cv=1, rpm=1}}, Carpets: +1000
+
+Inserindo entidade: Car{plate='1', client='Otavio', price='200.0', engine=CarEngine{type='1', cv=1, rpm=1}}, Carpets: +10001200.0
+
+Inserindo entidade: Car{plate='5', client='Otavio', base price='80000.0', engine=CarEngine{type='5', cv=5, rpm=5}}, Price with accessories:81000.0, Price with accessories:82000.0, Price with accessories:83000.0, Price with accessories:84000.0, Price with accessories:85000.0, Price with accessories:87000.0, Price with accessories:89000.0, Price with accessories:91000.0, Price with accessories:93000.0, Price with accessories:95000.0
+
+Inserindo entidade: Car{plate='5', client='Otavio', base price='80000.0', engine=CarEngine{type='5', cv=5, rpm=5}}, Price with accessories:81000.0, Price with accessories:82000.0, Price with accessories:83000.0, Price with accessories:84000.0, Price with accessories:85000.0, Price with accessories:87000.0, Price with accessories:89000.0, Price with accessories:91000.0, Price with accessories:93000.0, Price with accessories:95000.0
+
+Inserindo entidade: Car{plate='2', client='Otavio', base price='80000.0', engine=CarEngine{type='2', cv=2, rpm=2}}, Total price with accessories: 81000.0
+
+Inserindo entidade: Car{plate='1', client='Otavio', base price='0.0', engine=CarEngine{type='1', cv=1, rpm=1}}, Total price with accessories: 1000.0
+

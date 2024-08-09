@@ -1,9 +1,9 @@
 package br.com.ifpe.oficina.apresentation;
 
+import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.services.controllers.CarController;
 import br.com.ifpe.oficina.services.controllers.ClientController;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.entities.concreteclasses.Car;
 
 import java.util.List;
 
@@ -31,15 +31,15 @@ public class Facade {
         return clientController.viewAll();
     }
 
-    public void createCar(Car car, String... accessories) {
+    public void createCar(IBasicCar car, String... accessories) {
         carController.create(car, accessories);
     }
 
-    public Car readCar(String plate) {
+    public IBasicCar readCar(String plate) {
         return carController.read(plate);
     }
 
-    public void updateCar(Car car, String... accessories) {
+    public void updateCar(IBasicCar car, String... accessories) {
         carController.update(car, accessories);
     }
 
@@ -47,7 +47,7 @@ public class Facade {
         carController.delete(plate);
     }
 
-    public List<Car> viewAllCars() {
+    public List<IBasicCar> viewAllCars() {
         return carController.viewAll();
     }
 }

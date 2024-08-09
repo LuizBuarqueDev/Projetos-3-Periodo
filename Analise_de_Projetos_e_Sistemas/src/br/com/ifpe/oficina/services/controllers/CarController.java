@@ -5,17 +5,16 @@ import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.entities.decorator.Carpets;
 import br.com.ifpe.oficina.entities.decorator.HeatedSeats;
-import br.com.ifpe.oficina.entities.decorator.IDecoratedCar;
-import br.com.ifpe.oficina.entities.concreteclasses.Car;
+import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 
-public class CarController extends GenericController<Car> implements IController<Car> {
+public class CarController extends GenericController<IBasicCar> implements IController<IBasicCar> {
 
-    private static final CarController instance = new CarController(DAOFactory.createDAO(Car.class));
+    private static final CarController instance = new CarController(DAOFactory.createDAO(IBasicCar.class));
 
-    private CarController(GenericDAO<Car> dao) {
+    private CarController(GenericDAO<IBasicCar> dao) {
         super(dao);
     }
 
@@ -23,25 +22,24 @@ public class CarController extends GenericController<Car> implements IController
         return instance;
     }
 
-    private Car searchCar(String plate) {
-        Predicate<Car> filterByCar = car -> car.getPlate().equals(plate);
+    private IBasicCar searchCar(String plate) {
+        Predicate<IBasicCar> filterByCar = car -> car.getPlate().equals(plate);
         return dao.read(filterByCar);
     }
 
-    private Car applyAccessories(Car car, int carpets, int seats) {
+    private IBasicCar applyAccessories(IBasicCar car, int carpets, int seats) {
         for (int i = 0; i < carpets; i++) {
-            IDecoratedCar card = new Carpets(car);
+             car = new Carpets(car);
         }
 
         for (int i = 0; i < seats; i++) {
-            IDecoratedCar card = new HeatedSeats(car);
+             car = new HeatedSeats(car);
         }
-        System.out.print(car.getPrice());
         return car;
     }
 
     @Override
-    public void create(Car car, String... attributes) {
+    public void create(IBasicCar car, String... attributes) {
         int carpets;
         int seats;
         try {
@@ -55,13 +53,13 @@ public class CarController extends GenericController<Car> implements IController
     }
 
     @Override
-    public Car read(String plate) {
+    public IBasicCar read(String plate) {
         return genericRead(searchCar(plate));
     }
 
     @Override
-    public void update(Car newCar, String... attributes) {
-        Car oldCar = searchCar(newCar.getPlate());
+    public void update(IBasicCar newCar, String... attributes) {
+        IBasicCar oldCar = searchCar(newCar.getPlate());
         if (oldCar == null) {
             throw new RuntimeException("Carro não encontrado");
         }
@@ -85,19 +83,19 @@ public class CarController extends GenericController<Car> implements IController
     }
 
     @Override
-    public List<Car> viewAll() {
+    public List<IBasicCar> viewAll() {
         return genericListAll();
     }
 
     @Override
-    protected void validateInsert(Car car) {
+    protected void validateInsert(IBasicCar car) {
         if (searchCar(car.getPlate()) != null) {
             throw new RuntimeException("Não foi possivel inserir placa já existe");
         }
     }
 
     @Override
-    protected void validateUpdate(Car car) {
+    protected void validateUpdate(IBasicCar car) {
         if (searchCar(car.getPlate()) != null) {
             throw new RuntimeException("A placa já existe");
         }

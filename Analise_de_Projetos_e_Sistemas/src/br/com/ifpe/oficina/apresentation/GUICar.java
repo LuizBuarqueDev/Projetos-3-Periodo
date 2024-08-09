@@ -5,6 +5,7 @@ import java.util.Scanner;
 import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
+import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 
 public class GUICar {
 
@@ -84,7 +85,7 @@ public class GUICar {
         System.out.println("Acentos aquecidos: ");
         String seat = scanner.nextLine();
 
-        Car car = Car.CarBuilder.aCar()
+        IBasicCar car = Car.CarBuilder.aCar()
                 .plate(plate)
                 .traction(traction)
                 .engine(new CarEngine(cvEngine, rpmEngine, engineType))

@@ -1,19 +1,22 @@
 package br.com.ifpe.oficina.entities.concreteclasses;
 
-import br.com.ifpe.oficina.entities.decorator.IDecoratedCar;
+import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 
-public class Car implements IDecoratedCar {
+public class Car implements IBasicCar {
 
     private String plate;
     private CarEngine engine;
     private String traction;
     private Client client;
+    private double basePrice;
+
 
     private Car(String plate, CarEngine engine, String traction, Client client) {
         this.plate = plate;
         this.engine = engine;
         this.traction = traction;
         this.client = client;
+        this.basePrice = 0;
     }
 
     public Car() {
@@ -23,7 +26,8 @@ public class Car implements IDecoratedCar {
     public String toString() {
         return "Car{" +
                 "plate='" + plate + '\'' +
-                ", traction='" + traction + '\'' +
+                ", client='" + client.getName() + '\'' +
+                ", base price='" + basePrice + '\'' +
                 ", engine=" + engine +
                 '}';
     }
@@ -61,8 +65,8 @@ public class Car implements IDecoratedCar {
     }
 
     @Override
-    public double getPrice() {
-        return 0;
+    public double getBasePrice() {
+        return basePrice;
     }
 
     public static final class CarBuilder {

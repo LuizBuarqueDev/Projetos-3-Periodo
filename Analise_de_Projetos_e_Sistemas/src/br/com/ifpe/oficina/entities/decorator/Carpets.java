@@ -3,12 +3,19 @@ package br.com.ifpe.oficina.entities.decorator;
 import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 
-public class Carpets implements IDecoratedCar {
+public class Carpets implements IBasicCar {
 
-    private final IDecoratedCar car;
+    private final IBasicCar car;
+    private final double accessoryPrice = 1000;
 
-    public Carpets(IDecoratedCar car) {
+    public Carpets(IBasicCar car) {
         this.car = car;
+    }
+
+    @Override
+    public String toString() {
+        return car.toString().replaceFirst("Total price with accessories: \\d+\\.\\d+", "") +
+                ", Total price with accessories: " + getBasePrice();
     }
 
     @Override
@@ -32,17 +39,8 @@ public class Carpets implements IDecoratedCar {
     }
 
     @Override
-    public double getPrice() {
-        return this.car.getPrice() + 800;
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "plate='" + getPlate() + '\'' +
-                ", traction='" + getTraction() + '\'' +
-                ", engine=" + getEngine() +
-                ", price=" + getPrice() +
-                '}';
+    public double getBasePrice() {
+        // Retorna o preço do carro decorado, somando o preço do acessório atual
+        return this.car.getBasePrice() + accessoryPrice;
     }
 }

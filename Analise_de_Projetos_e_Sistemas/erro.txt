@@ -6,3 +6,6 @@ Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Car.getPlate()" beca
 Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" because "this.client" is null
 Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" because "this.client" is null
 Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" because "this.client" is null
+Delete Error: entidade não encontrada
+Delete Error: entidade não encontrada
+Não foi possivel inserir placa já existe
