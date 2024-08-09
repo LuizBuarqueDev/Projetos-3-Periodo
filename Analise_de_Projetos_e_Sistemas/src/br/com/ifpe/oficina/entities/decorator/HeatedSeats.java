@@ -6,7 +6,6 @@ import br.com.ifpe.oficina.entities.concreteclasses.Client;
 public class HeatedSeats implements IBasicCar {
 
     private final IBasicCar car;
-    private final double accessoryPrice = 2000;
 
     public HeatedSeats(IBasicCar car) {
         this.car = car;
@@ -41,6 +40,7 @@ public class HeatedSeats implements IBasicCar {
     @Override
     public double getBasePrice() {
         // Retorna o preço do carro decorado, somando o preço do acessório atual
+        double accessoryPrice = 2000;
         return this.car.getBasePrice() + accessoryPrice;
     }
 }
