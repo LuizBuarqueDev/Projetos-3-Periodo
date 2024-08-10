@@ -9,3 +9,6 @@ Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Client.getName()" be
 Delete Error: entidade não encontrada
 Delete Error: entidade não encontrada
 Não foi possivel inserir placa já existe
+Erro: Cpf invalidao
+Delete Error: entidade não encontrada
+Cannot invoke "br.com.ifpe.oficina.entities.concreteclasses.Car.getPlate()" because "this.car" is null

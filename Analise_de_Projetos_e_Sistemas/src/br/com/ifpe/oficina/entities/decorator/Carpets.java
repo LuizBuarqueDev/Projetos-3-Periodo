@@ -39,7 +39,6 @@ public class Carpets implements IBasicCar {
 
     @Override
     public double getBasePrice() {
-        // Retorna o preço do carro decorado, somando o preço do acessório atual
         double accessoryPrice = 1000;
         return this.car.getBasePrice() + accessoryPrice;
     }

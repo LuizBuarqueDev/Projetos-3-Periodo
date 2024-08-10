@@ -85,14 +85,17 @@ public class GUICar {
         System.out.println("Acentos aquecidos: ");
         String seat = scanner.nextLine();
 
-        IBasicCar car = Car.CarBuilder.aCar()
+        Car car = Car.CarBuilder.aCar()
                 .plate(plate)
                 .traction(traction)
                 .engine(new CarEngine(cvEngine, rpmEngine, engineType))
                 .client(Client.ClientBuilder.aClient().name("Otavio").build())
                 .build();
 
-        facade.createCar(car, carpets, seat);
+        Client client = GUIClient.getInstace().createOnlyClient(car);
+        car.setClient(client);
+
+        facade.createCar((IBasicCar) car, carpets, seat);
         System.out.println("Carro criado com sucesso");
     }
 

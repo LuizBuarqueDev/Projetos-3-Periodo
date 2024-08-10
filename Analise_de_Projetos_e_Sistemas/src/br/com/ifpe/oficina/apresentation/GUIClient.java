@@ -2,6 +2,7 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
+import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 
 public class GUIClient {
@@ -85,26 +86,36 @@ public class GUIClient {
         System.out.println("Cliente criado com sucesso");
     }
 
-//    public Client createOnlyClient() {
-//        try {
-//            System.out.println("Criando cliente");
-//            System.out.println("Idade: ");
-//            int age = Integer.parseInt(scanner.nextLine());
-//
-//            System.out.println("Cpf: ");
-//            String cpf = scanner.nextLine();
-//
-//            System.out.println("E-mail: ");
-//            String email = scanner.nextLine();
-//
-//            System.out.println("Nome: ");
-//            String name = scanner.nextLine();
-//
-//            return  null;
-//        } catch (NumberFormatException e) {
-//            throw new RuntimeException("A idade não é um inteiro");
-//        }
-//    }
+    public Client createOnlyClient(Car car) {
+        try {
+            System.out.println("Idade: ");
+            int age = Integer.parseInt(scanner.nextLine());
+
+            System.out.println("Cpf: ");
+            String cpf = scanner.nextLine();
+
+            System.out.println("E-mail: ");
+            String email = scanner.nextLine();
+
+            System.out.println("Nome: ");
+            String name = scanner.nextLine();
+
+            Client client = Client.ClientBuilder.aClient()
+                    .name(name)
+                    .age(age)
+                    .email(email)
+                    .cpf(cpf)
+                    .car(car)
+                    .build();
+
+            facade.createClient(client);
+            System.out.println("Cliente criado com sucesso");
+
+            return client;
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 
     private void read() {
         System.out.println("Cpf: ");
