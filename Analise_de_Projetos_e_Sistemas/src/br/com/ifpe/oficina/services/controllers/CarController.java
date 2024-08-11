@@ -28,11 +28,11 @@ public class CarController extends GenericController<IBasicCar> implements ICont
 
     private IBasicCar applyAccessories(IBasicCar car, int carpets, int seats) {
         for (int i = 0; i < carpets; i++) {
-             car = new Carpets(car);
+            car = new Carpets(car);
         }
 
         for (int i = 0; i < seats; i++) {
-             car = new HeatedSeats(car);
+            car = new HeatedSeats(car);
         }
         return car;
     }
@@ -71,7 +71,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
             throw new RuntimeException("Acessorios invalidos");
         }
         newCar.setClient(oldCar.getClient());
-        applyAccessories(newCar, carpets, seats);
+        newCar = applyAccessories(newCar, carpets, seats);
         int index = viewAll().indexOf(oldCar);
         genericUpdate(index, newCar);
     }
