@@ -43,4 +43,9 @@ public class HeatedSeats implements IBasicCar {
         double accessoryPrice = 2000;
         return this.car.getBasePrice() + accessoryPrice;
     }
+
+    @Override
+    public void setClient(Client client) {
+        this.car.setClient(client);
+    }
 }

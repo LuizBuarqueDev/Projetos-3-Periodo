@@ -42,4 +42,9 @@ public class Carpets implements IBasicCar {
         double accessoryPrice = 1000;
         return this.car.getBasePrice() + accessoryPrice;
     }
+
+    @Override
+    public void setClient(Client client) {
+        this.car.setClient(client);
+    }
 }

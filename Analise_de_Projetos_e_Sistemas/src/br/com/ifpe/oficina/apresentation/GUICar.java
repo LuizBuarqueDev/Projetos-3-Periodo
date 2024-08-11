@@ -99,19 +99,39 @@ public class GUICar {
         System.out.println("Carro criado com sucesso");
     }
 
-//    public Car createOnlyCar() {
-//        System.out.println("Criando carro");
-//        System.out.print("Digite a placa: ");
-//        String plate = scanner.nextLine();
-//
-//        System.out.print("Digite a tração: ");
-//        String traction = scanner.nextLine();
-//
-//        System.out.print("Digite o tipo de carro:[1] - combustao / [2] - eletrico): ");
-//        String type = scanner.nextLine();
-//
-//        return null;
-//    }
+    public Car createOnlyCar(Client client) {
+        System.out.print("Digite a placa: ");
+        String plate = scanner.nextLine();
+        System.out.print("Digite a tração: ");
+        String traction = scanner.nextLine();
+
+        System.out.println("Tipo do motor: ");
+        String engineType = scanner.nextLine();
+        System.out.println("Potencia: ");
+        int cvEngine = Integer.parseInt(scanner.nextLine());
+        System.out.println("Rotaçao maxima: ");
+        int rpmEngine = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Digite a quantidade de cada elemento");
+        System.out.println("Carpetes: ");
+        String carpets = scanner.nextLine();
+        System.out.println("Acentos aquecidos: ");
+        String seat = scanner.nextLine();
+
+        Car car = Car.CarBuilder.aCar()
+                .plate(plate)
+                .traction(traction)
+                .engine(new CarEngine(cvEngine, rpmEngine, engineType))
+                .client(Client.ClientBuilder.aClient().name("Otavio").build())
+                .build();
+
+        car.setClient(client);
+
+        facade.createCar((IBasicCar) car, carpets, seat);
+        System.out.println("Carro criado com sucesso");
+
+        return car;
+    }
 
     private void update() {
         System.out.print("Digite a placa que deseja modificar: ");

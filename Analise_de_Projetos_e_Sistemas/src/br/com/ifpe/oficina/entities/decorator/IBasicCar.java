@@ -8,5 +8,6 @@ public interface IBasicCar {
     CarEngine getEngine();
     String getTraction();
     Client getClient();
-    double getBasePrice();  // Cada carro e seus decoradores terão um preço
+    double getBasePrice();
+    void setClient(Client client);// Cada carro e seus decoradores terão um preço
 }

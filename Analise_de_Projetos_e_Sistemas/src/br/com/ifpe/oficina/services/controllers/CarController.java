@@ -70,7 +70,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
         } catch (NumberFormatException e) {
             throw new RuntimeException("Acessorios invalidos");
         }
-
+        newCar.setClient(oldCar.getClient());
         applyAccessories(newCar, carpets, seats);
         int index = viewAll().indexOf(oldCar);
         genericUpdate(index, newCar);
@@ -95,8 +95,8 @@ public class CarController extends GenericController<IBasicCar> implements ICont
 
     @Override
     protected void validateUpdate(IBasicCar car) {
-        if (searchCar(car.getPlate()) != null) {
-            throw new RuntimeException("A placa já existe");
+        if (searchCar(car.getPlate()) == null) {
+            throw new RuntimeException("Placa não encontrada");
         }
     }
 }

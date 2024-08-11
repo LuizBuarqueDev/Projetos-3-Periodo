@@ -82,6 +82,9 @@ public class GUIClient {
                 .cpf(cpf)
                 .build();
 
+        Car car = GUICar.getInstance().createOnlyCar(client);
+        client.setCar(car);
+
         facade.createClient(client);
         System.out.println("Cliente criado com sucesso");
     }
