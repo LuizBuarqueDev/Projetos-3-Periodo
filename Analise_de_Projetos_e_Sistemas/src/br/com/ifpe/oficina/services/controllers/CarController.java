@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import br.com.ifpe.oficina.entities.decorator.Carpets;
 import br.com.ifpe.oficina.entities.decorator.HeatedSeats;
 import br.com.ifpe.oficina.entities.decorator.IBasicCar;
-import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 

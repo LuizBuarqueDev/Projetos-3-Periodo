@@ -1,7 +1,6 @@
 package br.com.ifpe.oficina.services.validators;
 
 import br.com.caelum.stella.validation.CPFValidator;
-import br.com.ifpe.oficina.interfaces.ICpfValidator;
 
 public class CpfValidator implements ICpfValidator {
 

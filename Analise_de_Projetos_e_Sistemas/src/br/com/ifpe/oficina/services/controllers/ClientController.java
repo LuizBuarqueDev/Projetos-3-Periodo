@@ -2,7 +2,6 @@ package br.com.ifpe.oficina.services.controllers;
 
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.interfaces.IController;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 import br.com.ifpe.oficina.services.validators.CpfValidator;

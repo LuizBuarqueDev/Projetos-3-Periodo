@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import br.com.ifpe.oficina.interfaces.IGenericDAO;
-
 public class GenericDAO<T> implements IGenericDAO<T> {
 	
 	List<T> list;

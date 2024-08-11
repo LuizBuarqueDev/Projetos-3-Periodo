@@ -1,4 +1,4 @@
-package br.com.ifpe.oficina.interfaces;
+package br.com.ifpe.oficina.persistence;
 
 import java.util.List;
 import java.util.function.Predicate;

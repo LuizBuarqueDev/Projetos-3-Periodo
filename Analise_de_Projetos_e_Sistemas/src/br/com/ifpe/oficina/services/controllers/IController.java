@@ -1,4 +1,4 @@
-package br.com.ifpe.oficina.interfaces;
+package br.com.ifpe.oficina.services.controllers;
 
 import java.util.List;
 
