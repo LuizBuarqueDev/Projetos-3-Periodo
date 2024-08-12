@@ -2,6 +2,7 @@ package br.com.ifpe.oficina.services.controllers;
 
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
+import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 import br.com.ifpe.oficina.services.validators.CpfValidator;
@@ -49,8 +50,20 @@ public class ClientController extends GenericController<Client> implements ICont
     }
 
     @Override
-    public void delete(String cpf) {
-        genericDelete(searchClient(cpf));
+    public void delete(String cpf, boolean isDeletingCar) {
+        Client client = searchClient(cpf);
+        if (client == null) {
+            throw new RuntimeException("Cliente não encontrado");
+        }
+
+        if (!isDeletingCar) {
+            CarController carController = CarController.getInstance();
+            IBasicCar car = client.getCar();
+            if (car != null) {
+                carController.delete(car.getPlate(), true);
+            }
+        }
+        genericDelete(client);
     }
 
     @Override

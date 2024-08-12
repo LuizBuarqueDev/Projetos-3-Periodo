@@ -9,7 +9,7 @@ public interface IController<T> {
 
     void update(T object, String...accessories);
 
-    void delete(String unique_key);
+    void delete(String unique_key, boolean deleteAssociation);
 
     List<T> viewAll();
 }

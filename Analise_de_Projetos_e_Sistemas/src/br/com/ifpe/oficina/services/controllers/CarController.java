@@ -3,6 +3,7 @@ package br.com.ifpe.oficina.services.controllers;
 import java.util.List;
 import java.util.function.Predicate;
 
+import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.decorator.Carpets;
 import br.com.ifpe.oficina.entities.decorator.HeatedSeats;
 import br.com.ifpe.oficina.entities.decorator.IBasicCar;
@@ -77,8 +78,20 @@ public class CarController extends GenericController<IBasicCar> implements ICont
     }
 
     @Override
-    public void delete(String plate) {
-        genericDelete(searchCar(plate));
+    public void delete(String plate, boolean isDeletingClient) {
+        IBasicCar car = searchCar(plate);
+        if (car == null) {
+            throw new RuntimeException("Carro não encontrado");
+        }
+
+        if (!isDeletingClient) {
+            ClientController clientController = ClientController.getInstance();
+            Client client = car.getClient();
+            if (client != null) {
+                clientController.delete(client.getCpf(), true);
+            }
+        }
+        genericDelete(car);
     }
 
     @Override
