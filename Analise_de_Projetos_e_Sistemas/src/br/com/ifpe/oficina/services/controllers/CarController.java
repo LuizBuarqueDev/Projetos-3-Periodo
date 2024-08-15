@@ -13,6 +13,8 @@ public class CarController extends GenericController<IBasicCar> implements ICont
 
     private static final CarController instance = new CarController(DAOFactory.createDAO(IBasicCar.class));
 
+    private final ClientController clientController = ClientController.getInstance();
+
     private CarController(GenericDAO<IBasicCar> dao) {
         super(dao);
     }
@@ -21,6 +23,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
         return instance;
     }
 
+
     private IBasicCar searchCar(String plate) {
         Predicate<IBasicCar> filterByCar = car -> car.getPlate().equals(plate);
         return dao.read(filterByCar);
@@ -28,7 +31,12 @@ public class CarController extends GenericController<IBasicCar> implements ICont
 
     @Override
     public void create(IBasicCar car) {
-        genericInsert(car);
+        try {
+            genericInsert(car);
+        } catch (Exception e) {
+            clientController.delete(car.getClient().getCpf(), true);
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @Override
@@ -55,7 +63,6 @@ public class CarController extends GenericController<IBasicCar> implements ICont
         }
 
         if (!isDeletingClient) {
-            ClientController clientController = ClientController.getInstance();
             Client client = car.getClient();
             if (client != null) {
                 clientController.delete(client.getCpf(), true);
