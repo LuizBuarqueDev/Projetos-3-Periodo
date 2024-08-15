@@ -1,13 +1,15 @@
 package br.com.ifpe.oficina.entities.concreteclasses;
 
+import br.com.ifpe.oficina.entities.decorator.IBasicCar;
+
 public class Client {
     private String name;
     private String cpf;
     private int age;
     private String email;
-    private Car car;
+    private IBasicCar car;
 
-    private Client(int age, Car car, String cpf, String email, String name) {
+    private Client(int age, IBasicCar car, String cpf, String email, String name) {
         this.age = age;
         this.car = car;
         this.cpf = cpf;
@@ -34,11 +36,11 @@ public class Client {
         this.age = age;
     }
 
-    public Car getCar() {
+    public IBasicCar getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar(IBasicCar car) {
         this.car = car;
     }
 
@@ -71,7 +73,7 @@ public class Client {
         private String name;
         private String cpf;
         private String email;
-        private Car car;
+        private IBasicCar car;
 
         private ClientBuilder() {
         }
@@ -100,7 +102,7 @@ public class Client {
             return this;
         }
 
-        public ClientBuilder car(Car car) {
+        public ClientBuilder car(IBasicCar car) {
             this.car = car;
             return this;
         }

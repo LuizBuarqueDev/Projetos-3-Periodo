@@ -7,7 +7,6 @@ import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 import br.com.ifpe.oficina.services.validators.CpfValidator;
 
-
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -16,6 +15,7 @@ public class ClientController extends GenericController<Client> implements ICont
     private static final ClientController instance = new ClientController(DAOFactory.createDAO(Client.class));
 
     private final CpfValidator cpfValidator = new CpfValidator();
+    private final CarController carController = CarController.getInstance();
 
     private ClientController(GenericDAO<Client> dao) {
         super(dao);
@@ -30,8 +30,13 @@ public class ClientController extends GenericController<Client> implements ICont
         return dao.read(filterByClient);
     }
 
-    public void create(Client client, String... accessories) {
-        genericInsert(client);
+    public void create(Client client) {
+        try {
+            genericInsert(client);
+        } catch (Exception e) {
+            carController.delete(client.getCar().getPlate(), true);
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @Override
@@ -40,7 +45,7 @@ public class ClientController extends GenericController<Client> implements ICont
     }
 
     @Override
-    public void update(Client newClient, String... accessories) {
+    public void update(Client newClient) {
         Client oldClient = searchClient(newClient.getCpf());
         if (oldClient == null) {
             throw new RuntimeException("Cliente não encontrado");
@@ -57,7 +62,6 @@ public class ClientController extends GenericController<Client> implements ICont
         }
 
         if (!isDeletingCar) {
-            CarController carController = CarController.getInstance();
             IBasicCar car = client.getCar();
             if (car != null) {
                 carController.delete(car.getPlate(), true);

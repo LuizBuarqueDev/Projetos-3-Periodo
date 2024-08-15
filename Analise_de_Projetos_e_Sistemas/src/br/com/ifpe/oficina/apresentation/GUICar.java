@@ -5,7 +5,10 @@ import java.util.Scanner;
 import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
+import br.com.ifpe.oficina.entities.decorator.Carpets;
+import br.com.ifpe.oficina.entities.decorator.HeatedSeats;
 import br.com.ifpe.oficina.entities.decorator.IBasicCar;
+import br.com.ifpe.oficina.persistence.Logger;
 
 public class GUICar {
 
@@ -60,8 +63,14 @@ public class GUICar {
                         System.out.println("O valor " + choice + " é inválido");
                         break;
                 }
+            } catch (NumberFormatException e) {
+                String text = "Erro o criar, valor fonecido invalido :" + e.getMessage();
+                System.out.println(text);
+                Logger.error(text);
+
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Erro: " + e.getMessage());
+                Logger.error(e.getMessage());
             }
         }
     }
@@ -81,25 +90,27 @@ public class GUICar {
 
         System.out.println("Digite a quantidade de cada elemento");
         System.out.println("Carpetes: ");
-        String carpets = scanner.nextLine();
+        int carpets = Integer.parseInt(scanner.nextLine());
         System.out.println("Acentos aquecidos: ");
-        String seat = scanner.nextLine();
+        int seat = Integer.parseInt(scanner.nextLine());
 
-        Car car = Car.CarBuilder.aCar()
+        IBasicCar car = Car.CarBuilder.aCar()
                 .plate(plate)
                 .traction(traction)
                 .engine(new CarEngine(cvEngine, rpmEngine, engineType))
-                .client(Client.ClientBuilder.aClient().name("Otavio").build())
                 .build();
 
         Client client = GUIClient.getInstace().createOnlyClient(car);
         car.setClient(client);
 
-        facade.createCar((IBasicCar) car, carpets, seat);
+        car = applyAccessories(car, carpets, seat);
+        System.out.println(car.toString());
+        facade.createCar(car);
+        facade.createClient(client);
         System.out.println("Carro criado com sucesso");
     }
 
-    public Car createOnlyCar(Client client) {
+    public IBasicCar createOnlyCar(Client client) {
         System.out.print("Digite a placa: ");
         String plate = scanner.nextLine();
         System.out.print("Digite a tração: ");
@@ -114,22 +125,20 @@ public class GUICar {
 
         System.out.println("Digite a quantidade de cada elemento");
         System.out.println("Carpetes: ");
-        String carpets = scanner.nextLine();
+        int carpets = Integer.parseInt(scanner.nextLine());
         System.out.println("Acentos aquecidos: ");
-        String seat = scanner.nextLine();
+        int seat = Integer.parseInt(scanner.nextLine());
 
-        Car car = Car.CarBuilder.aCar()
+        IBasicCar car = Car.CarBuilder.aCar()
                 .plate(plate)
                 .traction(traction)
                 .engine(new CarEngine(cvEngine, rpmEngine, engineType))
-                .client(Client.ClientBuilder.aClient().name("Otavio").build())
+                .client(client)
                 .build();
 
-        car.setClient(client);
+        car = applyAccessories(car, carpets, seat);
 
-        facade.createCar((IBasicCar) car, carpets, seat);
         System.out.println("Carro criado com sucesso");
-
         return car;
     }
 
@@ -148,17 +157,19 @@ public class GUICar {
 
         System.out.println("Digite a quantidade de cada elemento");
         System.out.println("Carpetes: ");
-        String carpets = scanner.nextLine();
+        int carpets = Integer.parseInt(scanner.nextLine());
         System.out.println("Acentos aquecidos: ");
-        String seat = scanner.nextLine();
+        int seat = Integer.parseInt(scanner.nextLine());
 
-        Car car = Car.CarBuilder.aCar()
+        IBasicCar car = Car.CarBuilder.aCar()
                 .plate(plate)
                 .traction(traction)
                 .engine(new CarEngine(cvEngine, rpmEngine, engineType))
                 .build();
 
-        facade.updateCar(car, carpets, seat);
+        car = applyAccessories(car, carpets, seat);
+
+        facade.updateCar(car);
         System.out.println("Carro atualizado com sucesso");
     }
 
@@ -173,5 +184,16 @@ public class GUICar {
         plate = scanner.nextLine();
         facade.deleteCar(plate);
         System.out.println("Carro removido");
+    }
+
+    private IBasicCar applyAccessories(IBasicCar car, int carpets, int seats) {
+        for (int i = 0; i < carpets; i++) {
+            car = new Carpets(car);
+        }
+
+        for (int i = 0; i < seats; i++) {
+            car = new HeatedSeats(car);
+        }
+        return car;
     }
 }

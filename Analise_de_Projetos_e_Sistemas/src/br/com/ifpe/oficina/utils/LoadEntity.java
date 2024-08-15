@@ -71,10 +71,10 @@ public class LoadEntity {
                 case 1: {
                     Car car = Car.CarBuilder.aCar()
                             .engine(new CarEngine(500, 3000, "Combustion"))
+                            .client(client)
+                            .plate("DEF-" + i)
+                            .traction("4x4")
                             .build();
-                    car.setClient(client);
-                    car.setPlate("DEF-" + i);
-                    car.setTraction("4x4");
 
                     carController.viewAll().add(car);
                     client.setCar(car);

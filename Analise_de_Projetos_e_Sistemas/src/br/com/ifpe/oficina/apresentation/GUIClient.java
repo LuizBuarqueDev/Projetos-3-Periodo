@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
+import br.com.ifpe.oficina.entities.decorator.IBasicCar;
+import br.com.ifpe.oficina.persistence.Logger;
 
 public class GUIClient {
 
@@ -56,8 +58,14 @@ public class GUIClient {
                         break;
                 }
 
+            } catch (NumberFormatException e) {
+                String text = "Erro o criar, valor fonecido invalido :" + e.getMessage();
+                System.out.println(text);
+                Logger.error(text);
+
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Erro: " + e.getMessage());
+                Logger.error(e.getMessage());
             }
         }
     }
@@ -82,42 +90,36 @@ public class GUIClient {
                 .cpf(cpf)
                 .build();
 
-        Car car = GUICar.getInstance().createOnlyCar(client);
+        IBasicCar car = GUICar.getInstance().createOnlyCar(client);
         client.setCar(car);
 
         facade.createClient(client);
+        facade.createCar(car);
         System.out.println("Cliente criado com sucesso");
     }
 
-    public Client createOnlyClient(Car car) {
-        try {
-            System.out.println("Idade: ");
-            int age = Integer.parseInt(scanner.nextLine());
+    public Client createOnlyClient(IBasicCar car) {
+        System.out.println("Idade: ");
+        int age = Integer.parseInt(scanner.nextLine());
 
-            System.out.println("Cpf: ");
-            String cpf = scanner.nextLine();
+        System.out.println("Cpf: ");
+        String cpf = scanner.nextLine();
 
-            System.out.println("E-mail: ");
-            String email = scanner.nextLine();
+        System.out.println("E-mail: ");
+        String email = scanner.nextLine();
 
-            System.out.println("Nome: ");
-            String name = scanner.nextLine();
+        System.out.println("Nome: ");
+        String name = scanner.nextLine();
 
-            Client client = Client.ClientBuilder.aClient()
-                    .name(name)
-                    .age(age)
-                    .email(email)
-                    .cpf(cpf)
-                    .car(car)
-                    .build();
-
-            facade.createClient(client);
-            System.out.println("Cliente criado com sucesso");
-
-            return client;
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        Client client = Client.ClientBuilder.aClient()
+                .name(name)
+                .age(age)
+                .email(email)
+                .cpf(cpf)
+                .car(car)
+                .build();
+        System.out.println("Cliente criado com sucesso");
+        return client;
     }
 
     private void read() {

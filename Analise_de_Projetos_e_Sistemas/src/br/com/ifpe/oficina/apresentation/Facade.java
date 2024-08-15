@@ -31,16 +31,16 @@ public class Facade {
         return clientController.viewAll();
     }
 
-    public void createCar(IBasicCar car, String... accessories) {
-        carController.create(car, accessories);
+    public void createCar(IBasicCar car) {
+        carController.create(car);
     }
 
     public IBasicCar readCar(String plate) {
         return carController.read(plate);
     }
 
-    public void updateCar(IBasicCar car, String... accessories) {
-        carController.update(car, accessories);
+    public void updateCar(IBasicCar car) {
+        carController.update(car);
     }
 
     public void deleteCar(String plate) {
