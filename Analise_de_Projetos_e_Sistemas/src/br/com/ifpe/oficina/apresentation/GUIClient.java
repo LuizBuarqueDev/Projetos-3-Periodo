@@ -2,7 +2,6 @@ package br.com.ifpe.oficina.apresentation;
 
 import java.util.Scanner;
 
-import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.persistence.Logger;
@@ -25,7 +24,7 @@ public class GUIClient {
     public void clientGUI() {
         boolean loop = true;
         while (loop) {
-            try {
+//            try {
                 System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view\n[6]-back");
                 String choice = scanner.nextLine();
 
@@ -58,15 +57,15 @@ public class GUIClient {
                         break;
                 }
 
-            } catch (NumberFormatException e) {
-                String text = "Erro o criar, valor fonecido invalido :" + e.getMessage();
-                System.out.println(text);
-                Logger.error(text);
-
-            } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
-                Logger.error(e.getMessage());
-            }
+//            } catch (NumberFormatException e) {
+//                String text = "Erro o criar, valor fonecido invalido :" + e.getMessage();
+//                System.out.println(text);
+//                Logger.error(text);
+//
+//            } catch (Exception e) {
+//                System.out.println("Erro: " + e.getMessage());
+//                Logger.error(e.getMessage());
+//            }
         }
     }
 
@@ -149,6 +148,7 @@ public class GUIClient {
                 .build();
 
         facade.updateClient(client);
+        System.out.println("Cliente atualizado");
     }
 
     private void delete() {

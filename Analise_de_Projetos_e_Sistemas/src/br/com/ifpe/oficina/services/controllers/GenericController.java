@@ -40,7 +40,6 @@ public abstract class GenericController<T> {
 
     protected void genericUpdate(int index, T object) {
         try {
-            System.out.println("Genericupdate sendo usado: " + object.toString());
             this.validateUpdate(object);
             Logger.info("Atualizando entidade: " + dao.listAll().get(index).toString() + " -> " + object.toString());
             dao.listAll().set(index, object);

@@ -50,6 +50,7 @@ public class ClientController extends GenericController<Client> implements ICont
         if (oldClient == null) {
             throw new RuntimeException("Cliente não encontrado");
         }
+        newClient.setCar(oldClient.getCar());
         int index = viewAll().indexOf(oldClient);
         genericUpdate(index, newClient);
     }
