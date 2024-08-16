@@ -28,6 +28,7 @@ public class Car implements IBasicCar {
                 "plate='" + plate + '\'' +
                 ", client='" + client.getName() + '\'' +
                 ", base price='" + basePrice + '\'' +
+                ", traction='" + traction + '\'' +
                 ", engine=" + engine +
                 '}';
     }
