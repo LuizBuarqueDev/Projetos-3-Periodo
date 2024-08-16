@@ -1,6 +1,5 @@
 package br.com.ifpe.oficina.services.controllers;
 
-
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
 import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.persistence.GenericDAO;
@@ -15,7 +14,7 @@ public class ClientController extends GenericController<Client> implements ICont
     private static final ClientController instance = new ClientController(DAOFactory.createDAO(Client.class));
 
     private final CpfValidator cpfValidator = new CpfValidator();
-    private final CarController carController = CarController.getInstance();
+    private CarController carController;
 
     private ClientController(GenericDAO<Client> dao) {
         super(dao);
@@ -23,6 +22,13 @@ public class ClientController extends GenericController<Client> implements ICont
 
     public static ClientController getInstance() {
         return instance;
+    }
+
+    private CarController getCarController() {
+        if (carController == null) {
+            carController = CarController.getInstance();
+        }
+        return carController;
     }
 
     private Client searchClient(String cpf) {
@@ -34,7 +40,7 @@ public class ClientController extends GenericController<Client> implements ICont
         try {
             genericInsert(client);
         } catch (Exception e) {
-            carController.delete(client.getCar().getPlate(), true);
+            getCarController().delete(client.getCar().getPlate(), true);
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -65,7 +71,8 @@ public class ClientController extends GenericController<Client> implements ICont
         if (!isDeletingCar) {
             IBasicCar car = client.getCar();
             if (car != null) {
-                carController.delete(car.getPlate(), true);
+                System.out.println(car.toString());
+                getCarController().delete(car.getPlate(), true);
             }
         }
         genericDelete(client);
@@ -79,7 +86,7 @@ public class ClientController extends GenericController<Client> implements ICont
     @Override
     protected void validateInsert(Client client) {
         if (!cpfValidator.validateCpf(client.getCpf())) {
-            throw new RuntimeException("Erro: Cpf invalidao");
+            throw new RuntimeException("Erro: Cpf invalido");
 
         } else if (searchClient(client.getCpf()) != null) {
             throw new RuntimeException("Erro: O cpf digitado já existe");
