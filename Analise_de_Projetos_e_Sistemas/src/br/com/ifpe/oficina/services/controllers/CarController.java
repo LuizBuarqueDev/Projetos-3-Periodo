@@ -30,7 +30,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
     }
 
     private IBasicCar searchCar(String plate) {
-        Predicate<IBasicCar> filterByCar = car -> car.getPlate().equals(plate);
+        Predicate<IBasicCar> filterByCar = car -> car.getInnerCar().getPlate().equals(plate);
         return dao.read(filterByCar);
     }
 
@@ -39,7 +39,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
         try {
             genericInsert(car);
         } catch (Exception e) {
-            getClientController().delete(car.getClient().getCpf(), true);
+            getClientController().delete(car.getInnerCar().getClient().getCpf(), true);
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -51,11 +51,11 @@ public class CarController extends GenericController<IBasicCar> implements ICont
 
     @Override
     public void update(IBasicCar newCar) {
-        IBasicCar oldCar = searchCar(newCar.getPlate());
+        IBasicCar oldCar = searchCar(newCar.getInnerCar().getPlate());
         if (oldCar == null) {
             throw new RuntimeException("Carro não encontrado");
         }
-        newCar.setClient(oldCar.getClient());
+        newCar.getInnerCar().setClient(oldCar.getInnerCar().getClient());
         int index = viewAll().indexOf(oldCar);
         genericUpdate(index, newCar);
     }
@@ -68,9 +68,8 @@ public class CarController extends GenericController<IBasicCar> implements ICont
         }
 
         if (!isDeletingClient) {
-            Client client = car.getClient();
+            Client client = car.getInnerCar().getClient();
             if (client != null) {
-                System.out.println(client.toString());
                 getClientController().delete(client.getCpf(), true);
             }
         }
@@ -84,14 +83,14 @@ public class CarController extends GenericController<IBasicCar> implements ICont
 
     @Override
     protected void validateInsert(IBasicCar car) {
-        if (searchCar(car.getPlate()) != null) {
+        if (searchCar(car.getInnerCar().getPlate()) != null) {
             throw new RuntimeException("Não foi possivel inserir placa já existe");
         }
     }
 
     @Override
     protected void validateUpdate(IBasicCar car) {
-        if (searchCar(car.getPlate()) == null) {
+        if (searchCar(car.getInnerCar().getPlate()) == null) {
             throw new RuntimeException("Placa não encontrada");
         }
     }

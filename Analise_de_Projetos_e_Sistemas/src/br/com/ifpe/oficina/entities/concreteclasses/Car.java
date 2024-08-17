@@ -33,6 +33,11 @@ public class Car implements IBasicCar {
                 '}';
     }
 
+    @Override
+    public Car getInnerCar() {
+        return this;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -66,7 +71,7 @@ public class Car implements IBasicCar {
     }
 
     @Override
-    public double getBasePrice() {
+    public double getPrice() {
         return basePrice;
     }
 

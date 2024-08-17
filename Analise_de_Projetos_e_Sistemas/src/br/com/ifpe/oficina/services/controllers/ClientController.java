@@ -40,7 +40,7 @@ public class ClientController extends GenericController<Client> implements ICont
         try {
             genericInsert(client);
         } catch (Exception e) {
-            getCarController().delete(client.getCar().getPlate(), true);
+            getCarController().delete(client.getCar().getInnerCar().getPlate(), true);
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -71,8 +71,7 @@ public class ClientController extends GenericController<Client> implements ICont
         if (!isDeletingCar) {
             IBasicCar car = client.getCar();
             if (car != null) {
-                System.out.println(car.toString());
-                getCarController().delete(car.getPlate(), true);
+                getCarController().delete(car.getInnerCar().getPlate(), true);
             }
         }
         genericDelete(client);

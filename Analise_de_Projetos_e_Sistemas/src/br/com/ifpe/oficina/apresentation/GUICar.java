@@ -101,10 +101,9 @@ public class GUICar {
                 .build();
 
         Client client = GUIClient.getInstace().createOnlyClient(car);
-        car.setClient(client);
+        car.getInnerCar().setClient(client);
 
         car = applyAccessories(car, carpets, seat);
-        System.out.println(car.toString());
         facade.createCar(car);
         facade.createClient(client);
         System.out.println("Carro criado com sucesso");

@@ -24,7 +24,7 @@ public class Client {
                 ", cpf='" + cpf + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
-                ", car plate=" + car.getPlate() +
+                ", car plate=" + car.getInnerCar().getPlate() +
                 '}';
     }
 

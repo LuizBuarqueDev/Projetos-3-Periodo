@@ -24,8 +24,8 @@ public class GUIClient {
     public void clientGUI() {
         boolean loop = true;
         while (loop) {
-//            try {
-                System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view\n[6]-back");
+            try {
+                System.out.println("\n[1]-create\n[2]-update\n[3]-read\n[4]-delete\n[5]-view all\n[6]-back");
                 String choice = scanner.nextLine();
 
                 switch (choice) {
@@ -57,15 +57,15 @@ public class GUIClient {
                         break;
                 }
 
-//            } catch (NumberFormatException e) {
-//                String text = "Erro o criar, valor fonecido invalido :" + e.getMessage();
-//                System.out.println(text);
-//                Logger.error(text);
-//
-//            } catch (Exception e) {
-//                System.out.println("Erro: " + e.getMessage());
-//                Logger.error(e.getMessage());
-//            }
+            } catch (NumberFormatException e) {
+                String text = "Erro o criar, valor fonecido invalido :" + e.getMessage();
+                System.out.println(text);
+                Logger.error(text);
+
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+                Logger.error(e.getMessage());
+            }
         }
     }
 

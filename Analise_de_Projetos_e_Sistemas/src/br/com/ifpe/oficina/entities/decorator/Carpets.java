@@ -1,7 +1,6 @@
 package br.com.ifpe.oficina.entities.decorator;
 
-import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
-import br.com.ifpe.oficina.entities.concreteclasses.Client;
+import br.com.ifpe.oficina.entities.concreteclasses.Car;
 
 public class Carpets implements IBasicCar {
 
@@ -14,37 +13,17 @@ public class Carpets implements IBasicCar {
     @Override
     public String toString() {
         return car.toString().replaceFirst(", Total price with accessories: \\d+\\.\\d+", "") +
-                ", Total price with accessories: " + getBasePrice();
+                ", Total price with accessories: " + getPrice();
     }
 
     @Override
-    public String getPlate() {
-        return this.car.getPlate();
+    public Car getInnerCar() {
+        return this.car.getInnerCar();
     }
 
     @Override
-    public CarEngine getEngine() {
-        return this.car.getEngine();
-    }
-
-    @Override
-    public String getTraction() {
-        return this.car.getTraction();
-    }
-
-    @Override
-    public Client getClient() {
-        return this.car.getClient();
-    }
-
-    @Override
-    public double getBasePrice() {
+    public double getPrice() {
         double accessoryPrice = 1000;
-        return this.car.getBasePrice() + accessoryPrice;
-    }
-
-    @Override
-    public void setClient(Client client) {
-        this.car.setClient(client);
+        return this.car.getPrice() + accessoryPrice;
     }
 }
