@@ -58,38 +58,38 @@ public class GUICar {
                         break;
 
                     default:
-                        System.out.println("O valor " + choice + " é inválido");
+                        System.out.println("The value " + choice + " is invalid");
                         break;
                 }
             } catch (NumberFormatException e) {
-                String text = "Erro o criar, valor fonecido invalido :" + e.getMessage();
+                String text = "Error creating, invalid value provided: " + e.getMessage();
                 System.out.println(text);
                 Logger.error(text);
 
             } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
+                System.out.println("Error: " + e.getMessage());
                 Logger.error(e.getMessage());
             }
         }
     }
 
     private void create() {
-        System.out.print("Digite a placa: ");
+        System.out.print("Enter the plate: ");
         String plate = scanner.nextLine();
-        System.out.print("Digite a tração: ");
+        System.out.print("Enter traction: ");
         String traction = scanner.nextLine();
 
-        System.out.println("Tipo do motor: ");
+        System.out.println("Engine type: ");
         String engineType = scanner.nextLine();
-        System.out.println("Potencia: ");
+        System.out.println("Power: ");
         int cvEngine = Integer.parseInt(scanner.nextLine());
-        System.out.println("Rotaçao maxima: ");
+        System.out.println("Maximum rotation: ");
         int rpmEngine = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Digite a quantidade de cada elemento");
-        System.out.println("Carpetes: ");
+        System.out.println("Enter the quantity of each accessory: ");
+        System.out.println("Carpets: ");
         int carpets = Integer.parseInt(scanner.nextLine());
-        System.out.println("Acentos aquecidos: ");
+        System.out.println("Seats with heating: ");
         int seat = Integer.parseInt(scanner.nextLine());
 
         IBasicCar car = Car.CarBuilder.aCar()
@@ -104,26 +104,26 @@ public class GUICar {
         car = facade.applyCarAccessories(car, carpets, seat);
         facade.createCar(car);
         facade.createClient(client);
-        System.out.println("Carro criado com sucesso");
+        System.out.println("Car created successfully");
     }
 
     public IBasicCar createOnlyCar(Client client) {
-        System.out.print("Digite a placa: ");
+        System.out.print("Enter the plate: ");
         String plate = scanner.nextLine();
-        System.out.print("Digite a tração: ");
+        System.out.print("Enter traction: ");
         String traction = scanner.nextLine();
 
-        System.out.println("Tipo do motor: ");
+        System.out.println("Engine type: ");
         String engineType = scanner.nextLine();
-        System.out.println("Potencia: ");
+        System.out.println("Power: ");
         int cvEngine = Integer.parseInt(scanner.nextLine());
-        System.out.println("Rotaçao maxima: ");
+        System.out.println("Maximum rotation: ");
         int rpmEngine = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Digite a quantidade de cada elemento");
-        System.out.println("Carpetes: ");
+        System.out.println("Enter the quantity of each accessory: ");
+        System.out.println("Carpets: ");
         int carpets = Integer.parseInt(scanner.nextLine());
-        System.out.println("Acentos aquecidos: ");
+        System.out.println("Seats with heating: ");
         int seat = Integer.parseInt(scanner.nextLine());
 
         IBasicCar car = Car.CarBuilder.aCar()
@@ -135,27 +135,27 @@ public class GUICar {
 
         car = facade.applyCarAccessories(car, carpets, seat);
 
-        System.out.println("Carro criado com sucesso");
+        System.out.println("Car created successfully");
         return car;
     }
 
     private void update() {
-        System.out.print("Digite a placa que deseja modificar: ");
+        System.out.print("Enter the plate you want to modify: ");
         String plate = scanner.nextLine();
-        System.out.print("Digite a tração: ");
+        System.out.print("Enter traction: ");
         String traction = scanner.nextLine();
 
-        System.out.println("Tipo do motor: ");
+        System.out.println("Engine type: ");
         String engineType = scanner.nextLine();
-        System.out.println("Potencia: ");
+        System.out.println("Power: ");
         int cvEngine = Integer.parseInt(scanner.nextLine());
-        System.out.println("Rotaçao maxima: ");
+        System.out.println("Maximum rotation: ");
         int rpmEngine = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Digite a quantidade de cada elemento");
-        System.out.println("Carpetes: ");
+        System.out.println("Enter the quantity of each element: ");
+        System.out.println("Carpets: ");
         int carpets = Integer.parseInt(scanner.nextLine());
-        System.out.println("Acentos aquecidos: ");
+        System.out.println("Seats with heating: ");
         int seat = Integer.parseInt(scanner.nextLine());
 
         IBasicCar car = Car.CarBuilder.aCar()
@@ -167,19 +167,19 @@ public class GUICar {
         car = facade.applyCarAccessories(car, carpets, seat);
 
         facade.updateCar(car);
-        System.out.println("Carro atualizado com sucesso");
+        System.out.println("Car successfully updated: ");
     }
 
     private void read() {
-        System.out.print("Digite a placa: ");
+        System.out.print("Enter the plate: ");
         plate = scanner.nextLine();
         System.out.println(facade.readCar(plate));
     }
 
     private void delete() {
-        System.out.print("Digite a placa: ");
+        System.out.print("Enter the plate: ");
         plate = scanner.nextLine();
         facade.deleteCar(plate);
-        System.out.println("Carro removido");
+        System.out.println("Car removed");
     }
 }

@@ -42,7 +42,7 @@ public abstract class GenericController<T> {
         try {
             this.validateUpdate(object);
             Logger.info("Atualizando entidade: " + dao.listAll().get(index).toString() + " -> " + object.toString());
-            dao.listAll().set(index, object);
+            dao.update(index, object);
         } catch (Exception e) {
             Logger.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
