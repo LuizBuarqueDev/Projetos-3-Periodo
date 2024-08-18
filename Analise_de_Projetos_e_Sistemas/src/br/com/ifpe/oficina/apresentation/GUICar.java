@@ -5,8 +5,6 @@ import java.util.Scanner;
 import br.com.ifpe.oficina.entities.concreteclasses.CarEngine;
 import br.com.ifpe.oficina.entities.concreteclasses.Car;
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
-import br.com.ifpe.oficina.entities.decorator.Carpets;
-import br.com.ifpe.oficina.entities.decorator.HeatedSeats;
 import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.persistence.Logger;
 
@@ -103,7 +101,7 @@ public class GUICar {
         Client client = GUIClient.getInstace().createOnlyClient(car);
         car.getInnerCar().setClient(client);
 
-        car = applyAccessories(car, carpets, seat);
+        car = facade.applyCarAccessories(car, carpets, seat);
         facade.createCar(car);
         facade.createClient(client);
         System.out.println("Carro criado com sucesso");
@@ -135,7 +133,7 @@ public class GUICar {
                 .client(client)
                 .build();
 
-        car = applyAccessories(car, carpets, seat);
+        car = facade.applyCarAccessories(car, carpets, seat);
 
         System.out.println("Carro criado com sucesso");
         return car;
@@ -166,7 +164,7 @@ public class GUICar {
                 .engine(new CarEngine(cvEngine, rpmEngine, engineType))
                 .build();
 
-        car = applyAccessories(car, carpets, seat);
+        car = facade.applyCarAccessories(car, carpets, seat);
 
         facade.updateCar(car);
         System.out.println("Carro atualizado com sucesso");
@@ -183,16 +181,5 @@ public class GUICar {
         plate = scanner.nextLine();
         facade.deleteCar(plate);
         System.out.println("Carro removido");
-    }
-
-    private IBasicCar applyAccessories(IBasicCar car, int carpets, int seats) {
-        for (int i = 0; i < carpets; i++) {
-            car = new Carpets(car);
-        }
-
-        for (int i = 0; i < seats; i++) {
-            car = new HeatedSeats(car);
-        }
-        return car;
     }
 }

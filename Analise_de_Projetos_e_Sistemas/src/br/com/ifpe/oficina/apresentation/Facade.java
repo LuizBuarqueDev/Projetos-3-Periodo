@@ -31,6 +31,11 @@ public class Facade {
         return clientController.viewAll();
     }
 
+
+    public IBasicCar applyCarAccessories(IBasicCar car, int carpets, int seats) {
+        return carController.applyAccessories(car, carpets, seats);
+    }
+
     public void createCar(IBasicCar car) {
         carController.create(car);
     }

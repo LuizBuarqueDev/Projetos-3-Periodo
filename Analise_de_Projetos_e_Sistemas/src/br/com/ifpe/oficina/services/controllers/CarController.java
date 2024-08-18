@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import br.com.ifpe.oficina.entities.concreteclasses.Client;
+import br.com.ifpe.oficina.entities.decorator.Carpets;
+import br.com.ifpe.oficina.entities.decorator.HeatedSeats;
 import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 
-public class CarController extends GenericController<IBasicCar> implements IController<IBasicCar> {
+public class CarController extends GenericController<IBasicCar> implements IController<IBasicCar> , ICarController{
 
     private static final CarController instance = new CarController(DAOFactory.createDAO(IBasicCar.class));
 
@@ -32,6 +34,18 @@ public class CarController extends GenericController<IBasicCar> implements ICont
     private IBasicCar searchCar(String plate) {
         Predicate<IBasicCar> filterByCar = car -> car.getInnerCar().getPlate().equals(plate);
         return dao.read(filterByCar);
+    }
+
+    @Override
+    public IBasicCar applyAccessories(IBasicCar car, int carpets, int seats) {
+        for (int i = 0; i < carpets; i++) {
+            car = new Carpets(car);
+        }
+
+        for (int i = 0; i < seats; i++) {
+            car = new HeatedSeats(car);
+        }
+        return car;
     }
 
     @Override
