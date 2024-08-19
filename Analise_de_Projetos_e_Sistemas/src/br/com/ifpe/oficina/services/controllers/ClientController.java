@@ -64,17 +64,13 @@ public class ClientController extends GenericController<Client> implements ICont
     @Override
     public void delete(String cpf, boolean isDeletingCar) {
         Client client = searchClient(cpf);
-        if (client == null) {
-            throw new RuntimeException("Cliente não encontrado");
-        }
-
+        genericDelete(client);
         if (isDeletingCar) {
             IBasicCar car = client.getCar();
             if (car != null) {
                 getCarController().delete(car.getInnerCar().getPlate(), false);
             }
         }
-        genericDelete(client);
     }
 
     @Override

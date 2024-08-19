@@ -77,17 +77,13 @@ public class CarController extends GenericController<IBasicCar> implements ICont
     @Override
     public void delete(String plate, boolean isDeletingClient) {
         IBasicCar car = searchCar(plate);
-        if (car == null) {
-            throw new RuntimeException("Carro não encontrado");
-        }
-
+        genericDelete(car);
         if (isDeletingClient) {
             Client client = car.getInnerCar().getClient();
             if (client != null) {
                 getClientController().delete(client.getCpf(), false);
             }
         }
-        genericDelete(car);
     }
 
     @Override

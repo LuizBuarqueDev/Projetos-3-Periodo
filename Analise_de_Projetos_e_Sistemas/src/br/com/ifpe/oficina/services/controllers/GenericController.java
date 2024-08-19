@@ -21,30 +21,28 @@ public abstract class GenericController<T> {
     protected void genericInsert(T object) {
         try {
             this.validateInsert(object);
-            Logger.info("Inserindo entidade: " + object.toString() + "\n");
+            Logger.info("Inserting entity: " + object.toString() + "\n");
             dao.insert(object);
 
         } catch (Exception e) {
-            Logger.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
 
     protected T genericRead(T object) {
         if (object == null) {
-            throw new NoSuchElementException("Busca: Entidade não encontrada");
+            throw new NoSuchElementException("Search: Entity not found");
         }
-        Logger.info("Busca: Entidade encontrada: " + object.toString());
+        Logger.info("Search: Entity found: " + object.toString());
         return object;
     }
 
     protected void genericUpdate(int index, T object) {
         try {
             this.validateUpdate(object);
-            Logger.info("Atualizando entidade: " + dao.listAll().get(index).toString() + " -> " + object.toString());
+            Logger.info("Updating entity: " + dao.listAll().get(index).toString() + " -> " + object.toString());
             dao.update(index, object);
         } catch (Exception e) {
-            Logger.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -52,12 +50,11 @@ public abstract class GenericController<T> {
     protected void genericDelete(T object) {
         try {
             if (object == null) {
-                throw new RuntimeException("Delete Error: entidade não encontrada");
+                throw new RuntimeException("Delete Error: Entity not found");
             }
-            Logger.info("Deletando entidade: " + object.toString());
+            Logger.info("Deleting entity: " + object.toString());
             dao.delete(object);
         } catch (Exception e) {
-            Logger.error(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }

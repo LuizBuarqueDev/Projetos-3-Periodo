@@ -24,7 +24,7 @@ public class GUIMenu {
                     break;
 
                 default:
-                    System.err.println("Opção " + choice + " é invalida");
+                    System.err.println("Option " + choice + " is invalid");
                     break;
             }
             System.out.println("--------------------------------------------------");
