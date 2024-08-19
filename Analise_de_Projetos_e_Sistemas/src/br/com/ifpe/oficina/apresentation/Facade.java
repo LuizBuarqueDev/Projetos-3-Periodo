@@ -24,7 +24,7 @@ public class Facade {
     }
 
     public void deleteClient(String cpf) {
-        clientController.delete(cpf, false);
+        clientController.delete(cpf, true);
     }
 
     public List<Client> viewAllClients() {
@@ -49,7 +49,7 @@ public class Facade {
     }
 
     public void deleteCar(String plate) {
-        carController.delete(plate, false);
+        carController.delete(plate, true);
     }
 
     public List<IBasicCar> viewAllCars() {

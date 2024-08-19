@@ -53,24 +53,24 @@ public class GUIClient {
                         break;
 
                     default:
-                        System.out.println("O valor '" + choice + "' é invalido");
+                        System.out.println("The Value '" + choice + "' is valid");
                         break;
                 }
 
             } catch (NumberFormatException e) {
-                String text = "Erro o criar, valor fonecido invalido :" + e.getMessage();
+                String text = "Error creating, invalid value provided :" + e.getMessage();
                 System.out.println(text);
                 Logger.error(text);
 
             } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
+                System.out.println("Error: " + e.getMessage());
                 Logger.error(e.getMessage());
             }
         }
     }
 
     public void create() {
-        System.out.println("Idade: ");
+        System.out.println("Age: ");
         int age = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Cpf: ");
@@ -79,7 +79,7 @@ public class GUIClient {
         System.out.println("E-mail: ");
         String email = scanner.nextLine();
 
-        System.out.println("Nome: ");
+        System.out.println("Name: ");
         String name = scanner.nextLine();
 
         Client client = Client.ClientBuilder.aClient()
@@ -94,11 +94,11 @@ public class GUIClient {
 
         facade.createClient(client);
         facade.createCar(car);
-        System.out.println("Cliente criado com sucesso");
+        System.out.println("Client created successfully");
     }
 
     public Client createOnlyClient(IBasicCar car) {
-        System.out.println("Idade: ");
+        System.out.println("Age: ");
         int age = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Cpf: ");
@@ -107,7 +107,7 @@ public class GUIClient {
         System.out.println("E-mail: ");
         String email = scanner.nextLine();
 
-        System.out.println("Nome: ");
+        System.out.println("Name: ");
         String name = scanner.nextLine();
 
         Client client = Client.ClientBuilder.aClient()
@@ -117,7 +117,8 @@ public class GUIClient {
                 .cpf(cpf)
                 .car(car)
                 .build();
-        System.out.println("Cliente criado com sucesso");
+
+        System.out.println("Client created successfully");
         return client;
     }
 
@@ -128,16 +129,16 @@ public class GUIClient {
     }
 
     private void update() {
-        System.out.println("Digite o numero do cpf do cliente que deseja editar: ");
+        System.out.println("Enter the CPF number of the customer you want to edit: ");
         String cpf = scanner.nextLine();
 
-        System.out.println("Idade: ");
+        System.out.println("Age: ");
         int age = Integer.parseInt(scanner.nextLine());
 
         System.out.println("E-mail: ");
         String email = scanner.nextLine();
 
-        System.out.println("Nome: ");
+        System.out.println("Name: ");
         String name = scanner.nextLine();
 
         Client client = Client.ClientBuilder.aClient()
@@ -148,13 +149,13 @@ public class GUIClient {
                 .build();
 
         facade.updateClient(client);
-        System.out.println("Cliente atualizado");
+        System.out.println("Updated client");
     }
 
     private void delete() {
         System.out.println("Cpf: ");
         cpf = scanner.nextLine();
         facade.deleteClient(cpf);
-        System.out.println("Cliente deletado");
+        System.out.println("Client deleted");
     }
 }

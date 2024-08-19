@@ -40,7 +40,7 @@ public class ClientController extends GenericController<Client> implements ICont
         try {
             genericInsert(client);
         } catch (Exception e) {
-            getCarController().delete(client.getCar().getInnerCar().getPlate(), true);
+            getCarController().delete(client.getCar().getInnerCar().getPlate(), false);
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -68,10 +68,10 @@ public class ClientController extends GenericController<Client> implements ICont
             throw new RuntimeException("Cliente não encontrado");
         }
 
-        if (!isDeletingCar) {
+        if (isDeletingCar) {
             IBasicCar car = client.getCar();
             if (car != null) {
-                getCarController().delete(car.getInnerCar().getPlate(), true);
+                getCarController().delete(car.getInnerCar().getPlate(), false);
             }
         }
         genericDelete(client);

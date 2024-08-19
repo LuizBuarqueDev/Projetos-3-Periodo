@@ -53,7 +53,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
         try {
             genericInsert(car);
         } catch (Exception e) {
-            getClientController().delete(car.getInnerCar().getClient().getCpf(), true);
+            getClientController().delete(car.getInnerCar().getClient().getCpf(), false);
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -81,10 +81,10 @@ public class CarController extends GenericController<IBasicCar> implements ICont
             throw new RuntimeException("Carro não encontrado");
         }
 
-        if (!isDeletingClient) {
+        if (isDeletingClient) {
             Client client = car.getInnerCar().getClient();
             if (client != null) {
-                getClientController().delete(client.getCpf(), true);
+                getClientController().delete(client.getCpf(), false);
             }
         }
         genericDelete(car);
