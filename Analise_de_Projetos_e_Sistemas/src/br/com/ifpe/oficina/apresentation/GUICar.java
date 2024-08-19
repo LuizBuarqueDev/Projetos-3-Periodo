@@ -76,19 +76,23 @@ public class GUICar {
     private void create() {
         System.out.print("Enter the plate: ");
         String plate = scanner.nextLine();
+
         System.out.print("Enter traction: ");
         String traction = scanner.nextLine();
 
         System.out.println("Engine type: ");
         String engineType = scanner.nextLine();
+
         System.out.println("Power: ");
         int cvEngine = Integer.parseInt(scanner.nextLine());
+
         System.out.println("Maximum rotation: ");
         int rpmEngine = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter the quantity of each accessory: ");
         System.out.println("Carpets: ");
         int carpets = Integer.parseInt(scanner.nextLine());
+
         System.out.println("Seats with heating: ");
         int seat = Integer.parseInt(scanner.nextLine());
 
@@ -110,19 +114,23 @@ public class GUICar {
     public IBasicCar createOnlyCar(Client client) {
         System.out.print("Enter the plate: ");
         String plate = scanner.nextLine();
+
         System.out.print("Enter traction: ");
         String traction = scanner.nextLine();
 
         System.out.println("Engine type: ");
         String engineType = scanner.nextLine();
+
         System.out.println("Power: ");
         int cvEngine = Integer.parseInt(scanner.nextLine());
+
         System.out.println("Maximum rotation: ");
         int rpmEngine = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter the quantity of each accessory: ");
         System.out.println("Carpets: ");
         int carpets = Integer.parseInt(scanner.nextLine());
+
         System.out.println("Seats with heating: ");
         int seat = Integer.parseInt(scanner.nextLine());
 
@@ -142,19 +150,23 @@ public class GUICar {
     private void update() {
         System.out.print("Enter the plate you want to modify: ");
         String plate = scanner.nextLine();
+
         System.out.print("Enter traction: ");
         String traction = scanner.nextLine();
 
         System.out.println("Engine type: ");
         String engineType = scanner.nextLine();
+
         System.out.println("Power: ");
         int cvEngine = Integer.parseInt(scanner.nextLine());
+
         System.out.println("Maximum rotation: ");
         int rpmEngine = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Enter the quantity of each element: ");
         System.out.println("Carpets: ");
         int carpets = Integer.parseInt(scanner.nextLine());
+
         System.out.println("Seats with heating: ");
         int seat = Integer.parseInt(scanner.nextLine());
 
