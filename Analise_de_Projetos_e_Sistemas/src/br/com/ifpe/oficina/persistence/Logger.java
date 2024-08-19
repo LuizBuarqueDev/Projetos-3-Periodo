@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Logger {
-    private static final String ERRO_FILE_NAME = "error.txt";
+    private static final String ERROR_FILE_NAME = "error.txt";
     private static final String INFO_FILE_NAME = "info.txt";
 
     public static void info(String text) {
@@ -19,7 +19,7 @@ public class Logger {
     }
 
     public static void error(String text) {
-        File file = new File(ERRO_FILE_NAME);
+        File file = new File(ERROR_FILE_NAME);
         try (FileWriter writer = new FileWriter(file,true)) {
             writer.write(text + System.lineSeparator());
 
