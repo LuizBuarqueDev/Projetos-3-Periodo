@@ -7,9 +7,10 @@ public class GUIMenu {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println();
+        boolean loop = true;
 
-        while (true) {
-            System.out.println("[1]-Client\n[2]-Car\n");
+        while (loop) {
+            System.out.println("[1]-Client\n[2]-Car\n[3]-Exit");
             String choice = scanner.nextLine();
 
             switch (choice) {
@@ -21,6 +22,10 @@ public class GUIMenu {
                 case "2":
                     GUICar guiCar = GUICar.getInstance();
                     guiCar.CarGUI();
+                    break;
+
+                case "3":
+                    loop = false;
                     break;
 
                 default:
