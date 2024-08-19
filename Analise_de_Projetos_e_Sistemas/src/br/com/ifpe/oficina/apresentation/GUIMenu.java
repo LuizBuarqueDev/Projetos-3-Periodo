@@ -14,7 +14,7 @@ public class GUIMenu {
 
             switch (choice) {
                 case "1":
-                    GUIClient guiClient = GUIClient.getInstace();
+                    GUIClient guiClient = GUIClient.getInstance();
                     guiClient.clientGUI();
                     break;
 

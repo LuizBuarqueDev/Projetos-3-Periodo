@@ -17,7 +17,7 @@ public class GUIClient {
     private GUIClient() {
     }
 
-    public static GUIClient getInstace() {
+    public static GUIClient getInstance() {
         return instance;
     }
 

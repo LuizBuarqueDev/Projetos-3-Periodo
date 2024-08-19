@@ -102,7 +102,7 @@ public class GUICar {
                 .engine(new CarEngine(cvEngine, rpmEngine, engineType))
                 .build();
 
-        Client client = GUIClient.getInstace().createOnlyClient(car);
+        Client client = GUIClient.getInstance().createOnlyClient(car);
         car.getInnerCar().setClient(client);
 
         car = facade.applyCarAccessories(car, carpets, seat);
