@@ -67,7 +67,7 @@ public class GUICar {
                 Logger.error(text);
 
             } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
+                System.out.println(e.getMessage());
                 Logger.error(e.getMessage());
             }
         }

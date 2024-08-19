@@ -54,7 +54,7 @@ public class ClientController extends GenericController<Client> implements ICont
     public void update(Client newClient) {
         Client oldClient = searchClient(newClient.getCpf());
         if (oldClient == null) {
-            throw new RuntimeException("Cliente não encontrado");
+            throw new RuntimeException("Update error: Client not found");
         }
         newClient.setCar(oldClient.getCar());
         int index = viewAll().indexOf(oldClient);
@@ -81,17 +81,17 @@ public class ClientController extends GenericController<Client> implements ICont
     @Override
     protected void validateInsert(Client client) {
         if (!cpfValidator.validateCpf(client.getCpf())) {
-            throw new RuntimeException("Erro: Cpf invalido");
+            throw new RuntimeException("Validate insert error: Invalid CPF");
 
         } else if (searchClient(client.getCpf()) != null) {
-            throw new RuntimeException("Erro: O cpf digitado já existe");
+            throw new RuntimeException("Validate insert error: The cpf entered already exists");
         }
     }
 
     @Override
     protected void validateUpdate(Client client) {
         if (!cpfValidator.validateCpf(client.getCpf())) {
-            throw new RuntimeException("Update Erro: Cpf invalido");
+            throw new RuntimeException("Update error: Invalid CPF");
         }
     }
 }

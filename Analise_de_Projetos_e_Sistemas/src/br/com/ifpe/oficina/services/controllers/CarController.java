@@ -10,7 +10,7 @@ import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 
-public class CarController extends GenericController<IBasicCar> implements IController<IBasicCar> , ICarController{
+public class CarController extends GenericController<IBasicCar> implements IController<IBasicCar> , ICarController {
 
     private static final CarController instance = new CarController(DAOFactory.createDAO(IBasicCar.class));
 
@@ -67,7 +67,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
     public void update(IBasicCar newCar) {
         IBasicCar oldCar = searchCar(newCar.getInnerCar().getPlate());
         if (oldCar == null) {
-            throw new RuntimeException("Carro não encontrado");
+            throw new RuntimeException("Update error: Car not found");
         }
         newCar.getInnerCar().setClient(oldCar.getInnerCar().getClient());
         int index = viewAll().indexOf(oldCar);
@@ -94,14 +94,14 @@ public class CarController extends GenericController<IBasicCar> implements ICont
     @Override
     protected void validateInsert(IBasicCar car) {
         if (searchCar(car.getInnerCar().getPlate()) != null) {
-            throw new RuntimeException("Não foi possivel inserir placa já existe");
+            throw new RuntimeException("Validate insert error: Unable to insert plate already exists");
         }
     }
 
     @Override
     protected void validateUpdate(IBasicCar car) {
         if (searchCar(car.getInnerCar().getPlate()) == null) {
-            throw new RuntimeException("Placa não encontrada");
+            throw new RuntimeException("Validate update error: Plate not found");
         }
     }
 }

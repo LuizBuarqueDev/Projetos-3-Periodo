@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Logger {
-    private static final String ERRO_FILE_NAME = "erro.txt";
+    private static final String ERRO_FILE_NAME = "error.txt";
     private static final String INFO_FILE_NAME = "info.txt";
 
     public static void info(String text) {
@@ -14,7 +14,7 @@ public class Logger {
             writer.write(text + System.lineSeparator());
 
         } catch (IOException e) {
-            throw new RuntimeException("Erro ao escrever no arquivo de log de info.");
+            throw new RuntimeException("Error writing to info log file.");
         }
     }
 
@@ -24,7 +24,7 @@ public class Logger {
             writer.write(text + System.lineSeparator());
 
         } catch (IOException e) {
-            throw new RuntimeException("Erro ao escrever no arquivo de log de erro.");
+            throw new RuntimeException("Error writing to error log file.");
         }
     }
 }
