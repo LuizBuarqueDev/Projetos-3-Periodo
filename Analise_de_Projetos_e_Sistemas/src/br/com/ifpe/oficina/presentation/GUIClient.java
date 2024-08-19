@@ -1,4 +1,4 @@
-package br.com.ifpe.oficina.apresentation;
+package br.com.ifpe.oficina.presentation;
 
 import java.util.Scanner;
 
