@@ -16,7 +16,7 @@ public class Car implements IBasicCar {
         this.engine = engine;
         this.traction = traction;
         this.client = client;
-        this.basePrice = 1000;
+        this.basePrice = 100000;
     }
 
     public Car() {

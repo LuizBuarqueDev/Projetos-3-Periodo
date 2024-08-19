@@ -23,7 +23,7 @@ public class Carpets implements IBasicCar {
 
     @Override
     public double getPrice() {
-        double accessoryPrice = 1000;
+        double accessoryPrice = 300;
         return this.car.getPrice() + accessoryPrice;
     }
 }
