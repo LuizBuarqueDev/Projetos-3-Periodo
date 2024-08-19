@@ -14,8 +14,8 @@ public class LoadEntity {
 
     private static final LoadEntity instance = new LoadEntity();
 
-    private CarController carController = CarController.getInstance();
-    private ClientController clientController = ClientController.getInstance();
+    private final CarController carController = CarController.getInstance();
+    private final ClientController clientController = ClientController.getInstance();
 
     private LoadEntity() {
     }
@@ -26,9 +26,9 @@ public class LoadEntity {
 
     Random random = new Random();
 
-    public void createRandomData() {
-        generateClients(50);
-        generateCars(50);
+    public void createRandomData( int quantity) {
+        generateClients(quantity);
+        generateCars(quantity);
     }
 
     private void generateClients(int quantity) {
@@ -42,8 +42,8 @@ public class LoadEntity {
             Client client = Client.ClientBuilder.aClient()
                     .age(20 + i)
                     .cpf(cpf)
-                    .email("cliente" + i + "@gmail.com")
-                    .name("cliente" + i)
+                    .email("client" + i + "@gmail.com")
+                    .name("client" + i)
                     .build();
 
             clientController.viewAll().add(client);
@@ -58,7 +58,7 @@ public class LoadEntity {
             switch (key) {
                 case 0: {
                     Car car = Car.CarBuilder.aCar()
-                            .engine(new CarEngine(670, 5000, "Eletric"))
+                            .engine(new CarEngine(670, 5000, "Electric"))
                             .client(client)
                             .plate("ABC-" + i)
                             .traction("4x2")

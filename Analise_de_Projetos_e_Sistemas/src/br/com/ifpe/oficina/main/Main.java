@@ -5,7 +5,7 @@ import br.com.ifpe.oficina.utils.LoadEntity;
 
 public class Main {
 	public static void main(String[] args) {
-		LoadEntity.getInstance().createRandomData();
+		LoadEntity.getInstance().createRandomData(50);
 		GUIMenu.runGUI();
 	}
 }
