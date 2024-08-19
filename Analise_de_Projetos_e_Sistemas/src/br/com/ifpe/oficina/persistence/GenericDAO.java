@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 public class GenericDAO<T> implements IGenericDAO<T> {
 	
-	List<T> list;
+	private final List<T> list;
 
 	public GenericDAO() {
 		this.list = new ArrayList<T>();

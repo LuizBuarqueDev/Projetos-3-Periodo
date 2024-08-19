@@ -26,7 +26,7 @@ public class Car implements IBasicCar {
     public String toString() {
         return "Car{" +
                 "plate='" + plate + '\'' +
-                ", client='" + client.getName() + '\'' +
+                ", client name='" + client.getName() + '\'' +
                 ", base price='" + basePrice + '\'' +
                 ", traction='" + traction + '\'' +
                 ", engine=" + engine +

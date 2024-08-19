@@ -11,7 +11,7 @@ public class Logger {
     public static void info(String text) {
         File file = new File(INFO_FILE_NAME);
         try (FileWriter writer = new FileWriter(file, true)) {
-            writer.write(text + System.lineSeparator());
+            writer.write(text);
 
         } catch (IOException e) {
             throw new RuntimeException("Error writing to info log file.");
@@ -21,7 +21,7 @@ public class Logger {
     public static void error(String text) {
         File file = new File(ERROR_FILE_NAME);
         try (FileWriter writer = new FileWriter(file,true)) {
-            writer.write(text + System.lineSeparator());
+            writer.write(text);
 
         } catch (IOException e) {
             throw new RuntimeException("Error writing to error log file.");
