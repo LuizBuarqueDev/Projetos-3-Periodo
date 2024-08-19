@@ -10,11 +10,9 @@ import br.com.ifpe.oficina.entities.decorator.IBasicCar;
 import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 
-public class CarController extends GenericController<IBasicCar> implements IController<IBasicCar> , ICarController {
+public class CarController extends GenericController<IBasicCar> implements IController<IBasicCar>, ICarController {
 
     private static final CarController instance = new CarController(DAOFactory.createDAO(IBasicCar.class));
-
-    private ClientController clientController;
 
     private CarController(GenericDAO<IBasicCar> dao) {
         super(dao);
@@ -22,13 +20,6 @@ public class CarController extends GenericController<IBasicCar> implements ICont
 
     public static CarController getInstance() {
         return instance;
-    }
-
-    private ClientController getClientController() {
-        if (clientController == null) {
-            clientController = ClientController.getInstance();
-        }
-        return clientController;
     }
 
     private IBasicCar searchCar(String plate) {
@@ -53,7 +44,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
         try {
             genericInsert(car);
         } catch (Exception e) {
-            getClientController().delete(car.getInnerCar().getClient().getCpf(), false);
+            ClientController.getInstance().delete(car.getInnerCar().getClient().getCpf(), false);
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -81,7 +72,7 @@ public class CarController extends GenericController<IBasicCar> implements ICont
         if (isDeletingClient) {
             Client client = car.getInnerCar().getClient();
             if (client != null) {
-                getClientController().delete(client.getCpf(), false);
+                ClientController.getInstance().delete(client.getCpf(), false);
             }
         }
     }
