@@ -59,7 +59,7 @@ public class CarController extends GenericController<IBasicCar> implements ICarC
     @Override
     protected void afterDelete(IBasicCar car, boolean deleteAssociation) {
         Client client = car.getInnerCar().getClient();
-        if (client != null) {
+        if (client != null && deleteAssociation) {
             ClientController.getInstance().delete(client.getCpf(), false);
         }
     }

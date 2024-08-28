@@ -55,7 +55,7 @@ public class ClientController extends GenericController<Client> {
     @Override
     protected void afterDelete(Client client, boolean deleteAssociation) {
         IBasicCar car = client.getCar();
-        if (car != null) {
+        if (car != null && deleteAssociation) {
             CarController.getInstance().delete(car.getInnerCar().getPlate(), false);
         }
     }
