@@ -54,7 +54,7 @@ public abstract class GenericController<T> implements IController<T>{
             T oldObject = this.validateUpdate(object);
             int index = viewAll().indexOf(oldObject);
             Logger.info("Updating entity: " + dao.listAll().get(index).toString() + " -> " + object.toString());
-            dao.update(index, object);;
+            dao.update(index, object);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

@@ -6,7 +6,7 @@ import br.com.ifpe.oficina.persistence.GenericDAO;
 import br.com.ifpe.oficina.services.factories.DAOFactory;
 import br.com.ifpe.oficina.services.validators.CpfValidator;
 
-import java.util.List;
+
 import java.util.function.Predicate;
 
 public class ClientController extends GenericController<Client> {
