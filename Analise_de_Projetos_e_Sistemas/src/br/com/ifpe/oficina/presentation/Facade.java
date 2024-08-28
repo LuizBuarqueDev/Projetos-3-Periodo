@@ -12,7 +12,7 @@ public class Facade {
     private final ClientController clientController = ClientController.getInstance();
 
     public void createClient(Client client) {
-        clientController.create(client);
+        clientController.insert(client);
     }
 
     public Client readClient(String cpf) {
@@ -37,7 +37,7 @@ public class Facade {
     }
 
     public void createCar(IBasicCar car) {
-        carController.create(car);
+        carController.insert(car);
     }
 
     public IBasicCar readCar(String plate) {

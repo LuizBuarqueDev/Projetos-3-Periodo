@@ -9,7 +9,7 @@ import br.com.ifpe.oficina.services.validators.CpfValidator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ClientController extends GenericController<Client> implements IController<Client> {
+public class ClientController extends GenericController<Client> {
 
     private static final ClientController instance = new ClientController(DAOFactory.createDAO(Client.class));
 
@@ -23,51 +23,10 @@ public class ClientController extends GenericController<Client> implements ICont
         return instance;
     }
 
-    private Client searchClient(String cpf) {
+    @Override
+    protected Client search(String cpf) {
         Predicate<Client> filterByClient = client -> client.getCpf().equals(cpf);
         return dao.read(filterByClient);
-    }
-
-    public void create(Client client) {
-        try {
-            genericInsert(client);
-        } catch (Exception e) {
-            CarController.getInstance().delete(client.getCar().getInnerCar().getPlate(), false);
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    @Override
-    public Client read(String cpf) {
-        return genericRead(searchClient(cpf));
-    }
-
-    @Override
-    public void update(Client newClient) {
-        Client oldClient = searchClient(newClient.getCpf());
-        if (oldClient == null) {
-            throw new RuntimeException("Update error: Client not found");
-        }
-        newClient.setCar(oldClient.getCar());
-        int index = viewAll().indexOf(oldClient);
-        genericUpdate(index, newClient);
-    }
-
-    @Override
-    public void delete(String cpf, boolean isDeletingCar) {
-        Client client = searchClient(cpf);
-        genericDelete(client);
-        if (isDeletingCar) {
-            IBasicCar car = client.getCar();
-            if (car != null) {
-                CarController.getInstance().delete(car.getInnerCar().getPlate(), false);
-            }
-        }
-    }
-
-    @Override
-    public List<Client> viewAll() {
-        return genericListAll();
     }
 
     @Override
@@ -75,15 +34,34 @@ public class ClientController extends GenericController<Client> implements ICont
         if (!cpfValidator.validateCpf(client.getCpf())) {
             throw new RuntimeException("Validate insert error: Invalid CPF");
 
-        } else if (searchClient(client.getCpf()) != null) {
+        } else if (search(client.getCpf()) != null) {
             throw new RuntimeException("Validate insert error: The cpf entered already exists");
         }
     }
 
     @Override
-    protected void validateUpdate(Client client) {
-        if (!cpfValidator.validateCpf(client.getCpf())) {
+    protected Client validateUpdate(Client newClient) {
+        Client oldClient = search(newClient.getCpf());
+        if (!cpfValidator.validateCpf(newClient.getCpf())) {
             throw new RuntimeException("Update error: Invalid CPF");
         }
+        if (oldClient == null) {
+            throw new RuntimeException("Update error: Client not found");
+        }
+        newClient.setCar(oldClient.getCar());
+        return oldClient;
+    }
+
+    @Override
+    protected void afterDelete(Client client, boolean deleteAssociation) {
+        IBasicCar car = client.getCar();
+        if (car != null) {
+            CarController.getInstance().delete(car.getInnerCar().getPlate(), false);
+        }
+    }
+
+    @Override
+    protected void fixInsert(Client client) {
+        CarController.getInstance().delete(client.getCar().getInnerCar().getPlate(), false);
     }
 }

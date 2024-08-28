@@ -3,7 +3,7 @@ package br.com.ifpe.oficina.services.controllers;
 import java.util.List;
 
 public interface IController<T> {
-    void create(T object);
+    void insert(T object);
 
     T read(String unique_key);
 
